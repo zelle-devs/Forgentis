@@ -1,0 +1,279 @@
+/* ============================================
+   WhyForgentis.css
+   Uses only Forgentis global.css design tokens.
+   Breakpoints mirror global.css exactly:
+   300-350 / 351-479 / 480-767 / 768-1023 / 1024-1439 / 1440-3000
+   ============================================ */
+
+.wf-section {
+  position: relative;
+  padding: 60px 0;
+  background: var(--color-black);
+  overflow: hidden;
+}
+
+/* soft ambient blue glow behind the header, on-brand with Forgentis */
+.wf-section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 640px;
+  height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--color-blue-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wf-section .container2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ HEADER (centered) ============ */
+
+.wf-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 640px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.wf-eyebrow {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-blue-main);
+}
+
+.wf-headline {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  line-height: 1.15;
+}
+
+.wf-body {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-base);
+  color: var(--color-steel-main);
+  line-height: 1.6;
+}
+
+/* ============ POINTS LIST ============ */
+
+.wf-list {
+  border-top: 1px solid var(--color-dark-border);
+}
+
+.wf-row {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 28px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--color-dark-border);
+  transition: border-color var(--transition-normal);
+}
+
+.wf-row:hover {
+  border-color: var(--color-blue-main);
+}
+
+.wf-number {
+  flex: 0 0 auto;
+  width: 56px;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-blue-medium);
+  line-height: 1;
+}
+
+.wf-title {
+  flex: 0 0 auto;
+  width: 240px;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+.wf-desc {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-main);
+  line-height: 1.55;
+  padding-right: 24px;
+  text-align: right;
+}
+
+.wf-arrow-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-steel-main);
+  transition: all var(--transition-normal);
+}
+
+.wf-arrow-icon {
+  transition: transform var(--transition-normal);
+}
+
+.wf-row:hover .wf-arrow-btn {
+  background-color: var(--color-blue-main);
+  border-color: var(--color-blue-main);
+  color: var(--color-white);
+  box-shadow: var(--shadow-blue);
+}
+
+.wf-row:hover .wf-arrow-icon {
+  transform: rotate(45deg);
+}
+
+/* ============ IMAGE STRIP ============ */
+
+.wf-image-wrap {
+  margin-top: 56px;
+  width: 100%;
+  height: 320px;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid var(--color-dark-border);
+}
+
+.wf-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============ RESPONSIVE ============ */
+
+/* Large Desktop (1440px - 3000px) */
+@media (min-width: 1440px) {
+  .wf-section { padding: 50px 0; }
+  .wf-header { margin-bottom: 64px; }
+  .wf-title { width: 280px; }
+  .wf-row { padding: 34px 0; gap: 32px; }
+  .wf-image-wrap { height: 380px; margin-top: 64px; }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .wf-section { padding: 40px 0; }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .wf-section { padding: 32px 0; }
+  .wf-header { margin-bottom: 44px; }
+  .wf-headline { font-size: var(--font-size-4xl); }
+
+  .wf-row { gap: 18px; padding: 24px 0; }
+  .wf-number { width: 42px; font-size: var(--font-size-3xl); }
+  .wf-title { width: 170px; font-size: var(--font-size-base); }
+  .wf-desc { font-size: var(--font-size-xs); padding-right: 12px; }
+  .wf-arrow-btn { width: 38px; height: 38px; }
+
+  .wf-image-wrap { height: 280px; margin-top: 44px; }
+}
+
+/* ============================================
+   MOBILE (300px - 767px)
+   The single-line row wraps: number + title share
+   the first line, description drops to its own
+   full-width line, and the arrow button is pinned
+   to the top-right corner of the row.
+   ============================================ */
+@media (max-width: 767px) {
+  .wf-section { padding: 24px 0; }
+
+  .wf-header { margin-bottom: 36px; gap: 10px; }
+  .wf-headline { font-size: var(--font-size-3xl); }
+  .wf-body { font-size: var(--font-size-sm); }
+
+  .wf-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px 14px;
+    padding: 20px 52px 20px 0;
+  }
+
+  .wf-number {
+    width: auto;
+    font-size: var(--font-size-2xl);
+  }
+
+  .wf-title {
+    flex: 1 1 auto;
+    width: auto;
+    font-size: var(--font-size-base);
+    align-self: center;
+  }
+
+  .wf-desc {
+    flex: 0 0 100%;
+    padding-right: 0;
+    margin-top: 8px;
+    font-size: var(--font-size-xs);
+  }
+
+  .wf-arrow-btn {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+  }
+
+  .wf-image-wrap { height: 200px; margin-top: 36px; border-radius: var(--radius-xl); }
+}
+
+/* Mobile Small (351px - 479px) */
+@media (min-width: 351px) and (max-width: 479px) {
+  .wf-headline { font-size: var(--font-size-2xl); }
+  .wf-number { font-size: var(--font-size-xl); }
+  .wf-title { font-size: var(--font-size-sm); }
+  .wf-desc { font-size: 11px; }
+}
+
+/* Ultra Small (300px - 350px) */
+@media (max-width: 350px) {
+  .wf-section { padding: 20px 0; }
+  .wf-headline { font-size: var(--font-size-xl); }
+  .wf-body { font-size: var(--font-size-xs); }
+
+  .wf-row { padding: 16px 46px 16px 0; gap: 3px 10px; }
+  .wf-number { font-size: var(--font-size-lg); }
+  .wf-title { font-size: var(--font-size-xs); }
+  .wf-desc { font-size: 10px; }
+  .wf-arrow-btn { width: 32px; height: 32px; top: 16px; }
+
+  .wf-image-wrap { height: 160px; }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .wf-row,
+  .wf-arrow-btn,
+  .wf-arrow-icon {
+    transition: none !important;
+  }
+}

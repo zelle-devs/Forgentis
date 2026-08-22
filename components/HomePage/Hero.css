@@ -1,0 +1,366 @@
+/* ============ HERO STYLES - FORGENTIS ============ */
+.hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--color-black);
+}
+
+/* Spacer for fixed hero */
+.hero-spacer {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+/* Background */
+.hero-background,
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: opacity;
+}
+
+.hero-slider-image.active {
+  opacity: 1;
+}
+
+/* Overlay - Dark gradient from left */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(13, 13, 13, 0.95) 0%, 
+    rgba(13, 13, 13, 0.85) 35%, 
+    rgba(13, 13, 13, 0.65) 65%, 
+    rgba(13, 13, 13, 0.4) 100%);
+  z-index: 2;
+}
+
+/* Content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 730px;
+}
+
+/* ============ TITLE WITH IMAGE CLIP ============ */
+/* Eyebrow - Title ke upar */
+.hero-eyebrow {
+  display: block;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-blue-main);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 16px;
+  text-shadow: var(--text-shadow-blue);
+  line-height: 1.4;
+}
+
+.hero-title {
+  font-size: 62px;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-primary);
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  /* text-shadow: var(--text-shadow-btn); */
+}
+
+.hero-title-text {
+  color: var(--color-white);
+}
+
+/* Title Clip - Image background with clip path */
+.hero-title-clip {
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* -webkit-text-fill-color: transparent; */
+  color: transparent;
+  position: relative;
+  /* Add a subtle text shadow for depth */
+  /* filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); */
+}
+
+/* Optional: Add a subtle overlay on the clipped text for better readability */
+.hero-title-clip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%); */
+  pointer-events: none;
+  /* mix-blend-mode: overlay; */
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (-webkit-background-clip: text) {
+  .hero-title-clip {
+    color: var(--color-blue-main);
+    background: none;
+    -webkit-text-fill-color: var(--color-blue-main);
+  }
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-secondary);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-steel-dark);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 480px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-primary-btn {
+  padding: 12px 22px;
+  font-size: var(--font-size-xs);
+  letter-spacing: 1px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-primary);
+  text-shadow: var(--text-shadow-btn);
+  box-shadow: var(--shadow-blue);
+}
+
+.hero-secondary-btn {
+  padding: 12px 22px;
+  font-size: var(--font-size-xs);
+  letter-spacing: 1px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-primary);
+  text-shadow: var(--text-shadow-btn);
+}
+
+
+/* Slider Dots - Centered Bottom */
+.hero-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  padding: 0;
+}
+
+.hero-dot.active {
+  background: var(--color-blue-main);
+  width: 22px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px var(--color-blue-glow);
+}
+
+.hero-dot:hover {
+  background: var(--color-blue-medium);
+}
+
+/* ============ RESPONSIVE ============ */
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 620px;
+  }
+  
+  .hero-title {
+    font-size: 62px;
+  }
+  
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-content {
+    max-width: 720px;
+    text-transform: uppercase;
+  }
+  
+  .hero-title {
+    font-size: 62px;
+  }
+  
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-content {
+    max-width: 500px;
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-5xl);
+  }
+  
+  .hero-dots {
+    bottom: 20px;
+  }
+}
+
+/* Mobile Large (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .hero {
+    align-items: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-6xl);
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: var(--font-size-xs);
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+
+}
+
+/* Mobile Small (300px - 479px) */
+@media (max-width: 479px) {
+  .hero-content {
+    text-align: center;
+    padding: 0 16px;
+  }
+  .hero-eyebrow {
+    font-size: var(--font-size-xs);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: var(--font-size-special);
+    margin-bottom: 12px;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-xs);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .hero-primary-btn,
+  .hero-secondary-btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .hero-dots {
+    bottom: 60px;
+    gap: 5px;
+  }
+  
+  .hero-dot {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .hero-dot.active {
+    width: 18px;
+  }
+}
+
+/* Ultra Small (300px - 350px) */
+@media (max-width: 350px) {
+  .hero-title {
+    font-size: var(--font-size-special);
+  }
+  
+  .hero-video-box {
+    padding: 6px 10px;
+  }
+  
+  .hero-video-play {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .hero-video-title {
+    font-size: 8px;
+  }
+  
+  .hero-video-subtitle {
+    font-size: 6px;
+  }
+  
+  .hero-dots {
+    bottom: 50px;
+  }
+}

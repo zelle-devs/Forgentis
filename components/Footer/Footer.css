@@ -1,0 +1,640 @@
+/* ============================================
+   Footer.css
+   Relies on tokens from your global.css
+   ============================================ */
+
+.aj-footer {
+  position: relative;
+  background-color: var(--color-black);
+  border-top: 1px solid rgba(200, 165, 74, 0.25);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Full footer background image - Overlay effect */
+.aj-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/footer-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark overlay over background - Left se dark for text readability */
+.aj-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(
+    90deg,
+    rgba(13, 13, 13, 0.9) 0%,
+    rgba(13, 13, 13, 0.8) 35%,
+    rgba(13, 13, 13, 0.6) 60%,
+    rgba(13, 13, 13, 0.3) 80%,
+    rgba(13, 13, 13, 0.1) 100%
+  ); */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Diagonal Image Panel */
+.aj-footer-diagonal-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 33%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+  clip-path: polygon(
+    15% 0,
+    100% 0,
+    100% 100%,
+    0% 100%
+  );
+  filter:
+    drop-shadow(8px 0 8px rgba(255, 255, 255, 0.30))
+    drop-shadow(18px 0 22px rgba(255, 255, 255, 0.16))
+    drop-shadow(35px 0 40px rgba(255, 255, 255, 0.08));
+}
+
+.aj-footer-diagonal-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Content - Background se upar */
+.aj-footer .container {
+  position: relative;
+  z-index: 2;
+}
+
+.aj-footer-col {
+  position: relative;
+  z-index: 2;
+}
+
+.aj-footer-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+  .aj-footer-diagonal-image-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+
+  /* ============================================
+    DIAGONAL BORDER / GRADIENT LINE
+    ============================================ */
+
+  .aj-footer-diagonal-image::before {
+    content: '';
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 5;
+    pointer-events: none;
+
+    background: linear-gradient(
+      to bottom,
+      rgba(200, 165, 74, 0.15) 0%,
+      rgba(200, 165, 74, 0.75) 25%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(200, 165, 74, 0.75) 75%,
+      rgba(200, 165, 74, 0.15) 100%
+    );
+
+    clip-path: polygon(
+      14.5% 0%,
+      15.5% 0%,
+      0.5% 100%,
+      0% 100%
+    );
+
+    filter:
+    drop-shadow(10px 0 8px rgba(0, 0, 0, 0.6))
+    drop-shadow(24px 0 25px rgba(0, 0, 0, 0.35))
+    drop-shadow(40px 0 40px rgba(0, 0, 0, 0.15));
+  }
+
+  /* .aj-footer-diagonal-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.45) 20%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0.45) 80%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+    clip-path: polygon(
+      14.5% 0%,
+      15.5% 0%,
+      0.5% 100%,
+      0% 100%
+    );
+
+
+    filter:
+      drop-shadow(10px 0 12px rgba(255, 255, 255, 0.65))
+      drop-shadow(24px 0 28px rgba(255, 255, 255, 0.35))
+      drop-shadow(40px 0 50px rgba(255, 255, 255, 0.15));
+  } */
+
+
+  /* ============================================
+    TOP GRID
+    ============================================ */
+
+  .aj-footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1.45fr 1.35fr;
+    gap: 22px;
+    padding: 40px 0;
+  }
+
+  .aj-footer-col {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- Brand ---- */
+
+  .aj-footer-logo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .aj-footer-logo-image {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .aj-footer-desc {
+    font-family: var(--font-family-body2);
+    font-size: var(--font-size-sm);
+    line-height: 1.3;
+    color: var(--color-beige);
+    font-weight: var(--font-weight-light);
+  }
+
+  /* ---- Headings & Toggle Wrapper (FIXED) ---- */
+
+  .aj-footer-heading-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .aj-footer-heading {
+    font-family: var(--font-family-gotham);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-white);
+  }
+
+  /* Toggle Button - HIDDEN ON DESKTOP, Visible on Mobile */
+  .aj-footer-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-gold);
+  }
+
+  .aj-toggle-icon {
+    transition: transform 0.3s ease;
+  }
+  .aj-toggle-icon.open {
+    transform: rotate(180deg);
+  }
+
+  /* ---- Lists ---- */
+
+  .aj-footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .aj-footer-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-body2);
+    font-size: var(--font-size-sm);
+    color: var(--color-beige);
+    transition: color var(--transition-fast), gap var(--transition-fast);
+  }
+
+  .aj-footer-list a svg {
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+  }
+
+  .aj-footer-list a:hover {
+    color: var(--color-white);
+    gap: 9px;
+  }
+
+  .aj-footer-list a:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* ---- Contact ---- */
+
+  .aj-footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .aj-footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--font-family-body2);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-beige);
+  }
+
+  .aj-footer-contact-list svg {
+    color: var(--color-gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .aj-footer-contact-list a {
+    color: var(--color-beige);
+    transition: color var(--transition-fast);
+  }
+
+  .aj-footer-contact-list a:hover {
+    color: var(--color-white);
+  }
+
+  /* ---- CTA column ---- */
+
+  .aj-footer-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 26px;
+    padding-left: 8px;
+  }
+
+  .aj-footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--color-gold);
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .aj-footer-social-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .aj-footer-social-btn:hover {
+    border-color: var(--color-gold);
+    background: var(--color-gold-light);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+  }
+
+  .aj-footer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .aj-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-body);
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: var(--text-shadow-btn);
+    transition: all var(--transition-fast);
+  }
+
+  .aj-footer-btn.is-gold {
+    background: var(--color-gold);
+    color: var(--color-black);
+  }
+
+  .aj-footer-btn.is-gold:hover {
+    background: transparent;
+    color: var(--color-gold);
+    box-shadow: inset 0 0 0 1px var(--color-gold);
+  }
+
+  .aj-footer-btn.is-outline {
+    background: transparent;
+    color: var(--color-white);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .aj-footer-btn.is-outline:hover {
+    box-shadow: inset 0 0 0 1px var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .aj-footer-btn svg {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+  }
+
+  .aj-footer-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* ============================================
+    BOTTOM BAR
+    ============================================ */
+
+  .aj-footer-bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .aj-footer-copyright {
+    font-family: var(--font-family-body2);
+    font-size: var(--font-size-xs);
+    color: var(--color-beige);
+  }
+
+  .aj-footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-family-body2);
+    font-size: var(--font-size-xs);
+  }
+
+  .aj-footer-bottom-links a {
+    color: var(--color-beige);
+    transition: color var(--transition-fast);
+  }
+
+  .aj-footer-bottom-links a:hover {
+    color: var(--color-gold);
+  }
+
+  .aj-footer-dot {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* ============================================
+    RESPONSIVE (Accordion + Diagonal Fix)
+    ============================================ */
+
+  @media (min-width: 1440px) {
+    .aj-footer-top { 
+      padding: 40px 0; 
+      gap: 30px; 
+    }
+
+    .aj-footer-diagonal-image {
+      width: 32%;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .aj-footer-top {
+      grid-template-columns: 1.6fr 1fr 1fr;
+      row-gap: 28px;
+    }
+
+    .aj-footer-contact {
+      grid-column: 1 / 2;
+    }
+
+    .aj-footer-cta {
+      grid-column: 1 / 4;
+      align-items: flex-start;
+    }
+
+    .aj-footer-socials {
+      justify-content: flex-start;
+    }
+
+    .aj-footer-buttons {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 720px;
+    }
+
+    .aj-footer-diagonal-image {
+      width: 30%;
+
+      clip-path: polygon(
+        10% 0,
+        100% 0,
+        100% 100%,
+        0% 100%
+      );
+    }
+
+    .aj-footer-diagonal-image::before {
+      clip-path: polygon(
+        9.5% 0%,
+        10.5% 0%,
+        0.5% 100%,
+        0% 100%
+      );
+    }
+  }
+
+  @media (max-width: 900px) {
+    .aj-footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .aj-footer-brand {
+      grid-column: 1 / 3;
+    }
+
+    .aj-footer-buttons {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: none;
+    }
+
+    .aj-footer-diagonal-image {
+      width: 25%;
+
+      clip-path: polygon(
+        5% 0,
+        100% 0,
+        100% 100%,
+        0% 100%
+      );
+    }
+
+    .aj-footer-diagonal-image::before {
+      clip-path: polygon(
+        4.5% 0%,
+        5.5% 0%,
+        0.5% 100%,
+        0% 100%
+      );
+    }
+  }
+
+  /* Mobile (Accordion Activates) */
+  @media (max-width: 640px) {
+    .aj-footer-top {
+      grid-template-columns: 1fr;
+      padding: 30px 0 14px;
+      gap: 0;
+    }
+
+    .aj-footer-logo{
+      /* display: flex; */
+      align-items: center;
+      /* justify-content: center; */
+    }
+    .aj-footer-logo-image {
+      width: 200px;
+    }
+
+    .aj-footer-brand {
+      grid-column: 1;
+      margin-bottom: 16px;
+    }
+
+    .aj-footer-cta {
+      grid-column: 1;
+      padding-left: 0;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .aj-footer-desc {
+      text-align: center;
+      max-width: none;
+    }
+
+    .aj-footer-heading-wrapper {
+      margin-bottom: 0;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .aj-footer-toggle {
+      display: flex;
+    }
+
+    .aj-footer-list,
+    .aj-footer-contact-list {
+      max-height: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.4s ease-in-out,
+        opacity 0.3s ease,
+        margin 0.3s ease;
+      opacity: 0;
+      margin: 0;
+    }
+
+    .aj-footer-list.open,
+    .aj-footer-contact-list.open {
+      max-height: 500px;
+      opacity: 1;
+      margin: 12px 0 20px 0;
+    }
+
+    .aj-footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 20px 0 28px;
+    }
+
+    .aj-footer-diagonal-image {
+      width: 40%;
+
+      clip-path: polygon(
+        0% 0,
+        100% 0,
+        100% 100%,
+        0% 100%
+      );
+    }
+
+    .aj-footer-diagonal-image::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .aj-footer-logo-image { width: 180px; }
+    .aj-footer-heading { font-size: var(--font-size-xs); }
+    .aj-footer-buttons { grid-template-columns: 1fr; }
+    .aj-footer-btn { padding: 13px 16px; }
+  }

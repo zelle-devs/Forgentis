@@ -1,0 +1,316 @@
+/* ============ WHO WE ARE SECTION - FORGENTIS ============ */
+.who-we-are {
+  position: relative;
+  padding: 60px 0;
+  background: var(--color-black);
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.who-we-are-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.who-we-are-glow {
+  position: absolute;
+  top: 50%;
+  right: -200px;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, 
+    var(--color-blue-glow) 0%, 
+    transparent 70%);
+  border-radius: 50%;
+}
+
+.container2 {
+  position: relative;
+  z-index: 2;
+}
+
+.who-we-are-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Content */
+.who-we-are-content {
+  max-width: 560px;
+}
+
+.who-we-are-eyebrow {
+  display: inline-block;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-blue-main);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 16px;
+  text-shadow: var(--text-shadow-blue);
+}
+
+.who-we-are-title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+
+.who-we-are-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-blue-main);
+  margin-bottom: 24px;
+  box-shadow: 0 0 10px var(--color-blue-glow);
+}
+
+.who-we-are-body {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-steel-main);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.who-we-are-cta {
+  display: flex;
+}
+
+.who-we-are-btn {
+  padding: 14px 28px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 1px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-primary);
+  text-shadow: var(--text-shadow-btn);
+  box-shadow: var(--shadow-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.who-we-are-btn:hover {
+  gap: 12px;
+}
+
+/* Right Image */
+.who-we-are-image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.who-we-are-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+}
+
+.who-we-are-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.who-we-are-image-container:hover .who-we-are-image {
+  transform: scale(1.05);
+}
+
+/* Decorative Border */
+.who-we-are-image-border {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: -20px;
+  bottom: -20px;
+  border: 2px solid var(--color-blue-main);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+/* ============ RESPONSIVE ============ */
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .who-we-are {
+    padding: 60px 0;
+  }
+  
+  .who-we-are-wrapper {
+    gap: 80px;
+  }
+  
+  .who-we-are-title {
+    font-size: var(--font-size-5xl);
+  }
+  
+  .who-we-are-body {
+    font-size: var(--font-size-lg);
+  }
+  
+  .who-we-are-image-container {
+    max-width: 550px;
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .who-we-are {
+    padding: 50px 0;
+  }
+  
+  .who-we-are-wrapper {
+    gap: 50px;
+  }
+  
+  .who-we-are-image-container {
+    max-width: 450px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .who-we-are {
+    padding: 40px 0;
+  }
+  
+  .who-we-are-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .who-we-are-content {
+    max-width: 100%;
+  }
+  
+  .who-we-are-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .who-we-are-image-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile Large (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .who-we-are {
+    padding: 32px 0;
+  }
+  
+  .who-we-are-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .who-we-are-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .who-we-are-body {
+    font-size: var(--font-size-sm);
+  }
+  
+  .who-we-are-image-container {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  
+  .who-we-are-image-border {
+    top: 15px;
+    left: 15px;
+    right: -15px;
+    bottom: -15px;
+  }
+}
+
+/* Mobile Small (300px - 479px) */
+@media (max-width: 479px) {
+  .who-we-are {
+    padding: 24px 0;
+  }
+  
+  .who-we-are-eyebrow {
+    font-size: var(--font-size-xs);
+    letter-spacing: 2px;
+  }
+  
+  .who-we-are-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 16px;
+  }
+  
+  .who-we-are-divider {
+    width: 50px;
+    margin-bottom: 16px;
+  }
+  
+  .who-we-are-body {
+    font-size: var(--font-size-xs);
+    margin-bottom: 24px;
+  }
+  
+  .who-we-are-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: var(--font-size-xs);
+  }
+  
+  .who-we-are-image-container {
+    max-width: 100%;
+  }
+  
+  .who-we-are-image-border {
+    top: 10px;
+    left: 10px;
+    right: -10px;
+    bottom: -10px;
+  }
+  
+}
+
+/* Ultra Small (300px - 350px) */
+@media (max-width: 350px) {
+  .who-we-are {
+    padding: 20px 0;
+  }
+  
+  .who-we-are-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .who-we-are-body {
+    font-size: 11px;
+  }
+  
+  .who-we-are-image-border {
+    top: 8px;
+    left: 8px;
+    right: -8px;
+    bottom: -8px;
+  }
+
+}
