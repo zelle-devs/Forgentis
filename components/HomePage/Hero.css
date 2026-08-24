@@ -91,7 +91,7 @@
 }
 
 .hero-title {
-  font-size: 62px;
+  font-size: var(--font-size-8xl);
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-primary);
   color: var(--color-white);
@@ -99,6 +99,7 @@
   margin-bottom: 16px;
   letter-spacing: -0.5px;
   /* text-shadow: var(--text-shadow-btn); */
+      text-transform: uppercase;
 }
 
 .hero-title-text {
@@ -106,21 +107,60 @@
 }
 
 /* Title Clip - Image background with clip path */
+
 .hero-title-clip {
+  display: inline-block;
+  position: relative;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* Keep the metal texture intact */
+  filter:
+    drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* Metallic highlight */
+.hero-title-clip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.12) 25%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  pointer-events: none;
+}
+
+/* .hero-title-clip {
   display: inline-block;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  /* -webkit-text-fill-color: transparent; */
   color: transparent;
+  -webkit-text-fill-color: transparent;
   position: relative;
-  /* Add a subtle text shadow for depth */
-  /* filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); */
 }
 
-/* Optional: Add a subtle overlay on the clipped text for better readability */
 .hero-title-clip::after {
   content: '';
   position: absolute;
@@ -128,12 +168,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    transparent 50%); */
   pointer-events: none;
-  /* mix-blend-mode: overlay; */
-}
+} */
 
 /* Fallback for browsers that don't support background-clip: text */
 @supports not (-webkit-background-clip: text) {
@@ -218,12 +254,12 @@
 /* ============ RESPONSIVE ============ */
 /* Large Desktop (1440px+) */
 @media (min-width: 1440px) {
-  .hero-content {
+  /* .hero-content {
     max-width: 620px;
-  }
+  } */
   
   .hero-title {
-    font-size: 62px;
+    font-size: var(--font-size-8xl);
   }
   
 }
@@ -232,11 +268,10 @@
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content {
     max-width: 720px;
-    text-transform: uppercase;
   }
   
   .hero-title {
-    font-size: 62px;
+    font-size: var(--font-size-8xl);
   }
   
 }
@@ -248,7 +283,7 @@
   }
   
   .hero-title {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-7xl);
   }
   
   .hero-dots {
@@ -270,7 +305,7 @@
   }
   
   .hero-title {
-    font-size: var(--font-size-6xl);
+    font-size: var(--font-size-7xl);
     text-align: center;
     margin: 0 auto;
   }
@@ -292,6 +327,8 @@
   .hero-content {
     text-align: center;
     padding: 0 16px;
+    margin: 0 auto
+
   }
   .hero-eyebrow {
     font-size: var(--font-size-xs);
@@ -299,7 +336,7 @@
     margin-bottom: 12px;
   }
   .hero-title {
-    font-size: var(--font-size-special);
+    font-size: var(--font-size-8xl);
     margin-bottom: 12px;
   }
   
@@ -340,7 +377,7 @@
 /* Ultra Small (300px - 350px) */
 @media (max-width: 350px) {
   .hero-title {
-    font-size: var(--font-size-special);
+    font-size: var(--font-size-8xl);
   }
   
   .hero-video-box {

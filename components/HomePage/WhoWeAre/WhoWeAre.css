@@ -2,7 +2,9 @@
 .who-we-are {
   position: relative;
   padding: 60px 0;
-  background: var(--color-black);
+  background: var(--color-black-light);
+    /* background: var(--color-steel-medium); */
+
   overflow: hidden;
 }
 
@@ -196,7 +198,7 @@
   }
   
   .who-we-are-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
   
@@ -278,7 +280,10 @@
     padding: 12px 20px;
     font-size: var(--font-size-xs);
   }
-  
+   .who-we-are-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
   .who-we-are-image-container {
     max-width: 100%;
   }

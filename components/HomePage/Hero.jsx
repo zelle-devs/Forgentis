@@ -149,11 +149,11 @@ const Hero = () => {
         <div className="container2">
           <motion.div 
             className="hero-content"
-            style={{ 
-              scale: contentScale,
-              opacity: contentOpacity,
-              y: contentY,
-            }}
+            // style={{ 
+            //   scale: contentScale,
+            //   opacity: contentOpacity,
+            //   y: contentY,
+            // }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -180,7 +180,6 @@ const Hero = () => {
               >
                 Industrial Standard in Architectural Metalwork.
               </span>{' '}
-              {/* <span className="hero-title-text">Delivered to Standard.</span> */}
             </motion.h1>
             
             <motion.p 

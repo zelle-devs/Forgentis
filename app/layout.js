@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Forgentis Fabrication - Sharp Cuts | Perfect Form',
   description: 'A diversified manufacturing group: precision metalwork, high-definition print and packaging, and consumer design brands.',
   icons: {
-    icon: '/favicon.png',
+    icon: '/ForgentisLogo1.png',
   },
 }
 

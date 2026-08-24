@@ -39,7 +39,7 @@ export default function WhyForgentis({
   return (
     <section className="wf-section">
       <div className="container2">
-
+        <div className='box container'>
         {/* ==============================
             CENTERED HEADER
         ============================== */}
@@ -97,7 +97,7 @@ export default function WhyForgentis({
         >
           <img src={image} alt={imageAlt} className="wf-image" draggable={false} />
         </motion.div>
-
+</div>
       </div>
     </section>
   );

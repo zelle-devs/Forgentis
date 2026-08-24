@@ -80,6 +80,7 @@
   --color-steel-glow: rgba(157, 160, 161, 0.1);
   --color-black-overlay: rgba(13, 13, 13, 0.55);
   --color-dark-border-light: rgba(43, 43, 43, 0.5);
+
   
   /* ============ FONT FAMILIES ============ */
   --font-family-primary: 'Gilroy', sans-serif;
@@ -285,12 +286,36 @@ select {
   font-family: var(--font-family-primary);
   text-transform: uppercase;
   letter-spacing: 1px;
-  /* border-radius: var(--radius-full); */
   transition: all var(--transition-normal);
   white-space: nowrap;
   cursor: pointer;
   line-height: 1.2;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Shine effect - sab buttons pe */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Hover lift - sab buttons pe */
+/* .btn:hover {
+  transform: translateY(-2px);
+} */
 
 .btn-blue {
   background-color: var(--color-blue-main);
@@ -302,7 +327,7 @@ select {
   background-color: transparent;
   color: var(--color-blue-main);
   border-color: var(--color-blue-main);
-  box-shadow: var(--shadow-blue);
+  box-shadow: 0 0 40px rgba(2, 112, 234, 0.5);
 }
 
 .btn-outline-light {
@@ -327,9 +352,8 @@ select {
 .btn-outline-blue:hover {
   background-color: var(--color-blue-main);
   color: var(--color-white);
-  box-shadow: var(--shadow-blue);
+  box-shadow: 0 0 40px rgba(2, 112, 234, 0.5);
 }
-
 /* ============ SECTION ============ */
 .section {
   padding: 80px 0;
@@ -518,7 +542,10 @@ select {
   :root {
     --container-padding: 32px;
     --container-padding2: 52px;
+    --font-size-8xl: 66px;
+    --font-size-7xl: 56px;
     --font-size-6xl: 52px;
+    --font-size-special: 54px;
     --font-size-5xl: 42px;
   }
   
@@ -543,7 +570,10 @@ select {
   :root {
     --container-padding: 20px;
     --container-padding2: 40px;
+    --font-size-8xl: 54px;
+    --font-size-7xl: 44px;
     --font-size-6xl: 40px;
+    --font-size-special: 42px;
     --font-size-5xl: 34px;
     --font-size-4xl: 28px;
     --font-size-3xl: 24px;
@@ -572,7 +602,10 @@ select {
   :root {
     --container-padding: 16px;
     --container-padding2: 36px;
+    --font-size-8xl: 46px;
+    --font-size-7xl: 36px;
     --font-size-6xl: 32px;
+    --font-size-special: 34px;
     --font-size-5xl: 28px;
     --font-size-4xl: 24px;
     --font-size-3xl: 22px;
@@ -617,6 +650,9 @@ select {
     --font-size-4xl: 22px;
     --font-size-5xl: 24px;
     --font-size-6xl: 28px;
+    --font-size-7xl: 32px;
+    --font-size-8xl: 42px;
+    --font-size-special: 30px;
   }
   
   .grid-2,
@@ -656,6 +692,9 @@ select {
     --font-size-4xl: 18px;
     --font-size-5xl: 20px;
     --font-size-6xl: 24px;
+    --font-size-7xl: 28px;
+    --font-size-8xl: 38px;
+    --font-size-special: 26px;
   }
   
   .section {

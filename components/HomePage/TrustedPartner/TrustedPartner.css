@@ -119,7 +119,7 @@
   transform: translateY(-50%);
   width: 1px;
   height: 60%;
-  background: var(--color-dark-border);
+  /* background: var(--color-dark-border); */
 }
 
 .trusted-partner-metric:hover {
@@ -212,6 +212,7 @@
   background: var(--color-black-light);
   cursor: pointer;
   transition: all var(--transition-normal);
+  text-shadow: var(--text-shadow-btn);
 }
 
 .trusted-partner-logo:hover {
@@ -290,36 +291,50 @@
     font-size: var(--font-size-xs);
   }
 }
-
-/* Mobile Large (480px - 767px) */
 @media (min-width: 480px) and (max-width: 767px) {
   .trusted-partner {
     padding: 32px 0;
+    overflow: hidden;
   }
   
   .trusted-partner-header {
     margin-bottom: 30px;
+    padding: 0 10px;
   }
   
   .trusted-partner-title {
     font-size: var(--font-size-3xl);
+    word-wrap: break-word;
+  }
+  
+  .trusted-partner-body {
+    max-width: 100%;
+    padding: 0 5px;
   }
   
   .trusted-partner-metrics {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 0;
+    width: 100%;
   }
   
   .trusted-partner-metric {
-    padding: 20px;
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 18px 10px;
     border-bottom: 1px solid var(--color-dark-border);
+  }
+  
+  .trusted-partner-metric:nth-child(odd) {
+    border-right: 1px solid var(--color-dark-border);
   }
   
   .trusted-partner-metric:not(:last-child)::after {
     display: none;
   }
   
-  .trusted-partner-metric:last-child {
+  .trusted-partner-metric:nth-last-child(-n+2) {
     border-bottom: none;
   }
   
@@ -329,32 +344,67 @@
   
   .trusted-partner-logos {
     gap: 10px;
+    padding: 0 10px;
   }
   
   .trusted-partner-logo {
-    padding: 8px 12px;
-    font-size: var(--font-size-xs);
+    width: calc(50% - 5px);
+    padding: 8px 10px;
+    font-size: 10px;
     letter-spacing: 1px;
+    white-space: nowrap;
+    text-align: center;
   }
 }
 
-/* Mobile Small (300px - 479px) */
 @media (max-width: 479px) {
   .trusted-partner {
     padding: 24px 0;
+    overflow: hidden;
+  }
+  
+  .trusted-partner-header {
+    padding: 0 5px;
   }
   
   .trusted-partner-eyebrow {
-    font-size: var(--font-size-xs);
-    letter-spacing: 2px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
   }
   
   .trusted-partner-title {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
+    word-wrap: break-word;
+    margin-bottom: 14px;
   }
   
   .trusted-partner-body {
     font-size: var(--font-size-xs);
+    max-width: 100%;
+    padding: 0 5px;
+    line-height: 1.5;
+  }
+  
+  .trusted-partner-metrics {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .trusted-partner-metric {
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 16px 8px;
+    border-bottom: 1px solid var(--color-dark-border);
+  }
+  
+  .trusted-partner-metric:nth-child(odd) {
+    border-right: 1px solid var(--color-dark-border);
+  }
+  
+  .trusted-partner-metric:nth-last-child(-n+2) {
+    border-bottom: none;
   }
   
   .trusted-partner-metric-number {
@@ -365,30 +415,66 @@
     font-size: var(--font-size-lg);
   }
   
+  .trusted-partner-metric-label {
+    font-size: 11px;
+  }
+  
   .trusted-partner-logos {
     gap: 8px;
+    padding: 0 5px;
   }
   
   .trusted-partner-logo {
-    width: calc(50% - 8px);
-    padding: 8px 10px;
-    font-size: 10px;
-    letter-spacing: 0.8px;
+    width: calc(50% - 4px);
+    padding: 8px 6px;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: center;
   }
 }
 
-/* Ultra Small (300px - 350px) */
 @media (max-width: 350px) {
   .trusted-partner {
     padding: 20px 0;
+    overflow: hidden;
   }
   
   .trusted-partner-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
+    word-wrap: break-word;
+  }
+  
+  .trusted-partner-metrics {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .trusted-partner-metric {
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 14px 6px;
+  }
+  
+  .trusted-partner-metric-number {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .trusted-partner-logos {
+    gap: 6px;
+    padding: 0 3px;
   }
   
   .trusted-partner-logo {
-    width: 100%;
+    width: calc(50% - 3px);
+    font-size: 7px;
+    padding: 6px 4px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
   }
 }

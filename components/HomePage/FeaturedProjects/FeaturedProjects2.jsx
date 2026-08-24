@@ -2,12 +2,11 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import './CoreCapabilities.css'
+import './FeaturedProjects2.css'
 
-const CoreCapabilities = () => {
+const FeaturedProjects2 = () => {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-10%' })
-  const sliderRef = useRef(null)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
   const mouseStartX = useRef(0)
@@ -18,65 +17,53 @@ const CoreCapabilities = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
-  const capabilities = [
+  const projects = [
     {
       id: 1,
-      title: 'Laser & CNC Precision',
-      description: 'Laser cutting, 3D pipe cutting, bending and machining held to fine tolerances.',
+      name: 'Project Alpha',
+      sector: 'Architecture',
+      scope: 'Laser-cut facade screens',
       image: '/forgentis.jpeg'
     },
     {
       id: 2,
-      title: 'Structural & Architectural Scope',
-      description: 'Entrance screens, cladding, structural framing, furniture bases and decorative metal installations.',
+      name: 'Project Beta',
+      sector: 'Construction',
+      scope: 'Structural steel staircase',
       image: '/forgentis.jpeg'
     },
     {
       id: 3,
-      title: 'Industrial Finishes',
-      description: 'PVD coatings, electrostatic powder coating and brushed or matte stainless, treated for durability.',
-      image: '/forgentis.jpeg'
-    },
-    {
-      id: 4,
-      title: 'Contract-Ready Delivery',
-      description: 'CAD shop-drawing approvals, certified materials and scalable production to schedule.',
+      name: 'Project Gamma',
+      sector: 'Retail',
+      scope: 'Powder-coated shopfront',
       image: '/forgentis.jpeg'
     }
   ]
 
-  // Check screen size
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 1024)
     }
-    
     checkScreenSize()
     window.addEventListener('resize', checkScreenSize)
-    
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % capabilities.length)
-  }, [capabilities.length])
+    setCurrentSlide((prev) => (prev + 1) % projects.length)
+  }, [projects.length])
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + capabilities.length) % capabilities.length)
-  }, [capabilities.length])
+    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length)
+  }, [projects.length])
 
-  // Auto-play
   useEffect(() => {
     if (!isMobile || !isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 3000)
-
+    const interval = setInterval(nextSlide, 3000)
     return () => clearInterval(interval)
   }, [isMobile, isAutoPlaying, nextSlide])
 
-  // Touch Events
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX
     setIsAutoPlaying(false)
@@ -88,7 +75,6 @@ const CoreCapabilities = () => {
 
   const handleTouchEnd = () => {
     const swipeDistance = touchStartX.current - touchEndX.current
-    
     if (Math.abs(swipeDistance) > 50) {
       if (swipeDistance > 0) {
         nextSlide()
@@ -96,11 +82,9 @@ const CoreCapabilities = () => {
         prevSlide()
       }
     }
-    
     setTimeout(() => setIsAutoPlaying(true), 5000)
   }
 
-  // Mouse Drag Events
   const handleMouseDown = (e) => {
     isDragging.current = true
     mouseStartX.current = e.clientX
@@ -116,7 +100,6 @@ const CoreCapabilities = () => {
   const handleMouseUp = () => {
     if (isDragging.current) {
       const dragDistance = mouseStartX.current - mouseEndX.current
-      
       if (Math.abs(dragDistance) > 50) {
         if (dragDistance > 0) {
           nextSlide()
@@ -124,76 +107,80 @@ const CoreCapabilities = () => {
           prevSlide()
         }
       }
-      
-      isDragging.current = false
-      setTimeout(() => setIsAutoPlaying(true), 5000)
-    }
-  }
-
-  const handleMouseLeave = () => {
-    if (isDragging.current) {
       isDragging.current = false
       setTimeout(() => setIsAutoPlaying(true), 5000)
     }
   }
 
   return (
-    <section className="core-capabilities" ref={sectionRef}>
-      <div className="core-capabilities-bg">
-        <div className="core-capabilities-grid" />
+    <section className="fpj-section" ref={sectionRef}>
+      <div className="fpj-bg">
+        <div className="fpj-grid-pattern" />
+        <div className="fpj-glow fpj-glow-left" />
+        <div className="fpj-glow fpj-glow-right" />
       </div>
 
       <div className="container2">
-        {/* Header Content - Top */}
-        <div className="core-capabilities-header">
+        {/* Header */}
+        <div className="fpj-header">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="core-capabilities-eyebrow">
-              Core Capabilities
+            <span className="fpj-eyebrow">
+              Featured Projects
             </span>
           </motion.div>
 
           <motion.h2 
-            className="core-capabilities-title"
+            className="fpj-title"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            What We Do Best.
+            Selected Work.
           </motion.h2>
+
+          <motion.p 
+            className="fpj-body"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            A few of the jobs we have delivered. Full case studies on the Projects page.
+          </motion.p>
         </div>
 
-        {/* Desktop Grid - 4 Cards in One Row */}
+        {/* Desktop Grid - 3 Cards with Background Image */}
         {!isMobile && (
-          <div className="core-capabilities-grid">
-            {capabilities.map((capability, index) => (
+          <div className="fpj-grid">
+            {projects.map((project, index) => (
               <motion.div
-                key={capability.id}
-                className="core-capabilities-card"
+                key={project.id}
+                className="fpj-card"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
                   duration: 0.7, 
-                  delay: 0.2 + index * 0.1,
+                  delay: 0.3 + index * 0.1,
                   ease: [0.22, 1, 0.36, 1] 
                 }}
               >
+                {/* Background Image */}
                 <div 
-                  className="core-capabilities-card-bg"
-                  style={{ backgroundImage: `url(${capability.image})` }}
+                  className="fpj-card-bg"
+                  style={{ backgroundImage: `url(${project.image})` }}
                 />
-                <div className="core-capabilities-card-overlay" />
-                <div className="core-capabilities-card-content">
-                  <h3 className="core-capabilities-card-title">
-                    {capability.title}
-                  </h3>
-                  <p className="core-capabilities-card-description">
-                    {capability.description}
-                  </p>
-                  <button className="core-capabilities-card-btn">
+                {/* Dark Overlay */}
+                <div className="fpj-card-overlay" />
+                
+                {/* Content - Bottom Left */}
+                <div className="fpj-card-content">
+                  <span className="fpj-card-sector">{project.sector}</span>
+                  <h3 className="fpj-card-name">{project.name}</h3>
+                  <p className="fpj-card-scope">{project.scope}</p>
+                  <button className="fpj-card-btn">
                     <ArrowRight size={18} strokeWidth={2} />
                   </button>
                 </div>
@@ -202,42 +189,37 @@ const CoreCapabilities = () => {
           </div>
         )}
 
-        {/* Mobile/Tablet Slider */}
+        {/* Mobile Slider */}
         {isMobile && (
           <div 
-            className="core-capabilities-slider"
-            ref={sliderRef}
+            className="fpj-slider"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
           >
             <div 
-              className="core-capabilities-slider-track"
+              className="fpj-slider-track"
               style={{ 
                 transform: `translateX(-${currentSlide * 100}%)`,
                 transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
               }}
             >
-              {capabilities.map((capability) => (
-                <div key={capability.id} className="core-capabilities-slider-item">
-                  <div className="core-capabilities-card">
+              {projects.map((project) => (
+                <div key={project.id} className="fpj-slider-item">
+                  <div className="fpj-card">
                     <div 
-                      className="core-capabilities-card-bg"
-                      style={{ backgroundImage: `url(${capability.image})` }}
+                      className="fpj-card-bg"
+                      style={{ backgroundImage: `url(${project.image})` }}
                     />
-                    <div className="core-capabilities-card-overlay" />
-                    <div className="core-capabilities-card-content">
-                      <h3 className="core-capabilities-card-title">
-                        {capability.title}
-                      </h3>
-                      <p className="core-capabilities-card-description">
-                        {capability.description}
-                      </p>
-                      <button className="core-capabilities-card-btn">
+                    <div className="fpj-card-overlay" />
+                    <div className="fpj-card-content">
+                      <span className="fpj-card-sector">{project.sector}</span>
+                      <h3 className="fpj-card-name">{project.name}</h3>
+                      <p className="fpj-card-scope">{project.scope}</p>
+                      <button className="fpj-card-btn">
                         <ArrowRight size={18} strokeWidth={2} />
                       </button>
                     </div>
@@ -246,45 +228,35 @@ const CoreCapabilities = () => {
               ))}
             </div>
 
-            {/* Slider Controls */}
-            <div className="core-capabilities-slider-controls">
-              <button 
-                className="core-capabilities-slider-btn"
-                onClick={prevSlide}
-                aria-label="Previous slide"
-              >
+            <div className="fpj-slider-controls">
+              <button className="fpj-slider-btn" onClick={prevSlide}>
                 <ChevronLeft size={20} />
               </button>
-              <div className="core-capabilities-slider-dots">
-                {capabilities.map((_, index) => (
+              <div className="fpj-slider-dots">
+                {projects.map((_, index) => (
                   <button
                     key={index}
-                    className={`core-capabilities-slider-dot ${index === currentSlide ? 'active' : ''}`}
+                    className={`fpj-slider-dot ${index === currentSlide ? 'active' : ''}`}
                     onClick={() => setCurrentSlide(index)}
-                    aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
               </div>
-              <button 
-                className="core-capabilities-slider-btn"
-                onClick={nextSlide}
-                aria-label="Next slide"
-              >
+              <button className="fpj-slider-btn" onClick={nextSlide}>
                 <ChevronRight size={20} />
               </button>
             </div>
           </div>
         )}
 
-        {/* CTA - Below Cards */}
+        {/* CTA */}
         <motion.div 
-          className="core-capabilities-cta"
+          className="fpj-cta"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <a href="/capabilities" className="btn btn-blue core-capabilities-cta-btn">
-            View Capabilities <ArrowRight size={16} />
+          <a href="/projects" className="btn btn-outline-blue fpj-cta-btn">
+            View Projects <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>
@@ -292,4 +264,4 @@ const CoreCapabilities = () => {
   )
 }
 
-export default CoreCapabilities
+export default FeaturedProjects2

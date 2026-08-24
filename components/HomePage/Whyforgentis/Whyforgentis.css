@@ -8,12 +8,17 @@
 .wf-section {
   position: relative;
   padding: 60px 0;
-  background: var(--color-black);
+  /* background: var(--color-steel-medium); */
+      background-image: url('/title-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
+
 /* soft ambient blue glow behind the header, on-brand with Forgentis */
-.wf-section::before {
+/* .wf-section::before {
   content: '';
   position: absolute;
   top: -120px;
@@ -24,13 +29,31 @@
   background: radial-gradient(ellipse at center, var(--color-blue-glow) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
-}
+} */
 
 .wf-section .container2 {
   position: relative;
   z-index: 1;
 }
-
+.box{
+  background-color: var(--color-black);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-black-medium);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* .box::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 640px;
+  height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--color-blue-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+} */
 /* ============ HEADER (centered) ============ */
 
 .wf-header {
@@ -168,7 +191,7 @@
 
 /* Large Desktop (1440px - 3000px) */
 @media (min-width: 1440px) {
-  .wf-section { padding: 50px 0; }
+  .wf-section { padding: 60px 0; }
   .wf-header { margin-bottom: 64px; }
   .wf-title { width: 280px; }
   .wf-row { padding: 34px 0; gap: 32px; }
@@ -177,12 +200,12 @@
 
 /* Desktop (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .wf-section { padding: 40px 0; }
+  .wf-section { padding: 50px 0; }
 }
 
 /* Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .wf-section { padding: 32px 0; }
+  .wf-section { padding: 40px 0; }
   .wf-header { margin-bottom: 44px; }
   .wf-headline { font-size: var(--font-size-4xl); }
 
@@ -203,7 +226,7 @@
    to the top-right corner of the row.
    ============================================ */
 @media (max-width: 767px) {
-  .wf-section { padding: 24px 0; }
+  .wf-section { padding: 32px 0; }
 
   .wf-header { margin-bottom: 36px; gap: 10px; }
   .wf-headline { font-size: var(--font-size-3xl); }
@@ -256,7 +279,7 @@
 
 /* Ultra Small (300px - 350px) */
 @media (max-width: 350px) {
-  .wf-section { padding: 20px 0; }
+  .wf-section { padding: 24px 0; }
   .wf-headline { font-size: var(--font-size-xl); }
   .wf-body { font-size: var(--font-size-xs); }
 

@@ -7,7 +7,7 @@ import './WhatWeFabricate.css'
 const WhatWeFabricate = () => {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-10%' })
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [hoveredCard, setHoveredCard] = useState(1)
   const [isMobile, setIsMobile] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
@@ -198,7 +198,7 @@ const WhatWeFabricate = () => {
                   key={item.id}
                   className={`what-we-fabricate-card ${hoveredCard === item.id ? 'hovered' : ''} ${hoveredCard !== null && hoveredCard !== item.id ? 'shrink' : ''}`}
                   onMouseEnter={() => setHoveredCard(item.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  onMouseLeave={() => setHoveredCard(1)}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ 
