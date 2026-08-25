@@ -312,7 +312,7 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-family-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   color: var(--color-white);
   text-transform: uppercase;
@@ -371,7 +371,7 @@
     left: calc(50% - 32px);
   }
   .fp2-process-gear-icon { width: 46px; height: 46px; }
-  .fp2-process-step-title { font-size: var(--font-size-lg); }
+  .fp2-process-step-title { font-size: var(--font-size-base); }
   .fp2-process-step-desc { font-size: var(--font-size-sm); }
 }
 
@@ -451,7 +451,7 @@
     left: calc(50% - 23px);
   }
   .fp2-process-gear-icon { width: 32px; height: 32px; }
-  .fp2-process-step-title { font-size: var(--font-size-xs); }
+  .fp2-process-step-title { font-size: var(--font-size-sm); }
   .fp2-process-step-desc { font-size: 10px; }
 }
 
@@ -496,7 +496,7 @@
     left: calc(50% - 21px);
   }
   .fp2-process-gear-icon { width: 30px; height: 30px; }
-  .fp2-process-step-title { font-size: 10px; }
+  .fp2-process-step-title { font-size: var(--font-size-sm); }
   .fp2-process-step-desc { font-size: 9px; }
 }
 
@@ -591,10 +591,11 @@
 @media (min-width: 480px) and (max-width: 767px) {
   .fp2-process-step-title { font-size: var(--font-size-sm); }
   .fp2-process-step-desc { font-size: var(--font-size-xs); }
+  .fp2-process-title { font-size: var(--font-size-2xl); }
 }
 
 @media (min-width: 351px) and (max-width: 479px) {
-  .fp2-process-title { font-size: var(--font-size-2xl); }
+  .fp2-process-title { font-size: var(--font-size-xl); }
   .fp2-process-body { font-size: var(--font-size-xs); }
   .fp2-process-timeline-step { gap: 14px; padding: 11px 0; padding-left: 55px; }
   .fp2-process-step-title { font-size: var(--font-size-xs); }
@@ -613,11 +614,11 @@
 
 @media (max-width: 350px) {
   .fp2-process-section { padding: 20px 0; }
-  .fp2-process-title { font-size: var(--font-size-xl); }
+  .fp2-process-title { font-size: var(--font-size-lg); }
   .fp2-process-body { font-size: 9px; }
   .fp2-process-btn { font-size: 10px; }
   .fp2-process-timeline-step { gap: 12px; padding: 9px 0; padding-left: 50px; }
-  .fp2-process-step-title { font-size: 9px; letter-spacing: 0.3px; }
+  .fp2-process-step-title { font-size: var(--font-size-xs); letter-spacing: 0.5px; }
   .fp2-process-step-desc { font-size: 8px; line-height: 1.3; }
   
   .fp2-process-timeline-step::before {

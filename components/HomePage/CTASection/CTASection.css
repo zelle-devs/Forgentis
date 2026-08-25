@@ -1,7 +1,7 @@
 /* ============ CTA SECTION 2 - FORGENTIS ============ */
 .cta2-section {
   position: relative;
-  padding: 80px 0;
+  padding: 60px 0;
   /* background-color: var(--color-black); */
     background-image: url('/title-bg.png');
   background-size: cover;
@@ -151,36 +151,36 @@
 
 /* Large Desktop (1920px+) */
 @media (min-width: 1920px) {
-  .cta2-section { padding: 100px 0; }
+  .cta2-section { padding: 60px 0; }
   .cta2-wrapper { padding: 80px 70px; }
-  .cta2-headline { font-size: var(--font-size-5xl); }
+  .cta2-headline { font-size: var(--font-size-4xl); }
 }
 
 /* Large Desktop (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
-  .cta2-section { padding: 80px 0; }
+  .cta2-section { padding: 60px 0; }
   .cta2-wrapper { padding: 70px 60px; }
   .cta2-headline { font-size: var(--font-size-4xl); }
 }
 
 /* Desktop (1200px - 1439px) */
 @media (min-width: 1200px) and (max-width: 1439px) {
-  .cta2-section { padding: 70px 0; }
+  .cta2-section { padding: 60px 0; }
   .cta2-wrapper { padding: 60px 50px; }
   .cta2-content { gap: 30px; }
 }
 
 /* Small Desktop (1024px - 1199px) */
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .cta2-section { padding: 60px 0; }
+  .cta2-section { padding: 50px 0; }
   .cta2-wrapper { padding: 50px 40px; }
-  .cta2-headline { font-size: var(--font-size-3xl); }
+  .cta2-headline { font-size: var(--font-size-4xl); }
   .cta2-btn { min-width: 180px; padding: 14px 24px; }
 }
 
 /* Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .cta2-section { padding: 50px 0; }
+  .cta2-section { padding: 40px 0; }
   .cta2-wrapper { padding: 40px 30px; }
   .cta2-content { 
     grid-template-columns: 1fr;
@@ -194,7 +194,7 @@
 
 /* Mobile Large (480px - 767px) */
 @media (min-width: 480px) and (max-width: 767px) {
-  .cta2-section { padding: 40px 0; }
+  .cta2-section { padding: 32px 0; }
   .cta2-wrapper { 
     padding: 35px 25px; 
     border-radius: var(--radius-2xl);
@@ -213,12 +213,17 @@
 
 /* Mobile Small (300px - 479px) */
 @media (max-width: 479px) {
-  .cta2-section { padding: 30px 0; }
+  .cta2-section { padding: 24px 0; }
   .cta2-wrapper { 
     padding: 25px 16px; 
     border-radius: var(--radius-xl);
   }
-  .cta2-content { gap: 20px; }
+  /* .cta2-content { gap: 20px; } */
+  .cta2-content { 
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
   .cta2-eyebrow { 
     font-size: var(--font-size-xs); 
     letter-spacing: 2px;
@@ -242,7 +247,7 @@
 
 /* Ultra Small (300px - 350px) */
 @media (max-width: 350px) {
-  .cta2-section { padding: 25px 0; }
+  .cta2-section { padding: 20px 0; }
   .cta2-wrapper { padding: 20px 12px; }
   .cta2-headline { font-size: var(--font-size-lg); }
   .cta2-body { font-size: 10px; }

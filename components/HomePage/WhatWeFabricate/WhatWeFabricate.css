@@ -311,7 +311,7 @@
 /* Large Desktop (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
   .what-we-fabricate { padding: 60px 0; }
-  .what-we-fabricate-title { font-size: var(--font-size-5xl); }
+  .what-we-fabricate-title { font-size: var(--font-size-4xl); }
   .what-we-fabricate-card { height: 450px; }
   .what-we-fabricate-card-content { padding: 28px; }
 }
@@ -329,7 +329,7 @@
   .what-we-fabricate { padding: 40px 0; }
   .what-we-fabricate-wrapper { gap: 20px; }
   .what-we-fabricate-left { flex: 0 0 25%; max-width: 25%; }
-  .what-we-fabricate-title { font-size: var(--font-size-3xl); }
+  .what-we-fabricate-title { font-size: var(--font-size-4xl); }
   .what-we-fabricate-card { height: 320px; }
   .what-we-fabricate-card-content { padding: 15px; }
   .what-we-fabricate-card-title { font-size: var(--font-size-xs); }
@@ -367,7 +367,7 @@
     align-items: center;
   }
   .what-we-fabricate-divider { margin: 0 auto 16px; }
-  .what-we-fabricate-title { font-size: var(--font-size-3xl); }
+  .what-we-fabricate-title { font-size: var(--font-size-2xl); }
   .what-we-fabricate-body { max-width: 100%; }
   .what-we-fabricate-btn { width: auto; }
   .what-we-fabricate-slider { width: 100%; }
@@ -388,7 +388,7 @@
     align-items: center;
   }
   .what-we-fabricate-divider { margin: 0 auto 16px; }
-  .what-we-fabricate-title { font-size: var(--font-size-2xl); }
+  .what-we-fabricate-title { font-size: var(--font-size-xl); }
   .what-we-fabricate-body { font-size: var(--font-size-xs); }
   .what-we-fabricate-btn { 
     width: 100%; 
@@ -411,7 +411,7 @@
     text-align: center; 
     align-items: center;
   }
-  .what-we-fabricate-title { font-size: var(--font-size-xl); }
+  .what-we-fabricate-title { font-size: var(--font-size-lg); }
   .what-we-fabricate-slider { width: 100%; }
   .what-we-fabricate-slider-item .what-we-fabricate-card { height: 220px; }
   .what-we-fabricate-card-content { padding: 16px; }
@@ -430,7 +430,7 @@
     text-align: center; 
     align-items: center;
   }
-  .what-we-fabricate-eyebrow { font-size: 9px; }
+  .what-we-fabricate-eyebrow { font-size: var(--font-size-xs) }
   .what-we-fabricate-title { font-size: var(--font-size-lg); }
   .what-we-fabricate-slider { width: 100%; }
   .what-we-fabricate-slider-item .what-we-fabricate-card { height: 200px; }

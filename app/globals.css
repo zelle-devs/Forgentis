@@ -639,7 +639,7 @@ select {
   
   :root {
     --container-padding: 12px;
-    --container-padding2: 32px;
+    --container-padding2: 22px;
     --font-size-xs: 10px;
     --font-size-sm: 12px;
     --font-size-base: 14px;
@@ -681,7 +681,7 @@ select {
 @media (max-width: 350px) {
   :root {
     --container-padding: 10px;
-    --container-padding2: 30px;
+    --container-padding2: 20px;
     --font-size-xs: 9px;
     --font-size-sm: 10px;
     --font-size-base: 12px;

@@ -253,7 +253,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-title {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-4xl);
   }
   
   .industries-serve-card {
@@ -279,7 +279,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-title {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-4xl);
   }
   
   .industries-serve-card {
@@ -346,7 +346,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-title {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
   }
   
   .industries-serve-container {
@@ -391,7 +391,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-title {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
   }
   
   .industries-serve-body {
@@ -435,7 +435,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
   
   .industries-serve-card {
@@ -470,7 +470,7 @@ border: 1px solid rgba(255, 255, 255, 0.3); */
   }
   
   .industries-serve-eyebrow {
-    font-size: 9px;
+    font-size: var(--font-size-xs);
     letter-spacing: 1.5px;
   }
   

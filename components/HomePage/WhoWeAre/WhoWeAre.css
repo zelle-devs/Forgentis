@@ -164,7 +164,7 @@
   }
   
   .who-we-are-title {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-4xl);
   }
   
   .who-we-are-body {
@@ -228,7 +228,7 @@
   }
   
   .who-we-are-title {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
   }
   
   .who-we-are-body {
@@ -260,7 +260,7 @@
   }
   
   .who-we-are-title {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
     margin-bottom: 16px;
   }
   
@@ -304,7 +304,7 @@
   }
   
   .who-we-are-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
   
   .who-we-are-body {

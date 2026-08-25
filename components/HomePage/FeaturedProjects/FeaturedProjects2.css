@@ -1,7 +1,7 @@
 /* ============ FEATURED PROJECTS - FORGENTIS ============ */
 .fpj-section {
   position: relative;
-  padding: 80px 0;
+  padding: 60px 0;
   background: var(--color-black);
   overflow: hidden;
   isolation: isolate;
@@ -332,29 +332,29 @@
 
 /* ============ RESPONSIVE ============ */
 @media (min-width: 1920px) {
-  .fpj-section { padding: 100px 0; }
+  .fpj-section { padding: 60px 0; }
   .fpj-grid { gap: 35px; }
   .fpj-card { height: 500px; }
-  .fpj-title { font-size: var(--font-size-5xl); }
+  .fpj-title { font-size: var(--font-size-4xl); }
 }
 
 @media (min-width: 1440px) and (max-width: 1919px) {
-  .fpj-section { padding: 80px 0; }
+  .fpj-section { padding: 60px 0; }
   .fpj-grid { gap: 30px; }
   .fpj-card { height: 450px; }
 }
 
 @media (min-width: 1200px) and (max-width: 1439px) {
-  .fpj-section { padding: 70px 0; }
+  .fpj-section { padding: 60px 0; }
   .fpj-grid { gap: 20px; }
   .fpj-card { height: 380px; }
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .fpj-section { padding: 60px 0; }
+  .fpj-section { padding: 50px 0; }
   .fpj-grid { gap: 15px; }
   .fpj-card { height: 340px; }
-  .fpj-title { font-size: var(--font-size-3xl); }
+  .fpj-title { font-size: var(--font-size-4xl); }
   .fpj-card-content { padding: 18px; }
 }
 
@@ -370,7 +370,7 @@
 @media (min-width: 480px) and (max-width: 767px) {
   .fpj-section { padding: 40px 0; }
   .fpj-header { margin-bottom: 30px; }
-  .fpj-title { font-size: var(--font-size-3xl); }
+  .fpj-title { font-size: var(--font-size-2xl); }
   .fpj-body { font-size: var(--font-size-xs); }
   .fpj-grid { display: none; }
   .fpj-slider { display: block; }
@@ -378,9 +378,9 @@
 }
 
 @media (min-width: 400px) and (max-width: 479px) {
-  .fpj-section { padding: 35px 0; }
+  .fpj-section { padding: 32px 0; }
   .fpj-eyebrow { font-size: var(--font-size-xs); }
-  .fpj-title { font-size: var(--font-size-2xl); }
+  .fpj-title { font-size: var(--font-size-xl); }
   .fpj-grid { display: none; }
   .fpj-slider { display: block; }
   .fpj-slider-item .fpj-card { height: 320px; }
@@ -388,7 +388,7 @@
 }
 
 @media (min-width: 350px) and (max-width: 399px) {
-  .fpj-section { padding: 30px 0; }
+  .fpj-section { padding: 24px 0; }
   .fpj-title { font-size: var(--font-size-xl); }
   .fpj-grid { display: none; }
   .fpj-slider { display: block; }
@@ -397,8 +397,8 @@
 }
 
 @media (max-width: 349px) {
-  .fpj-section { padding: 25px 0; }
-  .fpj-eyebrow { font-size: 9px; letter-spacing: 1.5px; }
+  .fpj-section { padding: 20px 0; }
+  .fpj-eyebrow { font-size: var(--font-size-xs); letter-spacing: 1.5px; }
   .fpj-title { font-size: var(--font-size-lg); }
   .fpj-body { font-size: 10px; }
   .fpj-grid { display: none; }

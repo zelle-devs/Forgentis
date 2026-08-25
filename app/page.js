@@ -4,6 +4,7 @@ import FacilitiesQuality from "@/components/HomePage/FacilitiesQuality/Facilitie
 import FacilitiesQuality2 from "@/components/HomePage/FacilitiesQuality/FacilitiesQuality2";
 import FeaturedProjects from "@/components/HomePage/FeaturedProjects/FeaturedProjects";
 import FeaturedProjects2 from "@/components/HomePage/FeaturedProjects/FeaturedProjects2";
+import LuminousProjects from "@/components/HomePage/FeaturedProjects/LuminousProjects";
 import Hero from "@/components/HomePage/Hero";
 import HowWeWork from "@/components/HomePage/Howwework/HowWeWork";
 import HowWeWork2 from "@/components/HomePage/Howwework/HowWeWork2";
@@ -30,6 +31,7 @@ export default function Home() {
       {/* <FacilitiesQuality/> */}
       <FeaturedProjects/>
       <FeaturedProjects2/>
+      {/* <LuminousProjects/> */}
       <CTASection/>
 </div>
     </>
