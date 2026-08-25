@@ -1,0 +1,248 @@
+/* ============ FORGENTIS SOCIAL BUTTONS - GLASSMORPHISM ============ */
+.sbtn-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.sbtn-icon-content {
+  position: relative;
+}
+
+.sbtn-icon-content .sbtn-tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  opacity: 0;
+  visibility: hidden;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sbtn-icon-content:hover .sbtn-tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -45px;
+}
+
+/* Base glassmorphism anchor */
+.sbtn-icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-xl);
+  color: var(--color-white);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  transition: all 0.35s ease-in-out;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* LinkedIn - Electric Blue */
+.sbtn-icon-content[data-social="linkedin"] a {
+  border: 1px solid rgba(2, 112, 234, 0.6);
+  box-shadow:
+    inset 0 0 8px rgba(2, 112, 234, 0.4),
+    0 0 12px rgba(2, 112, 234, 0.5),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sbtn-icon-content a[data-social="linkedin"] .sbtn-filled,
+.sbtn-icon-content a[data-social="linkedin"] ~ .sbtn-tooltip {
+  background: linear-gradient(135deg, #0a1420, #0065D5, #0270EA, #0a1a2e);
+  background-size: 400% 400%;
+  animation: sbtn-premium-gradient 6s ease infinite;
+  border: 1px solid rgba(2, 112, 234, 0.6);
+  box-shadow:
+    inset 0 0 12px rgba(2, 112, 234, 0.5),
+    0 0 24px rgba(2, 112, 234, 0.7);
+}
+
+/* Instagram - Pink Gradient */
+.sbtn-icon-content[data-social="instagram"] a {
+  border: 1px solid rgba(193, 53, 132, 0.6);
+  box-shadow:
+    inset 0 0 8px rgba(193, 53, 132, 0.4),
+    0 0 12px rgba(193, 53, 132, 0.5),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sbtn-icon-content a[data-social="instagram"] .sbtn-filled,
+.sbtn-icon-content a[data-social="instagram"] ~ .sbtn-tooltip {
+  background: linear-gradient(135deg, #2d0a1f, #7a1f4d, #c13584, #4a0b2d);
+  background-size: 400% 400%;
+  animation: sbtn-premium-gradient 6s ease infinite;
+  border: 1px solid rgba(193, 53, 132, 0.6);
+  box-shadow:
+    inset 0 0 12px rgba(193, 53, 132, 0.5),
+    0 0 24px rgba(193, 53, 132, 0.7);
+}
+
+/* Facebook - Blue */
+.sbtn-icon-content[data-social="facebook"] a {
+  border: 1px solid rgba(24, 119, 242, 0.6);
+  box-shadow:
+    inset 0 0 8px rgba(24, 119, 242, 0.4),
+    0 0 12px rgba(24, 119, 242, 0.5),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sbtn-icon-content a[data-social="facebook"] .sbtn-filled,
+.sbtn-icon-content a[data-social="facebook"] ~ .sbtn-tooltip {
+  background: linear-gradient(135deg, #0a1a2e, #0f4a8a, #1877f2, #0a1f3d);
+  background-size: 400% 400%;
+  animation: sbtn-premium-gradient 6s ease infinite;
+  border: 1px solid rgba(24, 119, 242, 0.6);
+  box-shadow:
+    inset 0 0 12px rgba(24, 119, 242, 0.5),
+    0 0 24px rgba(24, 119, 242, 0.7);
+}
+
+/* YouTube - Red */
+.sbtn-icon-content[data-social="youtube"] a {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  box-shadow:
+    inset 0 0 8px rgba(255, 0, 0, 0.4),
+    0 0 12px rgba(255, 0, 0, 0.5),
+    0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sbtn-icon-content a[data-social="youtube"] .sbtn-filled,
+.sbtn-icon-content a[data-social="youtube"] ~ .sbtn-tooltip {
+  background: linear-gradient(135deg, #2d0a0a, #7a0f0f, #ff0000, #4a0b0b);
+  background-size: 400% 400%;
+  animation: sbtn-premium-gradient 6s ease infinite;
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  box-shadow:
+    inset 0 0 12px rgba(255, 0, 0, 0.5),
+    0 0 24px rgba(255, 0, 0, 0.7);
+}
+
+/* Shine sweep effect */
+.sbtn-icon-content a::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(25deg) translateX(-100%);
+  transition: transform 0.8s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sbtn-icon-content a:hover::before {
+  transform: rotate(25deg) translateX(100%);
+}
+
+.sbtn-icon-content a:hover {
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+.sbtn-icon-content a svg {
+  position: relative;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Filled layer */
+.sbtn-icon-content a .sbtn-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: all 0.4s ease-in-out;
+  border-radius: var(--radius-xl);
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.sbtn-icon-content a:hover .sbtn-filled {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes sbtn-premium-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: 479px) {
+  .sbtn-list { gap: 8px; }
+  .sbtn-icon-content a {
+    width: 44px;
+    height: 44px;
+  }
+  .sbtn-icon-content a svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 349px) {
+  .sbtn-list { gap: 6px; }
+  .sbtn-icon-content a {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-lg);
+  }
+  .sbtn-icon-content a svg {
+    width: 18px;
+    height: 18px;
+  }
+  .sbtn-icon-content a .sbtn-filled {
+    border-radius: var(--radius-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sbtn-icon-content a,
+  .sbtn-icon-content a::before,
+  .sbtn-icon-content a .sbtn-filled,
+  .sbtn-icon-content .sbtn-tooltip {
+    transition: none !important;
+    animation: none !important;
+  }
+}

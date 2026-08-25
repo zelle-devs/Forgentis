@@ -17,11 +17,11 @@ const DEFAULT_SOCIALS = [
 ];
 
 const PROCESS_IMAGES = [
-  { id: 1, number: '01', name: 'Cut', image: '/Step1.png' },
-  { id: 2, number: '02', name: 'Form', image: '/Step2.png' },
-  { id: 3, number: '03', name: 'Weld', image: '/Step3.png' },
-  { id: 4, number: '04', name: 'Finish', image: '/Step4.png' },
-  { id: 5, number: '05', name: 'Deliver', image: '/Step5.png' },
+  { id: 1, number: '01', name: 'Cut', image: '/step1.png' },
+  { id: 2, number: '02', name: 'Form', image: '/step2.png' },
+  { id: 3, number: '03', name: 'Weld', image: '/step3.png' },
+  { id: 4, number: '04', name: 'Finish', image: '/step4.png' },
+  { id: 5, number: '05', name: 'Deliver', image: '/step5.png' },
 ];
 
 export default function Footer2({
@@ -92,16 +92,13 @@ export default function Footer2({
                   unoptimized={true}
                 />
               </div>
-              {/* <p className="ftr2-desc">{tagline}</p> */}
 
-              <div className="ftr2-hours-block">
-                <span className="ftr2-hours-icon">
-                  <Clock size={15} />
-                </span>
-                <div className="ftr2-hours-text">
-                  <span className="ftr2-hours-label">Working Hours</span>
-                  <span className="ftr2-hours-value">{hours}</span>
-                </div>
+                            <div className="ftr2-socials ftr2-socials-brand">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a key={label} href={href} aria-label={label} className="ftr2-social-btn">
+                    <Icon size={25} />
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -168,13 +165,7 @@ export default function Footer2({
                     <span>{address}</span>
                   </li>
                 </ul>
-                <div className="ftr2-socials">
-                  {socials.map(({ icon: Icon, href, label }) => (
-                    <a key={label} href={href} aria-label={label} className="ftr2-social-btn">
-                      <Icon size={16} />
-                    </a>
-                  ))}
-                </div>
+               
               </div>
             </div>
           </div>
@@ -186,13 +177,9 @@ export default function Footer2({
   <p className="ftr2-copyright">
     © {year} Forgentis Fabrications. All rights reserved.
   </p>
-  {/* Socials - Center */}
-  <div className="ftr2-socials">
-    {socials.map(({ icon: Icon, href, label }) => (
-      <a key={label} href={href} aria-label={label} className="ftr2-social-btn">
-        <Icon size={14} />
-      </a>
-    ))}
+    <div className="ftr2-hours-inline">
+    <Clock size={13} />
+    <span>{hours}</span>
   </div>
   <div className="ftr2-bottom-links">
     <a href="#">Careers</a>

@@ -220,7 +220,7 @@ const LuminousProjects = () => {
                     <h3 className="lmp-card-name">{project.name}</h3>
                     <span className="lmp-card-sector">{project.sector}</span>
                     <p className="lmp-card-scope">{project.scope}</p>
-                    <p className="lmp-card-description">{project.description}</p>
+                    {/* <p className="lmp-card-description">{project.description}</p> */}
                     <button className="lmp-card-btn">
                       <ArrowRight size={18} strokeWidth={2} />
                     </button>

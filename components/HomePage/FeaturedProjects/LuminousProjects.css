@@ -95,12 +95,19 @@
   margin-bottom: 50px;
 }
 
-/* Luminous Card - 3D Style */
+/* Luminous Card */
 .lmp-card {
   position: relative;
   height: 420px;
   border-radius: var(--radius-3xl);
   background: radial-gradient(circle at 50% 0%, #2a2a2a 0%, #1a1a1a 64%);
+  
+  /* background-image: url('/footer-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+
+  
   box-shadow:
     inset 0 1rem 0.2rem -1rem rgba(255,255,255,0.1),
     inset 0 -1rem 0.2rem -1rem rgba(0,0,0,0.3),
@@ -149,7 +156,7 @@
   z-index: 0;
 }
 
-.lmp-card:hover {
+/* .lmp-card:hover {
   transform: translateY(-8px) rotateX(2deg);
   box-shadow:
     inset 0 1rem 0.1rem -1rem rgba(2, 112, 234, 0.2),
@@ -157,7 +164,7 @@
     0 0 0 1px rgba(2, 112, 234, 0.4),
     0 20px 50px rgba(0,0,0,0.5),
     0 0 50px rgba(2, 112, 234, 0.25);
-}
+} */
 
 .lmp-card:hover::before {
   --offset: 0.4rem;
@@ -177,15 +184,16 @@
   z-index: 1;
 }
 
-/* Light Strip - Bottom pe */
+/* Slit - Center light line */
 .lmp-slit {
   position: absolute;
   left: 0;
   right: 0;
-  top: 45%;
+  top: 0;
+  bottom: 0;
   margin: auto;
-  width: 70%;
-  height: 4px;
+  width: 64%;
+  height: 1.2rem;
   transform: rotateX(-76deg);
   background: #1a1a1a;
   box-shadow: 0 0 4px rgba(2, 112, 234, 0.3);
@@ -207,27 +215,29 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.lmp-min {
+.lmp-lumen .lmp-min {
   width: 70%;
   height: 3rem;
-  background: linear-gradient(transparent, rgba(2, 112, 234, 0.6));
+  background: linear-gradient(transparent, rgba(2, 112, 234, 0.7));
   position: absolute;
   left: 0;
   right: 0;
-  top: 38%;
+  top: 0;
+  bottom: 2.5rem;
   margin: auto;
   transform: rotateX(-42deg);
   opacity: 0.4;
 }
 
-.lmp-mid {
+.lmp-lumen .lmp-mid {
   width: 74%;
   height: 13rem;
-  background: linear-gradient(transparent, rgba(2, 112, 234, 0.5));
+  background: linear-gradient(transparent, rgba(2, 112, 234, 0.6));
   position: absolute;
   left: 0;
   right: 0;
-  top: 42%;
+  top: 0;
+  bottom: 10rem;
   margin: auto;
   transform: rotateX(-42deg);
   filter: blur(1rem);
@@ -235,14 +245,15 @@
   border-radius: 100% 100% 0 0;
 }
 
-.lmp-hi {
+.lmp-lumen .lmp-hi {
   width: 50%;
   height: 13rem;
-  background: linear-gradient(transparent, rgba(52, 140, 237, 0.5));
+  background: linear-gradient(transparent, rgba(52, 140, 237, 0.6));
   position: absolute;
   left: 0;
   right: 0;
-  top: 45%;
+  top: 0;
+  bottom: 12rem;
   margin: auto;
   transform: rotateX(22deg);
   filter: blur(1rem);
@@ -250,14 +261,94 @@
   border-radius: 100% 100% 0 0;
 }
 
+.lmp-darken {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 400px;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0.5;
+}
+
+.lmp-darken .lmp-sl {
+  width: 64%;
+  height: 10rem;
+  background: linear-gradient(#000, transparent);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9.6rem;
+  bottom: 0;
+  margin: auto;
+  filter: blur(0.2rem);
+  opacity: 0.1;
+  border-radius: 0 0 100% 100%;
+  transform: rotateX(-22deg);
+}
+
+.lmp-darken .lmp-ll {
+  width: 62%;
+  height: 10rem;
+  background: linear-gradient(rgba(0,0,0,0.6), transparent);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11rem;
+  bottom: 0;
+  margin: auto;
+  filter: blur(0.8rem);
+  opacity: 0.4;
+  border-radius: 0 0 100% 100%;
+  transform: rotateX(22deg);
+}
+
+.lmp-darken .lmp-slt {
+  width: 0.5rem;
+  height: 4rem;
+  background: linear-gradient(rgba(0,0,0,0.4), transparent);
+  position: absolute;
+  left: 0;
+  right: 11.5rem;
+  top: 3.9rem;
+  bottom: 0;
+  margin: auto;
+  opacity: 0.6;
+  border-radius: 0 0 100% 100%;
+  transform: skewY(42deg);
+}
+
+.lmp-darken .lmp-srt {
+  width: 0.5rem;
+  height: 4rem;
+  background: linear-gradient(rgba(0,0,0,0.4), transparent);
+  position: absolute;
+  right: 0;
+  left: 11.5rem;
+  top: 3.9rem;
+  bottom: 0;
+  margin: auto;
+  opacity: 0.6;
+  border-radius: 0 0 100% 100%;
+  transform: skewY(-42deg);
+}
+
 .lmp-card:hover .lmp-lumen {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .lmp-card:hover .lmp-slit {
   background: var(--color-blue-main);
   box-shadow: 0 0 20px rgba(2, 112, 234, 0.9);
-  height: 6px;
+}
+
+.lmp-card:hover .lmp-darken {
+  opacity: 0.8;
 }
 
 /* Content */
@@ -268,23 +359,24 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
+  /* margin-top: 30px; */
 }
 
-/* Icon - Top center, strip se upar gap ke saath */
+/* Icon - Center top */
 .lmp-icon {
   position: absolute;
-  top: 12%;
+  top: 18%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(145deg, rgba(20, 25, 35, 0.95), rgba(8, 8, 8, 0.95));
-  border: 2px solid var(--color-blue-main);
+  /* background: linear-gradient(145deg, rgba(20, 25, 35, 0.95), rgba(8, 8, 8, 0.95));
+  border: 2px solid var(--color-blue-main); */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-blue-main);
+  color: var(--color-gray-dark);
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.65),
     0 0 0 4px rgba(2, 112, 234, 0.08),
@@ -294,7 +386,13 @@
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 3;
 }
-
+.lmp-card:hover{
+    .lmp-icon{
+         background: linear-gradient(145deg, rgba(20, 25, 35, 0.95), rgba(8, 8, 8, 0.95));
+  border: 2px solid var(--color-blue-main);
+  color: var(--color-blue-main);
+    }
+}
 .lmp-icon svg {
   width: 35px;
   height: 35px;
@@ -341,7 +439,7 @@
   line-height: 1.5;
   margin-bottom: 8px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-dark-border);
+  /* border-bottom: 1px solid var(--color-dark-border); */
   max-width: 80%;
 }
 
@@ -480,25 +578,23 @@
   .lmp-section { padding: 100px 0; }
   .lmp-grid { gap: 40px; }
   .lmp-card { height: 500px; }
-  .lmp-icon { width: 100px; height: 100px; top: 12%; }
+  .lmp-icon { width: 100px; height: 100px; top: 18%; }
   .lmp-icon svg { width: 45px; height: 45px; }
-  .lmp-slit { top: 44%; }
 }
 
 @media (min-width: 1440px) and (max-width: 1919px) {
   .lmp-section { padding: 80px 0; }
   .lmp-grid { gap: 30px; }
   .lmp-card { height: 450px; }
-  .lmp-icon { width: 90px; height: 90px; top: 12%; }
+  .lmp-icon { width: 90px; height: 90px; top: 18%; }
   .lmp-icon svg { width: 40px; height: 40px; }
-  .lmp-slit { top: 44%; }
 }
 
 @media (min-width: 1200px) and (max-width: 1439px) {
   .lmp-section { padding: 70px 0; }
   .lmp-grid { gap: 20px; }
   .lmp-card { height: 400px; }
-  .lmp-icon { width: 80px; height: 80px; top: 12%; }
+  .lmp-icon { width: 80px; height: 80px; top: 18%; }
   .lmp-icon svg { width: 35px; height: 35px; }
 }
 
@@ -507,7 +603,7 @@
   .lmp-grid { gap: 15px; }
   .lmp-card { height: 380px; }
   .lmp-title { font-size: var(--font-size-3xl); }
-  .lmp-icon { width: 70px; height: 70px; top: 12%; }
+  .lmp-icon { width: 70px; height: 70px; top: 18%; }
   .lmp-icon svg { width: 30px; height: 30px; }
 }
 
@@ -518,7 +614,7 @@
   .lmp-grid { display: none; }
   .lmp-slider { display: block; }
   .lmp-slider-item .lmp-card { height: 420px; }
-  .lmp-icon { width: 80px; height: 80px; top: 12%; }
+  .lmp-icon { width: 80px; height: 80px; top: 18%; }
   .lmp-icon svg { width: 35px; height: 35px; }
 }
 
@@ -530,7 +626,7 @@
   .lmp-grid { display: none; }
   .lmp-slider { display: block; }
   .lmp-slider-item .lmp-card { height: 380px; }
-  .lmp-icon { width: 70px; height: 70px; top: 12%; }
+  .lmp-icon { width: 70px; height: 70px; top: 18%; }
   .lmp-icon svg { width: 30px; height: 30px; }
 }
 
@@ -541,7 +637,7 @@
   .lmp-grid { display: none; }
   .lmp-slider { display: block; }
   .lmp-slider-item .lmp-card { height: 360px; }
-  .lmp-icon { width: 60px; height: 60px; top: 12%; }
+  .lmp-icon { width: 60px; height: 60px; top: 18%; }
   .lmp-icon svg { width: 28px; height: 28px; }
   .lmp-cta-btn { width: 100%; justify-content: center; }
 }
@@ -552,7 +648,7 @@
   .lmp-grid { display: none; }
   .lmp-slider { display: block; }
   .lmp-slider-item .lmp-card { height: 340px; padding: 20px; }
-  .lmp-icon { width: 55px; height: 55px; top: 12%; }
+  .lmp-icon { width: 55px; height: 55px; top: 18%; }
   .lmp-icon svg { width: 25px; height: 25px; }
   .lmp-card-name { font-size: var(--font-size-base); }
 }
@@ -565,7 +661,7 @@
   .lmp-grid { display: none; }
   .lmp-slider { display: block; }
   .lmp-slider-item .lmp-card { height: 320px; padding: 16px; }
-  .lmp-icon { width: 50px; height: 50px; top: 12%; }
+  .lmp-icon { width: 50px; height: 50px; top: 18%; }
   .lmp-icon svg { width: 22px; height: 22px; }
   .lmp-card-name { font-size: var(--font-size-base); }
   .lmp-card-scope { font-size: 10px; }

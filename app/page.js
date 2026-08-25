@@ -31,7 +31,7 @@ export default function Home() {
       {/* <FacilitiesQuality/> */}
       <FeaturedProjects/>
       <FeaturedProjects2/>
-      {/* <LuminousProjects/> */}
+      <LuminousProjects/>
       <CTASection/>
 </div>
     </>
