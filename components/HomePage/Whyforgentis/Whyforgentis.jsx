@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-
 import './Whyforgentis.css';
+import Image from 'next/image';
 
-const POINTS = [
+const DEFAULT_POINTS = [
   {
     number: '01',
     title: 'It fits the first time',
@@ -29,75 +29,108 @@ const POINTS = [
 ];
 
 export default function WhyForgentis({
-  eyebrow = 'The Forgentis Standard',
-  headline = 'Why Forgentis.',
-  body = 'Four reasons manufacturers keep coming back to us, project after project.',
-  points = POINTS,
-  image = '/turkey.jpg',
+  eyebrow = '',
+  headline = '',
+  body = '',
+  points = [],
+  image = '',
   imageAlt = 'Forgentis manufacturing floor',
+  showImage = true,
+  showPoints = true,
+  showArrowButton = true,
+  backgroundColor = '',
+  backgroundImage = '',
+  boxBackground = 'var(--color-black)',
+  boxBorder = 'var(--color-black-medium)',
+  showBox = true,
 }) {
+  const displayPoints = points.length > 0 ? points : DEFAULT_POINTS;
+  const hasHeader = eyebrow || headline || body;
+  const hasImage = showImage && image;
+
   return (
-    <section className="wf-section">
+    <section 
+      className="wf-section"
+      style={backgroundColor ? { backgroundColor } : {}}
+    >
+      {backgroundImage && (
+        <div 
+          className="wf-bg-image"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+      )}
+
       <div className="container2">
-        <div className='box container'>
-        {/* ==============================
-            CENTERED HEADER
-        ============================== */}
-
-        <motion.div
-          className="wf-header"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        <div 
+          className={`${showBox ? 'box container' : 'container'}`}
+          style={showBox ? { backgroundColor: boxBackground, borderColor: boxBorder } : {}}
         >
-          {eyebrow && <span className="wf-eyebrow">{eyebrow}</span>}
-          <h2 className="wf-headline">{headline}</h2>
-          {body && <p className="wf-body">{body}</p>}
-        </motion.div>
-
-        {/* ==============================
-            POINTS LIST
-        ============================== */}
-
-        <div className="wf-list">
-          {points.map((point, index) => (
+          {/* Header */}
+          {hasHeader && (
             <motion.div
-              key={index}
-              className="wf-row"
-              initial={{ opacity: 0, y: 18 }}
+              className="wf-header"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-10%' }}
-              transition={{
-                duration: 0.55,
-                delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="wf-number">{point.number}</span>
-              <h3 className="wf-title">{point.title}</h3>
-              <p className="wf-desc">{point.desc}</p>
-              <span className="wf-arrow-btn" aria-hidden="true">
-                <ArrowUpRight size={18} className="wf-arrow-icon" />
-              </span>
+              {eyebrow && <span className="wf-eyebrow">{eyebrow}</span>}
+              {headline && <h2 className="wf-headline">{headline}</h2>}
+              {body && <p className="wf-body">{body}</p>}
             </motion.div>
-          ))}
+          )}
+
+          {/* Points List */}
+          {showPoints && displayPoints.length > 0 && (
+            <div className="wf-list">
+              {displayPoints.map((point, index) => (
+                <motion.div
+                  key={point.id || index}
+                  className="wf-row"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-10%' }}
+                  transition={{
+                    duration: 0.55,
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  {point.number && <span className="wf-number">{point.number}</span>}
+                  {point.title && <h3 className="wf-title">{point.title}</h3>}
+                  {point.desc && <p className="wf-desc">{point.desc}</p>}
+                  {showArrowButton && (
+                    <span className="wf-arrow-btn" aria-hidden="true">
+                      <ArrowUpRight size={18} className="wf-arrow-icon" />
+                    </span>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {/* Image Strip */}
+          {hasImage && (
+            <motion.div
+              className="wf-image-wrap"
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image 
+                src={image} 
+                alt={imageAlt} 
+                width={1200} 
+                height={800} 
+                priority 
+                className="wf-image" 
+                draggable={false} 
+                unoptimized={true} 
+              />
+            </motion.div>
+          )}
         </div>
-
-        {/* ==============================
-            FULL WIDTH IMAGE STRIP
-        ============================== */}
-
-        <motion.div
-          className="wf-image-wrap"
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img src={image} alt={imageAlt} className="wf-image" draggable={false} />
-        </motion.div>
-</div>
       </div>
     </section>
   );

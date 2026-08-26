@@ -6,6 +6,20 @@
   overflow: hidden;
 }
 
+/* Background Image */
+.trusted-partner-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* Background Pattern */
 .trusted-partner-bg {
   position: absolute;
@@ -82,7 +96,7 @@
 /* Metrics Strip - Horizontal */
 .trusted-partner-metrics {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
   gap: 0;
   margin-bottom: 60px;
@@ -104,7 +118,13 @@
 } */
 
 .trusted-partner-metric {
-  flex: 1;
+  /* flex: 1;
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  transition: all var(--transition-normal); */
+    flex: 1;
+  max-width: 300px;
   text-align: center;
   padding: 30px 20px;
   position: relative;
@@ -264,15 +284,12 @@
   }
   
   .trusted-partner-metrics {
-    flex-wrap: wrap;
-    gap: 0;
+    justify-content: center;
   }
-  
   .trusted-partner-metric {
     flex: 0 0 50%;
-    padding: 20px;
+    max-width: 50%;
   }
-  
   .trusted-partner-metric:nth-child(2)::after {
     display: none;
   }
@@ -312,18 +329,12 @@
     padding: 0 5px;
   }
   
-  .trusted-partner-metrics {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0;
-    width: 100%;
+   .trusted-partner-metrics {
+    justify-content: center;
   }
-  
   .trusted-partner-metric {
     flex: 0 0 50%;
-    width: 50%;
-    padding: 18px 10px;
-    border-bottom: 1px solid var(--color-dark-border);
+    max-width: 50%;
   }
   
   .trusted-partner-metric:nth-child(odd) {
@@ -386,18 +397,14 @@
     line-height: 1.5;
   }
   
-  .trusted-partner-metrics {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
+ .trusted-partner-metrics {
+    justify-content: center;
   }
-  
   .trusted-partner-metric {
     flex: 0 0 50%;
-    width: 50%;
-    padding: 16px 8px;
-    border-bottom: 1px solid var(--color-dark-border);
+    max-width: 50%;
   }
+
   
   .trusted-partner-metric:nth-child(odd) {
     border-right: 1px solid var(--color-dark-border);

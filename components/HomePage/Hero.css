@@ -90,6 +90,8 @@
   line-height: 1.4;
 }
 
+/* ============ 3D STAGGERED LETTER WAVE TITLE ============ */
+
 .hero-title {
   font-size: var(--font-size-8xl);
   font-weight: var(--font-weight-bold);
@@ -98,8 +100,105 @@
   line-height: 1;
   margin-bottom: 16px;
   letter-spacing: -0.5px;
-  /* text-shadow: var(--text-shadow-btn); */
-      text-transform: uppercase;
+  text-transform: uppercase;
+
+  /* Important for 3D letters */
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.hero-title-line {
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.hero-title-animated {
+  display: inline;
+}
+
+.hero-title-word {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.hero-title-letter {
+  display: inline-block;
+  position: relative;
+
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+
+  will-change: transform, opacity;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-title-space {
+  display: inline;
+}
+
+/* Metal texture letters */
+
+.hero-title-clip {
+  display: inline;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/*
+  Each letter gets the metal image.
+  background-position is kept centered so
+  the texture remains visible during 3D movement.
+*/
+
+.hero-title-clip .hero-title-letter {
+  background-image: var(--title-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  filter:
+    drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* Metallic highlight */
+
+.hero-title-clip .hero-title-letter::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.12) 25%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.15) 75%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  pointer-events: none;
+}
+
+@supports not (-webkit-background-clip: text) {
+  .hero-title-clip .hero-title-letter {
+    color: var(--color-blue-main);
+    background: none;
+    -webkit-text-fill-color: var(--color-blue-main);
+  }
 }
 
 .hero-title-text {

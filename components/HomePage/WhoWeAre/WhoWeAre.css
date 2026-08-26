@@ -1,4 +1,12 @@
 /* ============ WHO WE ARE SECTION - FORGENTIS ============ */
+/* Image Left Layout */
+.who-we-are-wrapper.image-left {
+  direction: rtl;
+}
+
+.who-we-are-wrapper.image-left > * {
+  direction: ltr;
+}
 .who-we-are {
   position: relative;
   padding: 60px 0;

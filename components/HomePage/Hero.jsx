@@ -4,6 +4,54 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
 import './Hero.css'
 
+
+const AnimatedTitle = ({ text, className = '' }) => {
+  const words = text.split(' ');
+
+  return (
+    <span className={`hero-title-animated ${className}`}>
+      {words.map((word, wordIndex) => (
+        <span className="hero-title-word" key={`${word}-${wordIndex}`}>
+          {word.split('').map((char, charIndex) => (
+            <motion.span
+              key={`${char}-${charIndex}`}
+              className="hero-title-letter"
+              initial={{
+                opacity: 0,
+                y: 70,
+                rotateX: -90,
+                rotateY: 25,
+                rotateZ: 5,
+                scale: 0.7,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                rotateY: 0,
+                rotateZ: 0,
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 1.5 + (wordIndex * 0.2) + (charIndex * 0.045),
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
+
+          {/* Space between words */}
+          {wordIndex < words.length - 1 && (
+            <span className="hero-title-space">&nbsp;</span>
+          )}
+        </span>
+      ))}
+    </span>
+  );
+};
+
 const Hero = () => {
   const heroImages = [
     '/forgentis.jpeg', 
@@ -158,35 +206,43 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <motion.h1 
-              className="hero-title"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-                <motion.span 
+            <motion.h1
+  className="hero-title"
+  initial={{ opacity: 1 }}
+  animate={{ opacity: 1 }}
+>
+  <motion.span
     className="hero-eyebrow"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.9, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    transition={{
+      delay: 1.5,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    }}
   >
     Precision metal fabrication
   </motion.span>
 
-              <span className="hero-title-text">The</span>{' '}
-              <span 
-                className="hero-title-clip"
-                style={{ backgroundImage: `url(${titleImage})` }}
-              >
-                Industrial Standard in Architectural Metalwork.
-              </span>{' '}
-            </motion.h1>
+  <span className="hero-title-line">
+    <AnimatedTitle text="The" className="hero-title-white" />
+  </span>
+
+  {' '}
+
+  <span
+    className="hero-title-clip"
+    style={{ '--title-image': `url(${titleImage})` }}
+  >
+    <AnimatedTitle text="Industrial Standard in Architectural Metalwork." />
+  </span>
+</motion.h1>
             
             <motion.p 
               className="hero-subtitle"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 3.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               From structural steel to laser-cut screens, we shape raw metal into parts that fit right, hold strong, and last for years.
             </motion.p>
@@ -195,7 +251,7 @@ const Hero = () => {
               className="hero-buttons"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 3.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <a href="/contact" className="btn btn-blue hero-primary-btn">
                 Send Your Drawings <ArrowRight size={16} />

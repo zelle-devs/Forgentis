@@ -34,12 +34,13 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/companies', label: 'Our Companies' },
     { href: '/capabilities', label: 'Capabilities' },
     { href: '/industries', label: 'Industries' },
-    { href: '/approach', label: 'Approach' },
-    { href: '/leadership', label: 'Leadership' },
-    { href: '/careers', label: 'Careers' },
+    { href: '/projects', label: 'Our Projects' },
+    { href: '/quality', label: 'Quality' },
+    { href: '/facilities', label: 'Facilities' },
+    // { href: '/process', label: 'Process' },
+    // { href: '/resources', label: 'Resources' },
   ]
 
   const closeSidebar = () => setIsOpen(false)
@@ -92,7 +93,7 @@ const Navbar = () => {
           {/* Right Actions */}
           <div className="navbar-actions">
             <Link href="/contact" className="btn btn-blue navbar-cta">
-              Start a Project <ArrowRight size={16} />
+              Request a Quote <ArrowRight size={16} />
             </Link>
             
             <button 
@@ -151,7 +152,7 @@ const Navbar = () => {
             className="btn btn-blue sidebar-cta"
             onClick={closeSidebar}
           >
-            Start a Project <ArrowRight size={16} />
+            Request a Quote <ArrowRight size={16} />
           </Link>
         </div>
       </div>
