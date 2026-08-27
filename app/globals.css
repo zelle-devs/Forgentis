@@ -134,6 +134,8 @@
   /* ============ BOX SHADOW ============ */
   --shadow-blue: 0 0 30px rgba(2, 112, 234, 0.2);
   --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  --section-gap: 130px;    
 }
 
 /* ============ RESET & BASE STYLES ============ */
@@ -704,5 +706,31 @@ select {
   .btn {
     padding: 8px 16px;
     font-size: 9px;
+  }
+}
+
+/* *************************** consulation form*************** */
+.section-padding {
+  padding-top: var(--section-gap);
+  /* padding-bottom: var(--section-gap); */
+}
+@media (min-width: 1921px) {
+  :root {
+    --section-gap: 130px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: 110px;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --section-gap: 100px;
+  }
+}
+@media (min-width: 480px) {
+  :root {
+    --section-gap: 90px;
   }
 }

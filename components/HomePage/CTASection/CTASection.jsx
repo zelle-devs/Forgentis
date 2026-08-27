@@ -9,7 +9,7 @@ export default function CTASection({
   headline = '',
   body = '',
   buttonText = '',
-  buttonLink = '/contact',
+  buttonLink = '/consultation',
   showButton = true,
   buttonIcon = true,
   buttonIconComponent = null,  

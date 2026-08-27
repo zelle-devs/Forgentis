@@ -21,8 +21,15 @@ const TrustedPartner = ({
   metricNumberColor = '',
   metricLabelColor = '',
   metricDescriptionColor = '',
+  metricSuffixColor = '',
+  metricHoverColor = '',
   trustLabelColor = '',
   logoColor = '',
+  logoBackground = 'var(--color-black-light)',
+  logoBorderColor = 'var(--color-dark-border)',
+  logoHoverColor = 'var(--color-blue-main)',
+  logoHoverBackground = 'var(--color-black-medium)',
+  logoHoverBorderColor = 'var(--color-blue-main)',
   showGridPattern = true,
 }) => {
   const sectionRef = useRef(null)
@@ -80,7 +87,6 @@ const TrustedPartner = ({
       ref={sectionRef}
       style={{ backgroundColor }}
     >
-      {/* Background Image - if provided */}
       {backgroundImage && (
         <div 
           className="trusted-partner-bg-image"
@@ -91,7 +97,6 @@ const TrustedPartner = ({
         />
       )}
 
-      {/* Grid Pattern - only if showGridPattern true */}
       {showGridPattern && (
         <div className="trusted-partner-bg">
           <div className="trusted-partner-grid" />
@@ -99,7 +104,6 @@ const TrustedPartner = ({
       )}
 
       <div className="container2">
-        {/* Header - only if content exists */}
         {hasContent && (
           <div className="trusted-partner-header">
             {eyebrow && (
@@ -143,7 +147,6 @@ const TrustedPartner = ({
           </div>
         )}
 
-        {/* Metrics - only if showMetrics true */}
         {hasMetrics && (
           <motion.div 
             className="trusted-partner-metrics"
@@ -161,7 +164,10 @@ const TrustedPartner = ({
                     {metric.value}
                   </span>
                   {metric.suffix && (
-                    <span className="trusted-partner-metric-suffix">
+                    <span 
+                      className="trusted-partner-metric-suffix"
+                      style={metricSuffixColor ? { color: metricSuffixColor } : {}}
+                    >
                       {metric.suffix}
                     </span>
                   )}
@@ -187,7 +193,6 @@ const TrustedPartner = ({
           </motion.div>
         )}
 
-        {/* Trust Strip - only if showTrustStrip true */}
         {hasTrustStrip && (
           <motion.div 
             className="trusted-partner-trust"
@@ -208,7 +213,14 @@ const TrustedPartner = ({
                 <motion.div 
                   key={logo.id || index}
                   className="trusted-partner-logo"
-                  style={logoColor ? { color: logoColor } : {}}
+                  style={{
+                    color: logoColor || undefined,
+                    background: logoBackground,
+                    borderColor: logoBorderColor,
+                    ...(logoColor && { '--logo-hover-color': logoHoverColor }),
+                    ...(logoBackground && { '--logo-hover-bg': logoHoverBackground }),
+                    ...(logoBorderColor && { '--logo-hover-border': logoHoverBorderColor }),
+                  }}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ 

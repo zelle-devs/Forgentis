@@ -92,7 +92,7 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="navbar-actions">
-            <Link href="/contact" className="btn btn-blue navbar-cta">
+            <Link href="/consultation" className="btn btn-blue navbar-cta">
               Request a Quote <ArrowRight size={16} />
             </Link>
             
@@ -148,7 +148,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link 
-            href="/contact" 
+            href="/consultation" 
             className="btn btn-blue sidebar-cta"
             onClick={closeSidebar}
           >

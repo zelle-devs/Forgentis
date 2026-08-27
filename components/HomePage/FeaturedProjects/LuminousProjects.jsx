@@ -1,9 +1,8 @@
 'use client'
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, ChevronLeft, ChevronRight, Building2, Layers, Store, Factory, Warehouse, Cog, LocationEdit } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Building2, Layers, Store, Factory, Warehouse, Cog, MapPin } from 'lucide-react'
 import './LuminousProjects.css'
-import { FaLocationPin } from 'react-icons/fa6'
 
 const DEFAULT_PROJECTS = [
   {
@@ -32,33 +31,6 @@ const DEFAULT_PROJECTS = [
     location: 'London, UK',
     scope: 'Powder-coated shopfront',
     description: 'Durable powder-coated metal shopfront with modern finish.'
-  },
-  {
-    id: 4,
-    icon: Factory,
-    name: 'Project Delta',
-    sector: 'Industrial',
-    location: 'Doha, Qatar',
-    scope: 'CNC machined components',
-    description: 'High-tolerance CNC machined parts for industrial equipment.'
-  },
-  {
-    id: 5,
-    icon: Warehouse,
-    name: 'Project Epsilon',
-    sector: 'Logistics',
-    location: 'Riyadh, KSA',
-    scope: 'Warehouse structural steel',
-    description: 'Complete structural steel framework for warehouse facility.'
-  },
-  {
-    id: 6,
-    icon: Cog,
-    name: 'Project Zeta',
-    sector: 'Manufacturing',
-    location: 'Abu Dhabi, UAE',
-    scope: 'Custom machine bases',
-    description: 'Heavy-duty machine bases with precision leveling.'
   }
 ];
 
@@ -97,8 +69,7 @@ const LuminousProjects = ({
   const isDragging = useRef(false)
   
   const [currentSlide, setCurrentSlide] = useState(0)
- const [isMobile, setIsMobile] = useState(false)
-const [isSliderMode, setIsSliderMode] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [activeCard, setActiveCard] = useState(null)
 
@@ -106,32 +77,46 @@ const [isSliderMode, setIsSliderMode] = useState(false)
   const hasHeader = eyebrow || title || body;
   const hasCards = showCards && displayProjects.length > 0;
   const hasButton = showButton && buttonText;
-
- useEffect(() => {
-  const checkScreenSize = () => {
-    const mobile = window.innerWidth < 1024;
-    const slider = mobile || displayProjects.length > 3;
-    setIsMobile(mobile);
-    setIsSliderMode(slider);
-  }
-  checkScreenSize()
-  window.addEventListener('resize', checkScreenSize)
-  return () => window.removeEventListener('resize', checkScreenSize)
-}, [displayProjects.length])
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % displayProjects.length)
-  }, [displayProjects.length])
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + displayProjects.length) % displayProjects.length)
-  }, [displayProjects.length])
+  const hasMoreThanThree = displayProjects.length > 3;
 
   useEffect(() => {
-    if (!isMobile || !isAutoPlaying) return
-    const interval = setInterval(nextSlide, 3000)
-    return () => clearInterval(interval)
-  }, [isMobile, isAutoPlaying, nextSlide])
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  const nextSlide = useCallback(() => {
+    if (isMobile) {
+      setCurrentSlide((prev) => (prev + 1) % displayProjects.length)
+    } else {
+      setCurrentSlide((prev) => Math.min(prev + 1, displayProjects.length - 3))
+    }
+  }, [displayProjects.length, isMobile])
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => Math.max(prev - 1, 0))
+  }, [])
+
+  // Auto-play - sirf jab slider mode ho
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    if (isMobile || hasMoreThanThree) {
+      const interval = setInterval(() => {
+        if (isMobile) {
+          setCurrentSlide((prev) => (prev + 1) % displayProjects.length)
+        } else {
+          setCurrentSlide((prev) => {
+            if (prev >= displayProjects.length - 3) return 0
+            return prev + 1
+          })
+        }
+      }, 3000)
+      return () => clearInterval(interval)
+    }
+  }, [isAutoPlaying, isMobile, hasMoreThanThree, displayProjects.length])
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX
@@ -229,7 +214,7 @@ const [isSliderMode, setIsSliderMode] = useState(false)
             )}
             {showLocation && project.location && (
               <span className="lmp-card-location" style={cardLocationColor ? { color: cardLocationColor } : {}}>
-              <FaLocationPin/> {project.location}
+                <MapPin size={18} /> {project.location}
               </span>
             )}
             {project.scope && (
@@ -318,15 +303,61 @@ const [isSliderMode, setIsSliderMode] = useState(false)
           </div>
         )}
 
-        {/* Desktop Grid */}
-        {hasCards && !isMobile && (
-          <div className="lmp-grid">
-            {displayProjects.slice(0, 3).map((project, index) => renderCard(project, index))}
-          </div>
+        {/* Desktop - Grid (3 ya kam) ya Slider (4+) */}
+        {!isMobile && hasCards && (
+          <>
+            {!hasMoreThanThree ? (
+              <div className="lmp-grid">
+                {displayProjects.map((project, index) => renderCard(project, index))}
+              </div>
+            ) : (
+              <div 
+                className="lmp-slider lmp-slider-desktop"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+              >
+                <div 
+                  className="lmp-slider-track-desktop"
+                  style={{ 
+                    transform: `translateX(-${currentSlide * (100 / 3)}%)`,
+                    transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+                  }}
+                >
+                  {displayProjects.map((project, index) => (
+                    <div key={project.id || index} className="lmp-slider-item-desktop">
+                      {renderCard(project, index)}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="lmp-slider-controls">
+                  <button className="lmp-slider-btn" onClick={prevSlide}>
+                    <ChevronLeft size={20} />
+                  </button>
+                  <div className="lmp-slider-dots">
+                    {Array.from({ length: displayProjects.length - 2 }).map((_, index) => (
+                      <button
+                        key={index}
+                        className={`lmp-slider-dot ${index === currentSlide ? 'active' : ''}`}
+                        onClick={() => setCurrentSlide(index)}
+                      />
+                    ))}
+                  </div>
+                  <button className="lmp-slider-btn" onClick={nextSlide}>
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
-        {/* Mobile Slider */}
-        {hasCards && isMobile && (
+        {/* Mobile - Full Slider (1 card) */}
+        {isMobile && hasCards && (
           <div 
             className="lmp-slider"
             onTouchStart={handleTouchStart}
@@ -350,23 +381,25 @@ const [isSliderMode, setIsSliderMode] = useState(false)
               ))}
             </div>
 
-            <div className="lmp-slider-controls">
-              <button className="lmp-slider-btn" onClick={prevSlide}>
-                <ChevronLeft size={20} />
-              </button>
-              <div className="lmp-slider-dots">
-                {displayProjects.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`lmp-slider-dot ${index === currentSlide ? 'active' : ''}`}
-                    onClick={() => setCurrentSlide(index)}
-                  />
-                ))}
+            {displayProjects.length > 1 && (
+              <div className="lmp-slider-controls">
+                <button className="lmp-slider-btn" onClick={prevSlide}>
+                  <ChevronLeft size={20} />
+                </button>
+                <div className="lmp-slider-dots">
+                  {displayProjects.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`lmp-slider-dot ${index === currentSlide ? 'active' : ''}`}
+                      onClick={() => setCurrentSlide(index)}
+                    />
+                  ))}
+                </div>
+                <button className="lmp-slider-btn" onClick={nextSlide}>
+                  <ChevronRight size={20} />
+                </button>
               </div>
-              <button className="lmp-slider-btn" onClick={nextSlide}>
-                <ChevronRight size={20} />
-              </button>
-            </div>
+            )}
           </div>
         )}
 

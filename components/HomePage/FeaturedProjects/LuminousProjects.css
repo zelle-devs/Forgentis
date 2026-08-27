@@ -500,7 +500,21 @@
   box-shadow: var(--shadow-blue);
   transform: rotate(-45deg);
 }
+/* Desktop Slider - 3 cards visible */
+.lmp-slider-desktop {
+  overflow: hidden;
+}
 
+.lmp-slider-track-desktop {
+  display: flex;
+  gap: 30px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lmp-slider-item-desktop {
+  flex: 0 0 calc((100% - 60px) / 3);
+  min-width: 0;
+}
 /* Mobile Slider */
 .lmp-slider {
   display: block;

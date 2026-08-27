@@ -253,7 +253,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <a href="/contact" className="btn btn-blue hero-primary-btn">
+              <a href="/consultation" className="btn btn-blue hero-primary-btn">
                 Send Your Drawings <ArrowRight size={16} />
               </a>
               <a href="/companies" className="btn btn-outline-light hero-secondary-btn">

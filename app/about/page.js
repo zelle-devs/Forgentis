@@ -160,7 +160,7 @@ export default function About() {
   headline="Let's Work Together."
   body="Send us your drawings, or tell us about your project. We will come back with a clear quote and a plan."
   buttonText="Get a Quote"
-  buttonLink="/contact"
+  buttonLink="/consultation"
   backgroundImage="/footer-bg.png"
   showGlow={true}
   showGridPattern={true}

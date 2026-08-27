@@ -24,7 +24,7 @@ export default function Industries() {
        subhead="We fabricate for businesses that construct, fit out, and manufacture."
        body="Different sectors, same need: precision metal components made to spec and delivered on time. From construction and automotive to solar and energy, medical equipment, and industrial manufacturing, here is where our work shows up most."
        primaryButtonText="Discuss Your Project"
-       primaryButtonLink="/contact"
+       primaryButtonLink="/consultation"
        secondaryButtonText=""
        secondaryButtonLink=""
        heroImages={[]}
@@ -52,6 +52,7 @@ export default function Industries() {
   body="Laser-cut screens, facades, cladding, feature staircases, and decorative panels. The precise, finished metalwork that architects and interior designers specify."
   buttonText=""
   buttonLink=""
+  backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
   imageSrc="/step1.png"
@@ -75,6 +76,7 @@ export default function Industries() {
   body="Machine frames, platforms, guards, brackets, and structural parts. Hard-working metal built to take load and last on the factory floor."
   buttonText=""
   buttonLink=""
+  backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
   imageSrc="/step4.png"
@@ -100,6 +102,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
+  backgroundColor="var(--color-black-medium)"
   imageSrc="/step4.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
@@ -121,6 +124,7 @@ export default function Industries() {
   body="Precision components, frames, and housings for medical and laboratory equipment. Clean welds, tight tolerances, and stainless finishes that suit the standards this work calls for."
   buttonText=""
   buttonLink=""
+  backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
   imageSrc="/step4.png"
@@ -146,6 +150,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
+  backgroundColor="var(--color-black-medium)"
   imageSrc="/step4.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
@@ -166,7 +171,7 @@ export default function Industries() {
   headline="Tell Us About Your Project."
   body="Share your drawings or requirements and we will come back with a quote and a lead time."
   buttonText="Get a Quote"
-  buttonLink="/contact"
+  buttonLink="/consultation"
   buttonIcon={true}
    backgroundImage="/title-bg2.jpeg"
   showGlow={true}

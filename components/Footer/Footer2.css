@@ -1,3 +1,12 @@
+.ftr2-bottom-link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ftr2-bottom-link-item .ftr2-dot {
+  margin: 0;
+}
 /* ============ FORGENTIS FOOTER 2 - PARALLELOGRAM STRIP ============ */
 .ftr2-footer {
   position: relative;
@@ -12,7 +21,7 @@
   display: flex;
   height: 18vh;
   min-height: 100px;
-  max-height: 250px;
+  max-height: 200px;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -521,7 +530,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .ftr2-process-strip { min-height: 150px; }
+  .ftr2-process-strip { max-height:200px; }
   .ftr2-process-label { left: 20px; }
   .ftr2-process-name { font-size: var(--font-size-sm); }
   .ftr2-top {
@@ -537,8 +546,8 @@
 /* Mobile Large (480px - 767px) */
 @media (min-width: 480px) and (max-width: 767px) {
   .ftr2-process-strip {
-    height: 25vh;
-    min-height: 120px;
+    /* height: 25vh; */
+    max-height: 150px!important;
   }
   .ftr2-process-label { left: 15px; }
   .ftr2-process-number { font-size: var(--font-size-4xl); }
@@ -595,8 +604,8 @@
 /* Mobile Small (350px - 479px) */
 @media (min-width: 350px) and (max-width: 479px) {
   .ftr2-process-strip {
-    height: 20vh;
-    min-height: 100px;
+    /* height: 20vh; */
+    max-height: 120px;
   }
   .ftr2-process-label { left: 10px; gap: 2px; }
   .ftr2-process-number { font-size: var(--font-size-3xl); }
@@ -656,8 +665,8 @@
 /* Ultra Small (300px - 349px) */
 @media (max-width: 349px) {
   .ftr2-process-strip {
-    height: 18vh;
-    min-height: 80px;
+    /* height: 18vh; */
+    max-height: 120px;
   }
   .ftr2-process-label { left: 8px; }
   .ftr2-process-number { font-size: var(--font-size-2xl); }

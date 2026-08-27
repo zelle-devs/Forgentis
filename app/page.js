@@ -46,7 +46,14 @@ export default function Home() {
   imageAlt="Forgentis Fabrication"
 />
       <CoreCapabilities/>
-      <WhatWeFabricate/>
+      <WhatWeFabricate
+  eyebrow="Our Expertise"
+  title="What We Make."
+  body="Send us a drawing and we will make it in metal."
+  buttonText="See Our Work"
+  showButton={true}
+  showSector={false}
+/>
       <IndustriesServe
   eyebrow="Sectors We Cover"
   title="Industries We Serve."
@@ -100,7 +107,7 @@ export default function Home() {
   headline="Have a Drawing? Get a Price."
   body="Send us your drawing or specification and we will come back with a clear quote."
   buttonText="Get a Quote"
-  buttonLink="/contact"
+  buttonLink="/consultation"
 />
 </div>
     </>

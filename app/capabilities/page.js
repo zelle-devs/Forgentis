@@ -14,7 +14,7 @@ export default function Capabilities() {
        subhead="Cutting, forming, molding, welding, and finishing, all under one roof."
        body="We take metal from raw sheet and section to a finished, ready-to-install part, supporting projects from design and prototyping through to production. Because every step happens in our own workshop, the quality and the schedule stay in our hands."
        primaryButtonText="Request a Quote"
-       primaryButtonLink="/contact"
+       primaryButtonLink="/consultation"
        secondaryButtonText=""
        secondaryButtonLink=""
        heroImages={[]}
@@ -51,6 +51,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
+  backgroundColor="var(--color-black-medium)"
   imageSrc="/step1.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
@@ -74,6 +75,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
+  backgroundColor="var(--color-black-medium)"
   imageSrc="/step4.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
@@ -95,6 +97,7 @@ export default function Capabilities() {
   body=" Bring us a drawing, a photo, or a sample. We fabricate one-off and bespoke pieces for architects and designers, from decorative screens to custom fixtures, developed around your design, dimensional, and application requirements."
   buttonText=""
   buttonLink=""
+  backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
   imageSrc="/step4.png"
@@ -120,6 +123,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
+  backgroundColor="var(--color-black-medium)"
   imageSrc="/step4.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
@@ -158,7 +162,7 @@ export default function Capabilities() {
   headline="Have a Drawing? Get a Price."
   body="Send us your drawing or specification and we will come back with a quote and a lead time."
   buttonText="Get a Quote"
-  buttonLink="/contact"
+  buttonLink="/consultation"
   buttonIcon={true}
    backgroundImage="/title-bg2.jpeg"
   showGlow={true}
