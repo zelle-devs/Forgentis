@@ -22,7 +22,7 @@ export default function About() {
   heroImages={[]}
   titleImage="/title-bg.png"
   showRightImage={true}
-  rightImage="/step4.png"
+  rightImage="/abouthero.jpeg"
   rightImageAlt="Forgentis Fabrication"
 />
    <div className="scroll-content-wrapper">
@@ -91,7 +91,7 @@ export default function About() {
   buttonLink="/standard"
   showButton={true}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Quality.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="right"
 />
@@ -128,7 +128,7 @@ export default function About() {
   buttonLink="/facility"
   showButton={true}
   showImage={true}
-  imageSrc="/step5.png"
+  imageSrc="/Facilities.png"
   imageAlt="Forgentis Fabrication"
   imagePosition="right"
 />

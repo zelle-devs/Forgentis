@@ -20,7 +20,7 @@ export default function Capabilities() {
        heroImages={[]}
        titleImage="/title-bg.png"
        showRightImage={true}
-       rightImage="/step3.png"
+       rightImage="/capabilities.avif"
        rightImageAlt="Forgentis Fabrication"
      />
       <div className="scroll-content-wrapper">
@@ -40,7 +40,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/cnc.avif"
   imageAlt="Forgentis Fabrication"
 />
  <WhoWeAre
@@ -52,7 +52,7 @@ export default function Capabilities() {
   showButton={false}
   showImage={true}
   backgroundColor="var(--color-black-medium)"
-  imageSrc="/step1.png"
+  imageSrc="/laser.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -64,7 +64,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step3.png"
+  imageSrc="/Bending.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -76,7 +76,7 @@ export default function Capabilities() {
   showButton={false}
   showImage={true}
   backgroundColor="var(--color-black-medium)"
-  imageSrc="/step4.png"
+  imageSrc="/Welding.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -88,7 +88,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Finishing.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -100,7 +100,7 @@ export default function Capabilities() {
   backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
-  imageSrc="/step4.png"
+  imageSrc="/Custom.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -112,7 +112,7 @@ export default function Capabilities() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Prototyping.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -124,7 +124,7 @@ export default function Capabilities() {
   showButton={false}
   showImage={true}
   backgroundColor="var(--color-black-medium)"
-  imageSrc="/step4.png"
+  imageSrc="/Manufacturing.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />

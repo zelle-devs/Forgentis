@@ -23,7 +23,7 @@ export default function Projects() {
        heroImages={[]}
        titleImage="/title-bg.png"
        showRightImage={true}
-       rightImage="/step1.png"
+       rightImage="/projectHero.jpeg"
        rightImageAlt="Forgentis Fabrication"
      />
       <div className="scroll-content-wrapper">

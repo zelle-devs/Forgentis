@@ -11,7 +11,7 @@ const DEFAULT_ITEMS = [
     title: 'Entrance Screens',
     sector: '',
     description: 'Facades and cladding for modern architectural projects.',
-    image: '/forgentis.jpeg'
+    image: '/1o.jpeg'
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const DEFAULT_ITEMS = [
     title: 'Railings & Staircases',
     sector: '',
     description: 'Balustrades and structural support systems.',
-    image: '/forgentis.jpeg'
+    image: '/2o.jpeg'
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const DEFAULT_ITEMS = [
     title: 'Structural Steel',
     sector: '',
     description: 'Frames and supports for buildings and infrastructure.',
-    image: '/forgentis.jpeg'
+    image: '/3o.jpeg'
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const DEFAULT_ITEMS = [
     title: 'Furniture Bases',
     sector: '',
     description: 'Fixtures and fittings for commercial spaces.',
-    image: '/forgentis.jpeg'
+    image: '/4o.jpeg'
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const DEFAULT_ITEMS = [
     title: 'Signage & Panels',
     sector: '',
     description: 'Decorative metal panels and custom signage.',
-    image: '/forgentis.jpeg'
+    image: '/5o.jpeg'
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const DEFAULT_ITEMS = [
     title: 'Custom Pieces',
     sector: '',
     description: 'One-off pieces made to your exact drawing.',
-    image: '/forgentis.jpeg'
+    image: '/6o.jpeg'
   }
 ];
 

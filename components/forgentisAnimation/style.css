@@ -1,0 +1,323 @@
+/* =========================================================
+   FULL SCREEN INTRO
+   ========================================================= */
+
+.logo-reveal {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999999;
+
+  isolation: isolate;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateY(0);
+
+  transition:
+    transform 0.7s
+      cubic-bezier(
+        0.65,
+        0,
+        0.35,
+        1
+      );
+}
+
+
+/* =========================================================
+   WHEN INTRO FINISHES CLOSING
+
+   The whole intro (icon + letters + slogan + black
+   background) slides straight up and off the top of the
+   page in one piece — no slicing, no strips. As soon as
+   it moves, the real website underneath is revealed.
+   ========================================================= */
+
+.logo-reveal.intro-closing {
+  transform:
+    translateY(-100%);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   INTRO STACK — icon on top, letters row underneath
+   ========================================================= */
+
+.intro-stack {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap:
+    min(
+      22px,
+      3vh
+    );
+}
+
+
+/* =========================================================
+   ICON — slides straight down from the top of the page,
+   smoothly. No rotation, no overshoot/bounce — just a
+   clean, direct arrival.
+   ========================================================= */
+
+.icon-wrap {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.icon-mark {
+  position: relative;
+
+  z-index: 10;
+
+  width:
+    min(
+      150px,
+      22vw
+    );
+
+  height: auto;
+
+  flex-shrink: 0;
+
+  display: block;
+
+  opacity: 0;
+
+  /*
+   * Starts far above the viewport.
+   * .logo-reveal has overflow: hidden,
+   * so the icon is fully clipped/
+   * invisible until it descends.
+   */
+
+  transform:
+    translateY(-160vh);
+
+  transition:
+    opacity 0.7s ease-out,
+
+    transform 0.75s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.icon-mark-show {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   LETTERS ROW — each letter is its own image file,
+   rendered SMALLER than the icon above it, and revealed
+   one after another with the same rocket launch animation.
+   ========================================================= */
+
+.letters-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-img {
+  height:
+    min(
+      52px,
+      7.5vw
+    );
+
+  width: auto;
+
+  display: block;
+
+  opacity: 0;
+
+  /*
+   * Starts far below the viewport.
+   * .logo-reveal has overflow: hidden,
+   * so the letter is fully clipped/
+   * invisible until it launches.
+   */
+
+  transform:
+    translateY(140vh)
+    scale(0.85);
+}
+
+.letter-img-show {
+  animation:
+    letterRocket
+    0.5s
+    cubic-bezier(
+      0.15,
+      0.85,
+      0.25,
+      1
+    )
+    forwards;
+}
+
+@keyframes letterRocket {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(140vh)
+      scale(0.85);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  /*
+   * Overshoots slightly past its
+   * landing spot...
+   */
+  78% {
+    transform:
+      translateY(-10px)
+      scale(1.05);
+  }
+
+  /*
+   * ...then settles back down —
+   * a quick "thud" on arrival.
+   */
+  90% {
+    transform:
+      translateY(4px)
+      scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   SLOGAN — fades + rises in underneath the letters,
+   after they finish landing
+   ========================================================= */
+
+.slogan-mark {
+  height:
+    min(
+      22px,
+      3.2vw
+    );
+
+  width: auto;
+
+  display: block;
+
+  opacity: 0;
+
+  transform:
+    translateY(12px);
+
+  transition:
+    opacity 0.6s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    transform 0.6s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.slogan-mark-show {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .icon-mark {
+    width: 26vw;
+  }
+
+  .letter-img {
+    height: 9vw;
+  }
+
+  .slogan-mark {
+    height: 4vw;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .icon-mark {
+    width: 32vw;
+  }
+
+  .letter-img {
+    height: 10vw;
+  }
+
+  .slogan-mark {
+    height: 4.6vw;
+  }
+}

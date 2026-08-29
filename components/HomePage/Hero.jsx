@@ -54,7 +54,7 @@ const AnimatedTitle = ({ text, className = '' }) => {
 
 const Hero = () => {
   const heroImages = [
-    '/forgentis.jpeg', 
+    '/hero.jpeg', 
     // '/hero1.jpeg', 
   ]
 

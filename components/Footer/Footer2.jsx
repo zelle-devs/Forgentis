@@ -15,7 +15,7 @@ const DEFAULT_SOCIALS = [
 ];
 
 const PROCESS_IMAGES = [
-  { id: 1, number: '01', name: 'Cut', image: '/step1.png' },
+  { id: 1, number: '01', name: 'Cut', image: '/1cut.jpeg' },
   { id: 2, number: '02', name: 'Form', image: '/step2.png' },
   { id: 3, number: '03', name: 'Weld', image: '/step3.png' },
   { id: 4, number: '04', name: 'Finish', image: '/step4.png' },

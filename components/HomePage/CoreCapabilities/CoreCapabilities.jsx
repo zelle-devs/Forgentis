@@ -23,25 +23,25 @@ const CoreCapabilities = () => {
       id: 1,
       title: 'Laser & CNC Precision',
       description: 'Laser cutting, 3D pipe cutting, bending and machining held to fine tolerances.',
-      image: '/forgentis.jpeg'
+      image: '/1.png'
     },
     {
       id: 2,
       title: 'Structural & Architectural Scope',
       description: 'Entrance screens, cladding, structural framing, furniture bases and decorative metal installations.',
-      image: '/forgentis.jpeg'
+      image: '/2.jpeg'
     },
     {
       id: 3,
       title: 'Industrial Finishes',
       description: 'PVD coatings, electrostatic powder coating and brushed or matte stainless, treated for durability.',
-      image: '/forgentis.jpeg'
+      image: '/3.png'
     },
     {
       id: 4,
       title: 'Contract-Ready Delivery',
       description: 'CAD shop-drawing approvals, certified materials and scalable production to schedule.',
-      image: '/forgentis.jpeg'
+      image: '/4.jpeg'
     }
   ]
 

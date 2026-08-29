@@ -2,6 +2,7 @@ import Footer from '@/components/Footer/Footer'
 import './globals.css'
 import Navbar from '@/components/Navbar/Navbar'
 import Footer2 from '@/components/Footer/Footer2'
+import ForgentisAnimation from '@/components/forgentisAnimation/mainAnimation'
 
 export const metadata = {
   title: 'Forgentis Fabrication - Sharp Cuts | Perfect Form',
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Navbar />
+        <ForgentisAnimation/>
         <main>{children}</main>
         {/* <Footer/> */}
         <Footer2/>

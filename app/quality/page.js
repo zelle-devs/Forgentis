@@ -26,7 +26,7 @@ export default function Quality() {
   heroImages={[]}
   titleImage="/title-bg.png"
   showRightImage={true}
-  rightImage="/step4.png"
+  rightImage="/qualityhero.jpeg"
   rightImageAlt="Forgentis Fabrication"
 />
    <div className="scroll-content-wrapper">

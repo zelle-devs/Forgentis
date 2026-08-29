@@ -26,7 +26,7 @@ export default function Facilities() {
   heroImages={[]}
   titleImage="/title-bg.png"
   showRightImage={true}
-  rightImage="/step3.png"
+  rightImage="/facilitieshero.png"
   rightImageAlt="Forgentis Fabrication"
 />
    <div className="scroll-content-wrapper">
@@ -118,7 +118,7 @@ export default function Facilities() {
   buttonLink="#"
   showButton={true}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Quality.png"
   imageAlt="Forgentis Material Handling"
   imagePosition="right"
 />
@@ -155,7 +155,7 @@ export default function Facilities() {
   buttonLink="#"
   showButton={true}
   showImage={true}
-  imageSrc="/step1.png"
+  imageSrc="/Inside.png"
   imageAlt="Forgentis Material Handling"
   imagePosition="right"
 />

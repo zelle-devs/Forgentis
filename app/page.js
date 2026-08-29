@@ -33,6 +33,15 @@ export default function Home() {
   showTrustStrip={true}
   trustLabel="Trusted by teams across"
   logos={['ARCHITECTS', 'CONTRACTORS', 'MANUFACTURERS', 'DESIGN STUDIOS', 'REAL ESTATE', 'ENGINEERING']}
+  showGridPattern={false}
+  titleColor="var(--color-black-medium)"
+  bodyColor="var(--color-black-medium)"
+  metricHoverColor="var(--color-blue-main)"
+  metricNumberColor="var(--color-black-medium)"
+  metricLabelColor="var(--color-black-medium)"
+  metricDescriptionColor="var(--color-black-medium)"
+  trustLabelColor="var(--color-black-medium)"
+  backgroundImage="/title-bg2.jpeg"
 />
       <WhoWeAre
   eyebrow="Who We Are"
@@ -42,7 +51,7 @@ export default function Home() {
   buttonLink="/about"
   showButton={true}
   showImage={true}
-  imageSrc="/turkey.jpg"
+  imageSrc="/whoweare.jpeg"
   imageAlt="Forgentis Fabrication"
 />
       <CoreCapabilities/>
@@ -69,7 +78,7 @@ export default function Home() {
   body="Four reasons manufacturers keep coming back to us, project after project."
   showPoints={true}
   showImage={true}
-  image="/step1.png"
+  image="/whyforgentis.jpeg"
 />
       <HowWeWork
   eyebrow="How we work"

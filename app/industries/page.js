@@ -30,7 +30,7 @@ export default function Industries() {
        heroImages={[]}
        titleImage="/title-bg.png"
        showRightImage={true}
-       rightImage="/step5.png"
+       rightImage="/industriesHero.png"
        rightImageAlt="Forgentis Fabrication"
      />
       <div className="scroll-content-wrapper">
@@ -43,7 +43,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Construction.jpeg"
   imageAlt="Forgentis Fabrication"
 />
  <WhoWeAre
@@ -55,7 +55,7 @@ export default function Industries() {
   backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
-  imageSrc="/step1.png"
+  imageSrc="/Architecture.webp"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -67,7 +67,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step3.png"
+  imageSrc="/Retail.png"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -79,7 +79,7 @@ export default function Industries() {
   backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
-  imageSrc="/step4.png"
+  imageSrc="/Industrial.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -91,7 +91,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Hospitality.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -103,7 +103,7 @@ export default function Industries() {
   showButton={false}
   showImage={true}
   backgroundColor="var(--color-black-medium)"
-  imageSrc="/step4.png"
+  imageSrc="/Automotive.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -115,7 +115,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Solar.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -127,7 +127,7 @@ export default function Industries() {
   backgroundColor="var(--color-black-medium)"
   showButton={false}
   showImage={true}
-  imageSrc="/step4.png"
+  imageSrc="/Medical.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -139,7 +139,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Engineering.jpeg"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
@@ -151,7 +151,7 @@ export default function Industries() {
   showButton={false}
   showImage={true}
   backgroundColor="var(--color-black-medium)"
-  imageSrc="/step4.png"
+  imageSrc="/Corporate.jpeg"
   imageAlt="Forgentis Fabrication"
   imagePosition="left"
 />
@@ -163,7 +163,7 @@ export default function Industries() {
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/step2.png"
+  imageSrc="/Solutions.jpeg"
   imageAlt="Forgentis Fabrication"
 />
  <CTASection
