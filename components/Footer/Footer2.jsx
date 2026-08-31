@@ -63,6 +63,7 @@ export default function Footer2({
   };
 
   return (
+    <div className='full'>
     <footer className="ftr2-footer">
       {/* Top Parallelogram Image Strip */}
       <div className="ftr2-process-strip">
@@ -206,6 +207,7 @@ export default function Footer2({
         </div>
       </div>
     </footer>
+    </div>
   );
 }
 

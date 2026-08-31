@@ -734,3 +734,77 @@ select {
     --section-gap: 90px;
   }
 }
+
+
+/* ============ FULL-PAGE SCROLL SNAP ============ */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity; /* 'mandatory' for strict snapping */
+  scroll-padding-top: 0;
+}
+
+body {
+  scroll-snap-type: y proximity;
+}
+
+/* Main wrapper for scroll snapping */
+main {
+  scroll-snap-type: y proximity;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each section snaps */
+.scroll-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always; /* Forces one section at a time */
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero section - already fixed */
+.hero-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+/* Scroll content wrapper adjustments */
+.scroll-content-wrapper {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border-radius: 40px 40px 0 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Hide scrollbar for cleaner look */
+main::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Smooth section transitions */
+.scroll-section > * {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

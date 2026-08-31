@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Menu, X } from 'lucide-react'
@@ -9,14 +9,41 @@ import './Navbar.css'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const scrollContainerRef = useRef(null)
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 50)
+    // Check multiple scroll sources
+    const mainScroll = document.getElementById('main-scroll-container')?.scrollTop || 0
+    const windowScroll = window.scrollY || 0
+    const heroHeight = window.innerHeight // Hero section height
+    
+    // Use whichever scroll value is greater
+    const totalScroll = Math.max(mainScroll, windowScroll)
+    
+    // Trigger background change after scrolling 50px or more
+    setIsScrolled(totalScroll > 50)
   }, [])
 
   useEffect(() => {
+    // Listen to window scroll
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    // Listen to main container scroll if it exists
+    const mainContainer = document.getElementById('main-scroll-container')
+    if (mainContainer) {
+      scrollContainerRef.current = mainContainer
+      mainContainer.addEventListener('scroll', handleScroll, { passive: true })
+    }
+    
+    // Initial check
+    handleScroll()
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.removeEventListener('scroll', handleScroll)
+      }
+    }
   }, [handleScroll])
 
   // Lock body scroll when sidebar is open
@@ -36,11 +63,8 @@ const Navbar = () => {
     { href: '/about', label: 'About' },
     { href: '/capabilities', label: 'Capabilities' },
     { href: '/industries', label: 'Industries' },
-    // { href: '/projects', label: 'Our Projects' },
     { href: '/quality', label: 'Quality' },
     { href: '/facilities', label: 'Facilities' },
-    // { href: '/process', label: 'Process' },
-    // { href: '/resources', label: 'Resources' },
   ]
 
   const closeSidebar = () => setIsOpen(false)

@@ -12,6 +12,7 @@
 }
 
 .navbar-scrolled {
+  display: none;
   background: rgba(13, 13, 13, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

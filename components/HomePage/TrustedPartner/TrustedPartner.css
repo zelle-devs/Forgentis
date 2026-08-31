@@ -4,6 +4,10 @@
   padding: 60px 0;
   background: var(--color-black);
   overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Background Image */

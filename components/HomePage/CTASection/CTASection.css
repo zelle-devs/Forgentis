@@ -1,3 +1,9 @@
+.cta2-section{
+    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Background Image */
 .cta2-bg-image {
   position: absolute;
@@ -10,6 +16,7 @@
   background-repeat: no-repeat;
   z-index: 0;
   pointer-events: none;
+  
 }
 
 /* Grid Pattern separate */

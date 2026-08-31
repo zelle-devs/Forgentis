@@ -1,3 +1,10 @@
+.full{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: black;
+}
 .ftr2-bottom-link-item {
   display: inline-flex;
   align-items: center;
