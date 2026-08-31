@@ -186,7 +186,10 @@ export default function Footer2({
         {/* Bottom bar */}
         <div className="ftr2-bottom">
           <p className="ftr2-copyright">
-            © {year} Forgentis Fabrications. All rights reserved.
+            © {year} Forgentis Fabrications. All Rights Reserved.
+          </p>
+          <p className="ftr2-copyright">
+            Designed and Managed by <span className='zelle'><a href="https://zellesolutions.com/" target='_blank'>Zelle Solutions Pvt. Ltd.</a></span>
           </p>
           {/* <div className="ftr2-hours-inline">
             <Clock size={13} />
