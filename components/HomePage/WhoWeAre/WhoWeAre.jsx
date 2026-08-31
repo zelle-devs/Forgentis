@@ -1,67 +1,49 @@
 'use client'
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import './WhoWeAre.css'
 
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+})
+
 const WhoWeAre = ({
-  eyebrow = '',
-  title = '',
-  body = '',
-  buttonText = '',
-  buttonLink = '/about',
-  imageSrc = '',
-  imageAlt = 'Forgentis Fabrication',
-  showDivider = true,
-  showButton = false,
-  showImage = true,
-  backgroundColor = 'var(--color-black-light)',
-  backgroundGlow = true,
-  imagePosition = 'right',
+  eyebrow = '', title = '', body = '', buttonText = '', buttonLink = '/about',
+  imageSrc = '', imageAlt = 'Forgentis Fabrication', showDivider = true,
+  showButton = false, showImage = true, backgroundColor = 'var(--color-black-light)',
+  backgroundGlow = true, imagePosition = 'right',
 }) => {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-10%' })
+  const reduceMotion = useReducedMotion()
 
   const hasContent = eyebrow || title || body
   const hasButton = showButton && buttonText
   const hasImage = showImage && imageSrc
+  const imageDirection = imagePosition === 'left' ? -60 : 60
 
   return (
-    <section 
-      className="who-we-are" 
-      ref={sectionRef}
-      style={{ backgroundColor }}
-    >
-      {/* Background Pattern */}
+    <section className="who-we-are" ref={sectionRef} style={{ backgroundColor }}>
       {backgroundGlow && (
-        <div className="who-we-are-bg">
-          <div className="who-we-are-glow" />
-        </div>
+        <div className="who-we-are-bg"><div className="who-we-are-glow" /></div>
       )}
 
       <div className="container2">
         <div className={`who-we-are-wrapper ${imagePosition === 'left' ? 'image-left' : ''}`}>
-          {/* Left Content */}
           {(hasContent || hasButton) && (
             <div className="who-we-are-content">
               {eyebrow && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <motion.div {...fadeUp(0)} animate={isInView ? fadeUp(0).animate : {}}>
                   <span className="who-we-are-eyebrow">{eyebrow}</span>
                 </motion.div>
               )}
 
               {title && (
-                <motion.h2 
-                  className="who-we-are-title"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <motion.h2 className="who-we-are-title" {...fadeUp(0.1)} animate={isInView ? fadeUp(0.1).animate : {}}>
                   {title}
                 </motion.h2>
               )}
@@ -71,28 +53,18 @@ const WhoWeAre = ({
                   className="who-we-are-divider"
                   initial={{ opacity: 0, scaleX: 0 }}
                   animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 />
               )}
 
               {body && (
-                <motion.p 
-                  className="who-we-are-body"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <motion.p className="who-we-are-body" {...fadeUp(0.3)} animate={isInView ? fadeUp(0.3).animate : {}}>
                   {body}
                 </motion.p>
               )}
 
               {hasButton && (
-                <motion.div 
-                  className="who-we-are-cta"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <motion.div className="who-we-are-cta" {...fadeUp(0.4)} animate={isInView ? fadeUp(0.4).animate : {}}>
                   <a href={buttonLink} className="btn btn-blue who-we-are-btn">
                     {buttonText} <ArrowRight size={16} />
                   </a>
@@ -101,23 +73,17 @@ const WhoWeAre = ({
             </div>
           )}
 
-          {/* Right/Left Image */}
           {hasImage && (
             <motion.div 
               className="who-we-are-image-wrapper"
-              initial={{ opacity: 0, x: imagePosition === 'left' ? -60 : 60 }}
+              initial={{ opacity: 0, x: reduceMotion ? 0 : imageDirection }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="who-we-are-image-container">
                 <Image 
-                  src={imageSrc}
-                  alt={imageAlt}
-                  className="who-we-are-image"
-                  width={600}
-                  height={600}
-                  quality={100}
-                  unoptimized={true}
+                  src={imageSrc} alt={imageAlt} className="who-we-are-image"
+                  width={600} height={600} quality={90} loading="lazy" unoptimized={true}
                 />
                 <div className="who-we-are-image-border" />
               </div>

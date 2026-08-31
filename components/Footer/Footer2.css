@@ -457,7 +457,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   flex-direction: row;
   gap: 12px;
   padding: 8px 0;

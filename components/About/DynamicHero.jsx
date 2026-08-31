@@ -187,19 +187,24 @@ export default function DynamicHero({
               </motion.span>
             )}
 
-            {/* Headline */}
-            {headline && (
-              <motion.h1 className="dhero-title" initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-                <span className="dhero-title-line">
-                  <AnimatedTitle text={firstHalf} className="dhero-title-white" />
-                </span>{' '}
-                {secondHalf && (
-                  <span className="dhero-title-clip" style={{ '--title-image': `url(${titleImage})` }}>
-                    <AnimatedTitle text={secondHalf} />
-                  </span>
-                )}
-              </motion.h1>
-            )}
+       
+{/* Headline */}
+{headline && (
+  <motion.h1
+    className="dhero-title"
+    initial={{ opacity: 1 }}
+    animate={{ opacity: 1 }}
+  >
+    <span
+      className="dhero-title-clip"
+      style={{ '--title-image': `url(${titleImage})` }}
+    >
+      <AnimatedTitle text={headline} />
+    </span>
+  </motion.h1>
+)}
+
+
 
             {/* Subhead */}
             {subhead && (

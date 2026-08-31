@@ -3,9 +3,13 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Play } from 'lucide-react'
 import './Hero.css'
+import {
+  INTRO_STORAGE_KEY,
+  INTRO_COMPLETE_EVENT,
+  INTRO_TOTAL_DURATION,
+} from '@/components/forgentisAnimation/Introconfig'
 
-
-const AnimatedTitle = ({ text, className = '' }) => {
+const AnimatedTitle = ({ text, className = '', startDelay = 0 }) => {
   const words = text.split(' ');
 
   return (
@@ -33,8 +37,8 @@ const AnimatedTitle = ({ text, className = '' }) => {
                 scale: 1,
               }}
               transition={{
-                duration: 0.8,
-                delay: 1.5 + (wordIndex * 0.2) + (charIndex * 0.045),
+                duration: 0.6,
+                delay: startDelay + (wordIndex * 0.15) + (charIndex * 0.03),
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
@@ -42,7 +46,6 @@ const AnimatedTitle = ({ text, className = '' }) => {
             </motion.span>
           ))}
 
-          {/* Space between words */}
           {wordIndex < words.length - 1 && (
             <span className="hero-title-space">&nbsp;</span>
           )}
@@ -58,46 +61,95 @@ const Hero = () => {
     // '/hero1.jpeg', 
   ]
 
-  // Title ke liye alag image
-  const titleImage = '/title-bg.png' // Yahan apni title image ka path daalein
-
+  const titleImage = '/title-bg.png'
+  
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false)
   const [isFirstLoad, setIsFirstLoad] = useState(true)
+  const [animationReady, setAnimationReady] = useState(false)
+  const [startAnimations, setStartAnimations] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
-  // Scroll-based shrink effect
-  const { scrollY } = useScroll()
-  
-  // Hero content shrink as user scrolls
-  const contentScale = useTransform(scrollY, [0, 500], [1, 0.6])
-  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0])
-  const contentY = useTransform(scrollY, [0, 500], [0, -100])
-  
-  // Video box fades out
-  const videoOpacity = useTransform(scrollY, [0, 300], [1, 0])
-  const videoX = useTransform(scrollY, [0, 300], [0, 50])
-  
-  // Dots fade out
-  const dotsOpacity = useTransform(scrollY, [0, 300], [1, 0])
-  
-  // Overlay - Base gradient always visible, scroll par aur dark
-  const overlayOpacity = useTransform(scrollY, [0, 500], [1, 1.5])
-
-  // Auto-play logic - Forward only
+  // Mark component as mounted (client-side only)
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Check if welcome animation has played and sync animations
+  useEffect(() => {
+    if (!isMounted) return
+
+    const checkWelcomeAnimation = () => {
+      try {
+        // Check if welcome animation will show or already shown
+        const toShow = window.sessionStorage.getItem(INTRO_STORAGE_KEY)
+
+        if (toShow === 'false') {
+          // Welcome animation already played this session
+          setAnimationReady(true)
+          setTimeout(() => setStartAnimations(true), 100)
+        } else {
+          // Welcome animation is playing now.
+          // Wait for it to finish — INTRO_TOTAL_DURATION comes
+          // from the same shared config the intro itself uses,
+          // so this can never drift out of sync with it. The
+          // 'welcomeAnimationComplete' listener below will
+          // normally fire first (the intro dispatches it the
+          // instant it finishes); this timeout is just a
+          // safety net in case that listener attaches a beat
+          // too late.
+          const welcomeDuration = INTRO_TOTAL_DURATION
+
+          setTimeout(() => {
+            setAnimationReady(true)
+            setTimeout(() => setStartAnimations(true), 200)
+          }, welcomeDuration)
+        }
+      } catch (err) {
+        // sessionStorage unavailable - start immediately
+        setAnimationReady(true)
+        setTimeout(() => setStartAnimations(true), 100)
+      }
+    }
+
+    checkWelcomeAnimation()
+
+    // Listen for the real completion event from the intro —
+    // this is what actually keeps things in sync; the timeout
+    // above is only a fallback.
+    const handleWelcomeComplete = () => {
+      setAnimationReady(true)
+      setTimeout(() => setStartAnimations(true), 200)
+    }
+
+    window.addEventListener(INTRO_COMPLETE_EVENT, handleWelcomeComplete)
+
+    return () => {
+      window.removeEventListener(INTRO_COMPLETE_EVENT, handleWelcomeComplete)
+    }
+  }, [isMounted])
+
+  // Auto-play logic - starts after animations
+  useEffect(() => {
+    if (!startAnimations) return
     if (heroImages.length <= 1) {
       setIsAutoPlaying(false)
       return
     }
 
-    if (!isAutoPlaying) return
+    setIsAutoPlaying(true)
+  }, [startAnimations, heroImages.length])
+
+  // Auto-play interval
+  useEffect(() => {
+    if (!isAutoPlaying || !animationReady) return
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying, heroImages.length])
+  }, [isAutoPlaying, animationReady, heroImages.length])
 
   const goToSlide = useCallback((index) => {
     setCurrentSlide(index)
@@ -105,21 +157,32 @@ const Hero = () => {
     setTimeout(() => setIsAutoPlaying(true), 5000)
   }, [])
 
-  // First load ke baad shatter animation band
+  // First load shatter animation timing
   useEffect(() => {
+    if (!startAnimations) return
     const timer = setTimeout(() => {
       setIsFirstLoad(false)
     }, 1500)
     return () => clearTimeout(timer)
-  }, [])
+  }, [startAnimations])
 
-  // Slider variants - Forward direction only
+  // Scroll-based effects
+  const { scrollY } = useScroll()
+  const contentScale = useTransform(scrollY, [0, 500], [1, 0.6])
+  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0])
+  const contentY = useTransform(scrollY, [0, 500], [0, -100])
+  const dotsOpacity = useTransform(scrollY, [0, 300], [1, 0])
+  const overlayOpacity = useTransform(scrollY, [0, 500], [1, 1.5])
+
+  // Slider variants
   const sliderVariants = {
     enter: {
       x: '100%',
+      opacity: 0,
     },
     center: {
       x: 0,
+      opacity: 1,
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
@@ -127,6 +190,7 @@ const Hero = () => {
     },
     exit: {
       x: '-100%',
+      opacity: 0,
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
@@ -154,25 +218,27 @@ const Hero = () => {
     },
   }
 
+  // Always render same structure for hydration
+  // Use CSS to hide/show based on state
   return (
     <>
       <div className="hero-spacer" />
       
       <section className="hero">
-        {/* Background Slider - Forward only window slide */}
+
+      {/* <section className={`hero ${!isMounted || !animationReady ? 'hero-hidden' : 'hero-visible'}`}> */}
+        {/* Background Slider */}
         <div className="hero-slider">
           {isFirstLoad ? (
-            // First load - Shatter effect
             <motion.div
               key={`first-${currentSlide}`}
               className="hero-slider-image active"
               style={{ backgroundImage: `url(${heroImages[currentSlide]})` }}
               initial="hidden"
-              animate="visible"
+              animate={isMounted && animationReady ? "visible" : "hidden"}
               variants={shatterVariants}
             />
           ) : (
-            // Normal slider - Forward only
             <AnimatePresence initial={false} mode="popLayout">
               <motion.div
                 key={currentSlide}
@@ -187,36 +253,31 @@ const Hero = () => {
           )}
         </div>
 
-        {/* Overlay - Hamesha visible, scroll par aur dark */}
+        {/* Overlay */}
         <motion.div 
           className="hero-overlay"
           style={{ opacity: overlayOpacity }}
+          initial={{ opacity: 0 }}
+          animate={isMounted && animationReady ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
         />
 
-        {/* Content - Shrinks on scroll */}
+        {/* Content */}
         <div className="container2">
           <motion.div 
             className="hero-content"
-            // style={{ 
-            //   scale: contentScale,
-            //   opacity: contentOpacity,
-            //   y: contentY,
-            // }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={startAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <motion.h1
-  className="hero-title"
-  initial={{ opacity: 1 }}
-  animate={{ opacity: 1 }}
->
+     
+<motion.h1 className="hero-title">
   <motion.span
     className="hero-eyebrow"
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+    animate={startAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
     transition={{
-      delay: 1.5,
+      delay: 0.8,
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
     }}
@@ -224,25 +285,22 @@ const Hero = () => {
     Precision metal fabrication
   </motion.span>
 
-  <span className="hero-title-line">
-    <AnimatedTitle text="The" className="hero-title-white" />
-  </span>
-
-  {' '}
-
+  {/* ALL TITLE TEXT WITH METAL IMAGE */}
   <span
     className="hero-title-clip"
     style={{ '--title-image': `url(${titleImage})` }}
   >
-    <AnimatedTitle text="Industrial Standard in Architectural Metalwork." />
+    <AnimatedTitle 
+      text="The Industrial Standard in Architectural Metalwork" 
+      startDelay={0.9}
+    />
   </span>
-</motion.h1>
-            
+</motion.h1>      
             <motion.p 
               className="hero-subtitle"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              animate={startAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ delay: 2.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               From structural steel to laser-cut screens, we shape raw metal into parts that fit right, hold strong, and last for years.
             </motion.p>
@@ -250,24 +308,27 @@ const Hero = () => {
             <motion.div 
               className="hero-buttons"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.0, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              animate={startAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ delay: 2.8, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <a href="/consultation" className="btn btn-blue hero-primary-btn">
                 Send Your Drawings <ArrowRight size={16} />
               </a>
-              <a href="/companies" className="btn btn-outline-light hero-secondary-btn">
-                See Our Work
+              <a href="/capabilities" className="btn btn-outline-light hero-secondary-btn">
+                Our Capabilites
               </a>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Slider Dots - Fade on scroll */}
+        {/* Slider Dots */}
         {heroImages.length > 1 && (
           <motion.div 
             className="hero-dots"
             style={{ opacity: dotsOpacity }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.5, duration: 0.5 }}
           >
             {heroImages.map((_, index) => (
               <button

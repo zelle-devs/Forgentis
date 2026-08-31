@@ -12,7 +12,7 @@ export default function About() {
     <>
      <DynamicHero
   eyebrow="About us"
-  headline="Metal Is All We Do."
+  headline="Metal Is All We Do"
   subhead="Forgentis Fabrications is a precision metal fabrication and industrial manufacturing company built on precise cutting, clean welding, and work that lasts."
   body="We work with architects, contractors, designers, and manufacturers who need metal made right and delivered on time. From a single bracket to a full steel structure, every job gets the same standard."
   primaryButtonText=""
@@ -28,7 +28,7 @@ export default function About() {
    <div className="scroll-content-wrapper">
      <TrustedPartner
   eyebrow="Forgentis"
-  title="Our Story."
+  title="Our Story"
   body=" Forgentis started on a simple idea: metalwork should fit the first time. Since [FOUNDING YEAR], we have grown from [STARTING POINT, e.g. a small workshop] into a full fabrication floor serving [MARKETS OR REGIONS]. The focus has not changed. We cut to the drawing, we weld clean, and we deliver on the date we promise."
   backgroundImage="/footer-bg.png"
   // overlayOpacity={0.5}
@@ -63,7 +63,7 @@ export default function About() {
 
  <HowWeWork
   eyebrow="Our Expertise"
-  title="What We Are Good At."
+  title="What We Are Good At"
   body="Our work sits where heavy fabrication meets fine detail. We cut and form structural steel, and we also produce laser-cut screens and finishes precise enough for interiors and shopfronts."
   buttonText=""
   buttonLink=""
@@ -72,7 +72,7 @@ export default function About() {
 />
  <TrustedPartner
   eyebrow="Our Manufacturing Philosophy"
-  title="Get It Right Before We Cut."
+  title="Get It Right Before We Cut"
   body="We would rather get the drawing right before we cut than fix a part after. So we review every spec, plan the material, and check as we go. It keeps waste down, keeps costs steady, and keeps your schedule intact."
   showMetrics={false}
   showTrustStrip={false}
@@ -85,10 +85,10 @@ export default function About() {
 />
 <WhoWeAre
   eyebrow="Our Commitment to Quality"
-  title="Quality Is Not a Final Step."
+  title="Quality Is Not a Final Step"
   body=" We check quality at every stage, from the material that arrives to the part that ships. Every job is measured against the drawing and signed off before it leaves the floor."
   buttonText="Our Quality Standards"
-  buttonLink="/standard"
+  buttonLink="/quality"
   showButton={true}
   showImage={true}
   imageSrc="/Quality.png"
@@ -97,7 +97,7 @@ export default function About() {
 />
 <TrustedPartner
   eyebrow="Our People"
-  title="Skilled Hands, Steady Standards."
+  title="Skilled Hands, Steady Standards"
   body="Our team brings together experienced designers, machine operators, fabricators, welders, and production professionals who take pride in clean work. [TEAM SIZE] people run the floor, and many have been with us for [AVERAGE TENURE]."
   showMetrics={true}
   metrics={[
@@ -122,10 +122,10 @@ export default function About() {
 />
 <WhoWeAre
   eyebrow="Our Facilities"
-  title="One Roof, Full Control."
+  title="One Roof, Full Control"
   body="We run laser cutting, press brakes, welding bays, and finishing in our own [FACILITY SIZE] workshop. Keeping it all in-house means we control the schedule and the standard from first cut to final check."
   buttonText="Tour the Facility"
-  buttonLink="/facility"
+  buttonLink="/facilities"
   showButton={true}
   showImage={true}
   imageSrc="/Facilities.png"
@@ -134,7 +134,7 @@ export default function About() {
 />
  <TrustedPartner
   eyebrow="Built for B2B"
-  title="Set Up for Business Clients."
+  title="Set Up for Business Clients"
   body="We are built to work with procurement teams, project managers, and site engineers. That means clear quotes, approved shop drawings, certified material, and delivery that lands when you need it."
   showMetrics={false}
   showTrustStrip={false}
@@ -143,7 +143,7 @@ export default function About() {
 />
 <WhyForgentis
   eyebrow="Why Businesses Choose Forgentis"
-  headline="Why Businesses Choose Forgentis."
+  headline="Why Businesses Choose Forgentis"
   body=""
   showPoints={true}
    points={[
@@ -157,7 +157,7 @@ export default function About() {
 />
    <CTASection
   eyebrow="Partner With Us"
-  headline="Let's Work Together."
+  headline="Let's Work Together"
   body="Send us your drawings, or tell us about your project. We will come back with a clear quote and a plan."
   buttonText="Get a Quote"
   buttonLink="/consultation"

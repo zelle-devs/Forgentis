@@ -2,10 +2,18 @@
 
 import React, {
   useEffect,
+  useLayoutEffect,
   useState,
 } from "react";
 
 import "./style.css";
+
+import {
+  INTRO_STORAGE_KEY,
+  INTRO_COMPLETE_EVENT,
+  INTRO_CLOSE_DELAY,
+  INTRO_SLIDE_UP_DURATION,
+} from "./Introconfig"
 
 
 /* ==========================================
@@ -34,7 +42,8 @@ const LETTERS = [
 
 
 /* ==========================================
-   Reads the "toShow" flag from sessionStorage.
+   Reads whether the intro has already played
+   this session.
 
    - Missing / anything other than the string
      "false"  -> intro HAS NOT played yet this
@@ -43,8 +52,12 @@ const LETTERS = [
                  session, skip it entirely.
 
    Wrapped in try/catch in case sessionStorage
-   is unavailable (privacy mode, SSR, etc.) —
-   in that case we just default to showing it.
+   is unavailable (privacy mode, etc.) — in
+   that case we just default to showing it.
+
+   This is only ever called client-side (see
+   the effect below), so `window` is always
+   available when it runs.
    ========================================== */
 
 const shouldShowIntro = () => {
@@ -53,7 +66,7 @@ const shouldShowIntro = () => {
 
     const stored =
       window.sessionStorage.getItem(
-        "toShow"
+        INTRO_STORAGE_KEY
       );
 
     return stored !== "false";
@@ -65,18 +78,42 @@ const shouldShowIntro = () => {
 };
 
 
+/*
+ * React warns if useLayoutEffect is used
+ * during SSR ("does nothing on the server").
+ * This isomorphic version runs as a normal
+ * effect on the server (no-op there anyway)
+ * and as a real layout effect in the browser,
+ * so the show/hide decision below happens as
+ * early as possible on the client, with no
+ * SSR warning.
+ */
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined"
+    ? useLayoutEffect
+    : useEffect;
+
+
 export default function ForgentisAnimation() {
 
   /*
-   * Decided once, on first render, before
-   * anything animates — so a session that has
-   * already seen the intro never even mounts
-   * the black overlay for a single frame.
+   * IMPORTANT: both of these start out
+   * false/false on every environment — server
+   * render AND the very first client render
+   * before hydration. That means server and
+   * client always agree on the first paint
+   * (nothing renders), so there is no
+   * hydration mismatch.
+   *
+   * The *real* decision (does this session
+   * need the intro?) only happens after mount,
+   * client-side only, in the effect below.
    */
+  const [ready, setReady] =
+    useState(false);
 
-  const [shouldRender] = useState(
-    shouldShowIntro
-  );
+  const [shouldRender, setShouldRender] =
+    useState(false);
 
   const [iconVisible, setIconVisible] =
     useState(false);
@@ -91,19 +128,35 @@ export default function ForgentisAnimation() {
     useState(false);
 
   const [finished, setFinished] =
-    useState(!shouldRender);
+    useState(false);
+
+
+  /*
+   * Client-only decision: should this session
+   * see the intro at all? Runs before paint
+   * (layout effect) so there's no visible
+   * flash of the real page before the overlay
+   * appears.
+   */
+  useIsomorphicLayoutEffect(() => {
+
+    const show = shouldShowIntro();
+
+    setShouldRender(show);
+    setFinished(!show);
+    setReady(true);
+
+  }, []);
 
 
   useEffect(() => {
 
     /*
-     * Already shown this session — do nothing.
-     * (finished is already true from the
-     * initial state above, so nothing rendered
-     * and the real site is visible immediately.)
+     * Wait until the client-only decision above
+     * has actually run, and only proceed if this
+     * session needs to see the intro.
      */
-
-    if (!shouldRender) {
+    if (!ready || !shouldRender) {
       return;
     }
 
@@ -117,7 +170,7 @@ export default function ForgentisAnimation() {
     try {
 
       window.sessionStorage.setItem(
-        "toShow",
+        INTRO_STORAGE_KEY,
         "false"
       );
 
@@ -157,7 +210,9 @@ export default function ForgentisAnimation() {
                         the page (no more slicing)
        finishTimer  -> closeTimer + slide-up
                         duration, fully unmounts
-                        the intro
+                        the intro AND tells the
+                        rest of the app (e.g. Hero)
+                        that it's done
        ========================================== */
 
     const ICON_DELAY = 300;
@@ -172,17 +227,6 @@ export default function ForgentisAnimation() {
      * a bit past that.
      */
     const SLOGAN_DELAY = 2200;
-
-    const CLOSE_DELAY = 3600;
-
-    /*
-     * How long the whole intro takes to
-     * slide up and off the page. Must
-     * stay in sync with the CSS
-     * transition duration on
-     * .intro-closing.
-     */
-    const SLIDE_UP_DURATION = 700;
 
     const iconTimer =
       setTimeout(() => {
@@ -213,7 +257,7 @@ export default function ForgentisAnimation() {
 
         setClosing(true);
 
-      }, CLOSE_DELAY);
+      }, INTRO_CLOSE_DELAY);
 
 
     const finishTimer =
@@ -224,7 +268,25 @@ export default function ForgentisAnimation() {
         document.body.style.overflow =
           previousOverflow;
 
-      }, CLOSE_DELAY + SLIDE_UP_DURATION);
+        /*
+         * Let the rest of the app (Hero, etc.)
+         * know the intro is fully done — instead
+         * of every listener having to guess the
+         * total duration.
+         */
+        try {
+
+          window.dispatchEvent(
+            new CustomEvent(
+              INTRO_COMPLETE_EVENT
+            )
+          );
+
+        } catch (err) {
+          /* ignore */
+        }
+
+      }, INTRO_CLOSE_DELAY + INTRO_SLIDE_UP_DURATION);
 
 
     /* ==========================================
@@ -257,23 +319,29 @@ export default function ForgentisAnimation() {
         previousOverflow;
     };
 
-  }, [shouldRender]);
+  }, [ready, shouldRender]);
 
 
   /*
-   * Don't render anything after
-   * intro has finished — or if this
+   * Don't render anything before the
+   * client-only decision has run (keeps
+   * server/client first paint identical —
+   * see the comment above the state
+   * declarations), and don't render anything
+   * once the intro has finished or if this
    * session already saw it play.
    */
 
-  if (finished) {
+  if (!ready || finished) {
     return null;
   }
 
 
   return (
-    <main
-      className={`logo-reveal${
+    <div
+      role="presentation"
+      aria-hidden="true"
+      className={`logo-reveal ${
         closing
           ? "intro-closing"
           : ""
@@ -286,7 +354,8 @@ export default function ForgentisAnimation() {
 
           <img
             src="/forgentis_icon.png"
-            alt="Forgentis"
+            alt=""
+            fetchPriority="high"
             className={`icon-mark ${
               iconVisible
                 ? "icon-mark-show"
@@ -301,9 +370,9 @@ export default function ForgentisAnimation() {
           {LETTERS.map(
             (char, index) => (
               <img
-                key={index}
+                key={`${char}-${index}`}
                 src={`/${char}.png`}
-                alt={char}
+                alt=""
                 className={`letter-img ${
                   lettersVisible
                     ? "letter-img-show"
@@ -322,7 +391,7 @@ export default function ForgentisAnimation() {
 
         <img
           src="/fabrication.png"
-          alt="The Mark of Excellence"
+          alt=""
           className={`slogan-mark ${
             sloganVisible
               ? "slogan-mark-show"
@@ -332,6 +401,6 @@ export default function ForgentisAnimation() {
 
       </div>
 
-    </main>
+    </div>
   );
 }

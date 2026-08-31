@@ -10,7 +10,7 @@ export default function Capabilities() {
     <>
      <DynamicHero
        eyebrow="Capabilities"
-       headline="One Floor, Every Step in Metal."
+       headline="One Floor, Every Step in Metal"
        subhead="Cutting, forming, molding, welding, and finishing, all under one roof."
        body="We take metal from raw sheet and section to a finished, ready-to-install part, supporting projects from design and prototyping through to production. Because every step happens in our own workshop, the quality and the schedule stay in our hands."
        primaryButtonText="Request a Quote"
@@ -26,7 +26,7 @@ export default function Capabilities() {
       <div className="scroll-content-wrapper">
       <TrustedPartner
   eyebrow="Forgentis"
-  title="Metal Fabrication."
+  title="Metal Fabrication"
   body="The core of what we do. We turn steel, stainless, aluminum, and brass into parts and structures, from single components to large assemblies. Sheet, plate, tube, and section, cut and built to your drawing."
   showMetrics={false}
   showTrustStrip={false}
@@ -34,7 +34,7 @@ export default function Capabilities() {
 />
       <WhoWeAre
   eyebrow="Forgentis"
-  title="CNC and Precision Manufacturing."
+  title="CNC and Precision Manufacturing"
   body="Computer-controlled machines cut and shape each part the same way, every time. That means repeatable parts held to [TOLERANCE], whether you need one or [QUANTITY]."
   buttonText=""
   buttonLink=""
@@ -45,7 +45,7 @@ export default function Capabilities() {
 />
  <WhoWeAre
   eyebrow="Forgentis"
-  title="Laser Cutting."
+  title="Laser Cutting"
   body=" Our CNC lasers cut clean, sharp edges in sheet metal and plate with almost no finishing needed. Good for detailed screens, panels, brackets, and precise profiles. We cut [MATERIAL RANGE] up to 25mm, subject to material type and grade, on beds up to [BED SIZE]."
   buttonText=""
   buttonLink=""
@@ -58,7 +58,7 @@ export default function Capabilities() {
 />
  <WhoWeAre
   eyebrow="Forgentis"
-  title="Bending and Forming."
+  title="Bending and Forming"
   body="Press brakes and rolling equipment bend and form flat metal into exact angles and curves, including molding and pinching operations for more complex shapes. Every bend is set to the drawing, so parts line up when they reach the site."
   buttonText=""
   buttonLink=""
@@ -69,7 +69,7 @@ export default function Capabilities() {
 />
 <WhoWeAre
   eyebrow="Forgentis"
-  title="Welding and Assembly."
+  title="Welding and Assembly"
   body="Our welders join parts with clean, strong welds using MIG, TIG, and spot welding. We assemble finished units in the workshop so they arrive ready to install, not in loose pieces."
   buttonText=""
   buttonLink=""
@@ -82,7 +82,7 @@ export default function Capabilities() {
 />
 <WhoWeAre
   eyebrow="Forgentis"
-  title="Finishing."
+  title="Finishing"
   body="A good finish protects the metal and sets the look. We offer PVD coating (including gold, rose gold, and black chrome), electrostatic powder coating, and brushed or matte stainless, plus anti-corrosion treatment for outdoor work."
   buttonText=""
   buttonLink=""
@@ -93,7 +93,7 @@ export default function Capabilities() {
 />
 <WhoWeAre
   eyebrow="Forgentis"
-  title="Custom Fabrication."
+  title="Custom Fabrication"
   body=" Bring us a drawing, a photo, or a sample. We fabricate one-off and bespoke pieces for architects and designers, from decorative screens to custom fixtures, developed around your design, dimensional, and application requirements."
   buttonText=""
   buttonLink=""
@@ -106,7 +106,7 @@ export default function Capabilities() {
 />
 <WhoWeAre
   eyebrow="Forgentis"
-  title="Prototyping and Production."
+  title="Prototyping and Production"
   body="We can make a single sample first, get your sign-off, then move to full production. It is the safe way to confirm fit and finish before we build the batch."
   buttonText=""
   buttonLink=""
@@ -117,7 +117,7 @@ export default function Capabilities() {
 />
 <WhoWeAre
   eyebrow="Forgentis"
-  title="Large-Scale Manufacturing."
+  title="Large-Scale Manufacturing"
   body="For bigger orders and repeat runs, we scale production while holding the same tolerances. Capacity up to [OUTPUT OR VOLUME] per [PERIOD], planned around your delivery dates."
   buttonText=""
   buttonLink=""
@@ -142,7 +142,7 @@ export default function Capabilities() {
 
 <IndustriesServe
   eyebrow="Our Capabilities"
-  title="Capabilities at a Glance."
+  title="Capabilities at a Glance"
   body=""
   showButton={false}
   buttonText=""
@@ -159,7 +159,7 @@ export default function Capabilities() {
 />
       <CTASection
   eyebrow="Request a Fabrication Quote"
-  headline="Have a Drawing? Get a Price."
+  headline="Have a Drawing? Get a Price"
   body="Send us your drawing or specification and we will come back with a quote and a lead time."
   buttonText="Get a Quote"
   buttonLink="/consultation"

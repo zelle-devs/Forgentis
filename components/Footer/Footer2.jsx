@@ -31,29 +31,29 @@ const COMPANY_LINKS = [
 ];
 
 const WORK_LINKS = [
-  { label: 'Projects', href: '/projects' },
+  // { label: 'Projects', href: '/projects' },
   { label: 'Process', href: '/process' },
-  { label: 'Resources', href: '/resources' },
+  // { label: 'Resources', href: '/resources' },
   { label: 'Request a Quote', href: '/consultation' },
 ];
 
-const BOTTOM_LINKS = [
-  { label: 'Careers', href: '/careers' },
-  { label: 'Privacy Policy', href: '/privacy' },
-  { label: 'Terms', href: '/terms' },
-];
+// const BOTTOM_LINKS = [
+//   { label: 'Careers', href: '/careers' },
+//   { label: 'Privacy Policy', href: '/privacy' },
+//   { label: 'Terms', href: '/terms' },
+// ];
 
 export default function Footer2({
   tagline = 'Forgentis Fabrications. Metal, cut and built to last.',
   phone = '+92 21 111 254 111',
-  email = 'hello@forgentis.com',
+  email = 'hello@forgentisfabrication.com',
   address = '23/1, Korangi Industrial Area, Karachi 74900, Pakistan',
   hours = 'Mon – Sat: 9:00 AM – 6:00 PM',
   socials = DEFAULT_SOCIALS,
   processImages = PROCESS_IMAGES,
   companyLinks = COMPANY_LINKS,
   workLinks = WORK_LINKS,
-  bottomLinks = BOTTOM_LINKS,
+  // bottomLinks = BOTTOM_LINKS,
 }) {
   const year = new Date().getFullYear();
   const [openSection, setOpenSection] = useState(null);
@@ -188,18 +188,18 @@ export default function Footer2({
           <p className="ftr2-copyright">
             © {year} Forgentis Fabrications. All rights reserved.
           </p>
-          <div className="ftr2-hours-inline">
+          {/* <div className="ftr2-hours-inline">
             <Clock size={13} />
             <span>{hours}</span>
-          </div>
-          <div className="ftr2-bottom-links">
+          </div> */}
+          {/* <div className="ftr2-bottom-links">
             {bottomLinks.map((link, index) => (
               <span key={link.label} className="ftr2-bottom-link-item">
                 {index > 0 && <span className="ftr2-dot">|</span>}
                 <Link href={link.href}>{link.label}</Link>
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

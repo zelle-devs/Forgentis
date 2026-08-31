@@ -321,3 +321,32 @@
     height: 4.6vw;
   }
 }
+
+
+/* =========================================================
+   REDUCED MOTION
+   Respect the user's OS-level "reduce motion" preference —
+   show the finished logo immediately instead of animating
+   it in. The intro still holds for the same total duration
+   before closing, it just doesn't move.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .logo-reveal,
+  .icon-mark,
+  .slogan-mark {
+    transition: none !important;
+  }
+
+  .letter-img-show {
+    animation: none !important;
+  }
+
+  .icon-mark-show,
+  .letter-img-show,
+  .slogan-mark-show {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

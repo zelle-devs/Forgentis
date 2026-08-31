@@ -43,7 +43,7 @@ export default function FacilitiesQuality2() {
 
               <div className="fq2-content-area">
                 <span className="fq2-eyebrow">Our Facility</span>
-                <h2 className="fq2-title">Built in Our Own Workshop.</h2>
+                <h2 className="fq2-title">Built in Our Own Workshop</h2>
                 <p className="fq2-body">
                   We run our own fabrication floor with laser cutting, press brakes, 
                   welding bays, and finishing under one roof. That means we control 
@@ -62,7 +62,7 @@ export default function FacilitiesQuality2() {
                   ))}
                 </div>
 
-                <a href="/facility" className="btn btn-outline-blue fq2-btn">
+                <a href="/facilities" className="btn btn-outline-blue fq2-btn">
                   Tour the Facility <ArrowRight size={16} />
                 </a>
               </div>
@@ -86,7 +86,7 @@ export default function FacilitiesQuality2() {
 
               <div className="fq2-content-area">
                 <span className="fq2-eyebrow">Quality Control</span>
-                <h2 className="fq2-title">Checked at Every Stage.</h2>
+                <h2 className="fq2-title">Checked at Every Stage</h2>
                 <p className="fq2-body">
                   We inspect material when it arrives, check parts during production, 
                   and sign off every job before it leaves. You get work that matches 

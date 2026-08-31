@@ -1,26 +1,16 @@
 'use client'
 import DynamicHero from "@/components/About/DynamicHero";
-import CoreCapabilities from "@/components/HomePage/CoreCapabilities/CoreCapabilities";
 import CTASection from "@/components/HomePage/CTASection/CTASection";
-import FacilitiesQuality from "@/components/HomePage/FacilitiesQuality/FacilitiesQuality";
-import FacilitiesQuality2 from "@/components/HomePage/FacilitiesQuality/FacilitiesQuality2";
-import FeaturedProjects from "@/components/HomePage/FeaturedProjects/FeaturedProjects";
-import FeaturedProjects2 from "@/components/HomePage/FeaturedProjects/FeaturedProjects2";
-import LuminousProjects from "@/components/HomePage/FeaturedProjects/LuminousProjects";
-import HowWeWork from "@/components/HomePage/Howwework/HowWeWork";
-import HowWeWork2 from "@/components/HomePage/Howwework/HowWeWork2";
-import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
-import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
-import WhatWeFabricate from "@/components/HomePage/WhatWeFabricate/WhatWeFabricate";
+
 import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
-import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
-import { Scissors, Cog, Hammer, Flame, SprayCan, Layers } from 'lucide-react';
+// import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
+
 export default function Industries() {
   return (
     <>
      <DynamicHero
        eyebrow="Industries"
-       headline="Metal for the Teams That Build."
+       headline="Metal for the Teams That Build"
        subhead="We fabricate for businesses that construct, fit out, and manufacture."
        body="Different sectors, same need: precision metal components made to spec and delivered on time. From construction and automotive to solar and energy, medical equipment, and industrial manufacturing, here is where our work shows up most."
        primaryButtonText="Discuss Your Project"
@@ -37,7 +27,7 @@ export default function Industries() {
      
       <WhoWeAre
   eyebrow="Built Environment"
-  title="Construction and Infrastructure."
+  title="Construction and Infrastructure"
   body="Structural steel, frames, supports, railings, and access metalwork for buildings and site projects. Fabricated to spec and delivered to schedule, so your build stays on track."
   buttonText=""
   buttonLink=""
@@ -48,7 +38,7 @@ export default function Industries() {
 />
  <WhoWeAre
   eyebrow="Design & Build"
-  title="Architecture and Interior."
+  title="Architecture and Interior"
   body="Laser-cut screens, facades, cladding, feature staircases, and decorative panels. The precise, finished metalwork that architects and interior designers specify."
   buttonText=""
   buttonLink=""
@@ -61,7 +51,7 @@ export default function Industries() {
 />
  <WhoWeAre
   eyebrow="Commercial Spaces"
-  title="Retail and Commercial."
+  title="Retail and Commercial"
   body="Shopfronts, display fixtures, signage frames, and fit-out metalwork. Clean finishes and repeatable quality across a single store or a full rollout."
   buttonText=""
   buttonLink=""
@@ -72,7 +62,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Industrial Applications"
-  title="Industrial and Manufacturing."
+  title="Industrial and Manufacturing"
   body="Machine frames, platforms, guards, brackets, and structural parts. Hard-working metal built to take load and last on the factory floor."
   buttonText=""
   buttonLink=""
@@ -85,18 +75,18 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Guest-Facing Spaces"
-  title="Hospitality."
+  title="Hospitality"
   body="Feature metalwork, screens, railings, and fixtures for hotels, restaurants, and cafes. Finishes like PVD and brushed stainless that look sharp and hold up to daily use."
   buttonText=""
   buttonLink=""
   showButton={false}
   showImage={true}
-  imageSrc="/Hospitality.jpeg"
+  imageSrc="/Hospitality.png"
   imageAlt="Forgentis Fabrication"
 />
 <WhoWeAre
   eyebrow="Automotive Applications"
-  title="Automotive."
+  title="Automotive"
   body="Brackets, frames, and custom metal parts for automotive and workshop use, cut and formed to spec. Accurate, repeatable components made to the tolerances automotive work demands."
   buttonText=""
   buttonLink=""
@@ -109,7 +99,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Energy Infrastructure"
-  title="Solar and Energy."
+  title="Solar and Energy"
   body="Mounting structures, frames, brackets, and enclosures for solar and energy projects. Corrosion-resistant metalwork, fabricated to spec and finished to hold up outdoors for years."
   buttonText=""
   buttonLink=""
@@ -120,7 +110,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Precision Equipment"
-  title="Medical Equipment."
+  title="Medical Equipment"
   body="Precision components, frames, and housings for medical and laboratory equipment. Clean welds, tight tolerances, and stainless finishes that suit the standards this work calls for."
   buttonText=""
   buttonLink=""
@@ -133,7 +123,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Engineered Solutions"
-  title="Engineering."
+  title="Engineering"
   body="Made-to-drawing components and assemblies for engineering firms and contractors. Tight tolerances, certified material, and parts that fit into the wider build."
   buttonText=""
   buttonLink=""
@@ -144,7 +134,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Business Environments"
-  title="Corporate and Commercial Projects."
+  title="Corporate and Commercial Projects"
   body="Office fit-outs, reception features, signage, and architectural metal for commercial spaces. One supplier for the metalwork, from drawing to install."
   buttonText=""
   buttonLink=""
@@ -157,7 +147,7 @@ export default function Industries() {
 />
 <WhoWeAre
   eyebrow="Beyond Standard Applications"
-  title="Custom Industry Solutions."
+  title="Custom Industry Solutions"
   body="If your sector is not listed, that does not mean we cannot help. Send us the drawing or the problem, and we will tell you straight whether it is a fit."
   buttonText=""
   buttonLink=""
@@ -168,7 +158,7 @@ export default function Industries() {
 />
  <CTASection
   eyebrow="Discuss Your Project"
-  headline="Tell Us About Your Project."
+  headline="Tell Us About Your Project"
   body="Share your drawings or requirements and we will come back with a quote and a lead time."
   buttonText="Get a Quote"
   buttonLink="/consultation"

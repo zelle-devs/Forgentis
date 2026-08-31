@@ -162,7 +162,7 @@ const CoreCapabilities = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            What We Do Best.
+            What We Do Best
           </motion.h2>
         </div>
 

@@ -46,7 +46,7 @@ export default function FacilitiesQuality() {
               {/* Content Area - Right 70% */}
               <div className="fq-content-area">
                 <span className="fq-eyebrow">Our Facility</span>
-                <h2 className="fq-title">Built in Our Own Workshop.</h2>
+                <h2 className="fq-title">Built in Our Own Workshop</h2>
                 <p className="fq-body">
                   We run our own fabrication floor with laser cutting, press brakes, 
                   welding bays, and finishing under one roof. That means we control 
@@ -92,7 +92,7 @@ export default function FacilitiesQuality() {
               {/* Content Area */}
               <div className="fq-content-area">
                 <span className="fq-eyebrow">Quality Control</span>
-                <h2 className="fq-title">Checked at Every Stage.</h2>
+                <h2 className="fq-title">Checked at Every Stage</h2>
                 <p className="fq-body">
                   We inspect material when it arrives, check parts during production, 
                   and sign off every job before it leaves. You get work that matches 

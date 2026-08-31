@@ -1,3 +1,13 @@
+
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* ============ HERO STYLES - FORGENTIS ============ */
 .hero {
   position: fixed;
@@ -10,6 +20,7 @@
   display: flex;
   align-items: center;
   background: var(--color-black);
+  will-change: opacity;
 }
 
 /* Spacer for fixed hero */
@@ -46,14 +57,14 @@
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.2s ease;
-  will-change: opacity;
+  will-change: opacity, transform;
 }
 
 .hero-slider-image.active {
   opacity: 1;
 }
 
-/* Overlay - Dark gradient from left */
+/* Overlay */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -72,11 +83,12 @@
 .hero-content {
   position: relative;
   z-index: 3;
-  max-width: 730px;
+  max-width: 880px;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* ============ TITLE WITH IMAGE CLIP ============ */
-/* Eyebrow - Title ke upar */
 .hero-eyebrow {
   display: block;
   font-family: var(--font-family-primary);
@@ -91,7 +103,6 @@
 }
 
 /* ============ 3D STAGGERED LETTER WAVE TITLE ============ */
-
 .hero-title {
   font-size: var(--font-size-8xl);
   font-weight: var(--font-weight-bold);
@@ -101,8 +112,6 @@
   margin-bottom: 16px;
   letter-spacing: -0.5px;
   text-transform: uppercase;
-
-  /* Important for 3D letters */
   perspective: 1000px;
   transform-style: preserve-3d;
 }
@@ -125,12 +134,9 @@
 .hero-title-letter {
   display: inline-block;
   position: relative;
-
   transform-origin: center bottom;
   transform-style: preserve-3d;
-
   will-change: transform, opacity;
-
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -140,21 +146,15 @@
 }
 
 /* Metal texture letters */
-
 .hero-title-clip {
-  display: inline;
+  display: inline-block;
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
 
-/*
-  Each letter gets the metal image.
-  background-position is kept centered so
-  the texture remains visible during 3D movement.
-*/
-
 .hero-title-clip .hero-title-letter {
+  display: inline-block;
   background-image: var(--title-image);
   background-size: cover;
   background-position: center;
@@ -172,12 +172,10 @@
 }
 
 /* Metallic highlight */
-
 .hero-title-clip .hero-title-letter::after {
   content: '';
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
@@ -186,10 +184,8 @@
     rgba(0, 0, 0, 0.15) 75%,
     rgba(0, 0, 0, 0.3) 100%
   );
-
   -webkit-background-clip: text;
   background-clip: text;
-
   pointer-events: none;
 }
 
@@ -201,38 +197,25 @@
   }
 }
 
-.hero-title-text {
-  color: var(--color-white);
-}
 
-/* Title Clip - Image background with clip path */
 
 .hero-title-clip {
   display: inline-block;
   position: relative;
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   -webkit-background-clip: text;
   background-clip: text;
-
   color: transparent;
   -webkit-text-fill-color: transparent;
-
-  /* Keep the metal texture intact */
-  filter:
-    drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45))
-    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.45)) drop-shadow(0 5px 6px rgba(0, 0, 0, 0.25));
 }
 
-/* Metallic highlight */
 .hero-title-clip::before {
   content: '';
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.45) 0%,
@@ -241,36 +224,11 @@
     rgba(0, 0, 0, 0.15) 75%,
     rgba(0, 0, 0, 0.3) 100%
   );
-
   -webkit-background-clip: text;
   background-clip: text;
-
   pointer-events: none;
 }
 
-/* .hero-title-clip {
-  display: inline-block;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-}
-
-.hero-title-clip::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-} */
-
-/* Fallback for browsers that don't support background-clip: text */
 @supports not (-webkit-background-clip: text) {
   .hero-title-clip {
     color: var(--color-blue-main);
@@ -315,8 +273,7 @@
   text-shadow: var(--text-shadow-btn);
 }
 
-
-/* Slider Dots - Centered Bottom */
+/* Slider Dots */
 .hero-dots {
   position: absolute;
   bottom: 24px;
@@ -353,32 +310,26 @@
 /* ============ RESPONSIVE ============ */
 /* Large Desktop (1440px+) */
 @media (min-width: 1440px) {
-  /* .hero-content {
-    max-width: 620px;
-  } */
-  
   .hero-title {
     font-size: var(--font-size-8xl);
   }
-  
 }
 
 /* Desktop (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content {
-    max-width: 720px;
+    max-width: 880px;
   }
   
   .hero-title {
     font-size: var(--font-size-8xl);
   }
-  
 }
 
 /* Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-content {
-    max-width: 500px;
+    max-width: 880px;
   }
   
   .hero-title {
@@ -418,7 +369,6 @@
   .hero-buttons {
     justify-content: center;
   }
-
 }
 
 /* Mobile Small (300px - 479px) */
@@ -426,14 +376,15 @@
   .hero-content {
     text-align: center;
     padding: 0 16px;
-    margin: 0 auto
-
+    margin: 0 auto;
   }
+  
   .hero-eyebrow {
     font-size: var(--font-size-xs);
     letter-spacing: 2px;
     margin-bottom: 12px;
   }
+  
   .hero-title {
     font-size: var(--font-size-8xl);
     margin-bottom: 12px;

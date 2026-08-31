@@ -2,12 +2,12 @@
 import DynamicHero from "@/components/About/DynamicHero";
 import CTASection from "@/components/HomePage/CTASection/CTASection";
 import HowWeWork2 from "@/components/HomePage/Howwework/HowWeWork2";
-import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
+// import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
 
 import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
-import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
-import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
-import { Scissors, Hammer, Cog, Flame, SprayCan, Check, Package, Ruler, ShieldCheck, ClipboardCheck } from 'lucide-react';
+// import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
+// import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
+import { Flame, SprayCan, Ruler, ShieldCheck, ClipboardCheck } from 'lucide-react';
 
 
 
@@ -16,7 +16,7 @@ export default function Quality() {
     <>
      <DynamicHero
   eyebrow="Quality"
-  headline="Checked at Every Stage."
+  headline="Checked at Every Stage"
   subhead="From the metal that arrives to the part that ships."
   body="Quality is not a final step for us. We check the material, check the parts as we build, and sign off the finished job. You get work that matches the drawing, with records to prove it."
   primaryButtonText="Request a Quote"
@@ -32,7 +32,7 @@ export default function Quality() {
    <div className="scroll-content-wrapper">
      <TrustedPartner
   eyebrow="Quality Management"
-  title="How We Manage Quality."
+  title="How We Manage Quality"
   body="Every job follows the same checks against the drawing and the spec. Clear steps, clear sign-offs, and one standard applied to every order, big or small."
   backgroundImage="/footer-bg.png"
   showMetrics={false}
@@ -40,7 +40,7 @@ export default function Quality() {
   />
  <TrustedPartner
   eyebrow="Inspection"
-  title="Material Inspection."
+  title="Material Inspection"
   body="We check material when it arrives, including grade, thickness, and finish, against its certificates. Starting with the right metal is the first step to a part that lasts."
   backgroundImage="/title-bg2.jpeg"
   titleColor="var(--color-black-light)"
@@ -51,7 +51,7 @@ export default function Quality() {
   />
    <TrustedPartner
   eyebrow="Precision and Tolerance"
-  title="Precision and Tolerance."
+  title="Precision and Tolerance"
   body="Parts are cut and machined to [TOLERANCE] and measured to confirm it. Tight tolerances mean parts fit together on site without rework."
   showMetrics={false}
   showTrustStrip={false}
@@ -59,7 +59,7 @@ export default function Quality() {
 
      <TrustedPartner
   eyebrow="Process"
-  title="In-Process Inspection."
+  title="In-Process Inspection"
   body="We check parts during production, not just at the end. Catching an issue early costs a minute; catching it after delivery costs a lot more."
   backgroundImage="/footer-bg.png"
   showMetrics={false}
@@ -67,7 +67,7 @@ export default function Quality() {
   />
    <TrustedPartner
   eyebrow="Final Inspection"
-  title="Final Inspection."
+  title="Final Inspection"
   body="Before anything ships, we run a final check against the drawing: size, welds, finish, and fit. Nothing leaves the floor until it passes."
   showMetrics={false}
   showTrustStrip={false}
@@ -76,7 +76,7 @@ export default function Quality() {
 
 <HowWeWork2
   eyebrow="Testing and Verification"
-  title="Testing and Verification."
+  title="Testing and Verification"
   body="Where a job calls for it, we test welds and finishes and verify key dimensions."
   showTimeline={true}
   showButton={false}
@@ -90,7 +90,7 @@ export default function Quality() {
 />
 <TrustedPartner
   eyebrow="Safety"
-  title="Safety Standards."
+  title="Safety Standards"
   body="We work to clear safety standards on the floor and in what we deliver: guarded machines, trained operators, and parts built to carry the load they are made for."
   backgroundImage="/title-bg2.jpeg"
   titleColor="var(--color-black-light)"
@@ -101,14 +101,14 @@ export default function Quality() {
   />
    <TrustedPartner
   eyebrow="Documentation"
-  title="Documentation and Traceability."
+  title="Documentation and Traceability"
   body="We keep records for each job, from material certificates to inspection results. If you need to trace a part back to its material and its checks, the paperwork is there."
   showMetrics={false}
   showTrustStrip={false}
   />
 <CTASection
   eyebrow="Commitment"
-  headline="Our Quality Commitment."
+  headline="Our Quality Commitment"
   body="If a part does not meet the drawing, we make it right. That is the standard, and it does not change with the size of the order."
   buttonText="Request a Quote"
   buttonLink="/consultation"

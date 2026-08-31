@@ -1,8 +1,8 @@
 'use client'
 import DynamicHero from "@/components/About/DynamicHero";
-import CTASection from "@/components/HomePage/CTASection/CTASection";
+// import CTASection from "@/components/HomePage/CTASection/CTASection";
 import HowWeWork2 from "@/components/HomePage/Howwework/HowWeWork2";
-import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
+// import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
 
 import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
 import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
@@ -16,7 +16,7 @@ export default function Facilities() {
     <>
      <DynamicHero
   eyebrow="Facilities"
-  headline="Where the Work Gets Made."
+  headline="Where the Work Gets Made"
   subhead="One workshop, every stage of fabrication under one roof."
   body="Our facility is set up to take a job from raw metal to finished part without leaving the building. That keeps the schedule tight and the standard consistent."
   primaryButtonText="Request a Quote"
@@ -32,7 +32,7 @@ export default function Facilities() {
    <div className="scroll-content-wrapper">
      <TrustedPartner
   eyebrow="Our Facility"
-  title="Manufacturing Infrastructure."
+  title="Manufacturing Infrastructure"
   body="A [FACILITY SIZE] fabrication plant laid out for smooth flow, from material store to cutting, forming, welding, finishing, and dispatch. Room to handle small jobs and large structures side by side."
   backgroundImage="/footer-bg.png"
   showMetrics={false}
@@ -40,7 +40,7 @@ export default function Facilities() {
   />
 <WhyForgentis
   eyebrow="Forgentis"
-  headline="Machinery and Equipment."
+  headline="Machinery and Equipment"
   body="We run 25+ machines across cutting, forming, welding, and finishing."
   showPoints={true}
   showImage={false}
@@ -74,7 +74,7 @@ export default function Facilities() {
 />
 <HowWeWork2
   eyebrow="Inside the Floor"
-  title="The Fabrication Floor."
+  title="The Fabrication Floor"
   body="The floor is organized by stage, so each job moves in one direction: cut, form, weld, finish, check, dispatch. Less handling, fewer errors, faster turnaround."
   showTimeline={true}
   showButton={false}
@@ -89,7 +89,7 @@ export default function Facilities() {
 />
 <TrustedPartner
   eyebrow="Precision and Production"
-  title="Precision and Production."
+  title="Precision and Production"
   body="Computer-controlled machines hold each part to ±0.05mm, whether we make one or 1000. Same setup, same result, every run."
   showMetrics={true}
   metrics={[
@@ -101,7 +101,7 @@ export default function Facilities() {
 />
 <TrustedPartner
   eyebrow="Material Handling"
-  title="Material Handling."
+  title="Material Handling"
   body="Cranes and lifting gear up to 10 tons move heavy sections safely across the floor. Proper handling protects the metal, the finish, and the team."
   showMetrics={false}
   showTrustStrip={false}
@@ -112,17 +112,17 @@ export default function Facilities() {
 />
 <WhoWeAre
   eyebrow="Quality Control"
-  title="Quality Control."
+  title="Quality Control"
   body="A dedicated checking area lets us measure parts against the drawing before they move to the next stage or ship."
   buttonText="Our Quality Standards"
-  buttonLink="#"
+  buttonLink="quality"
   showButton={true}
   showImage={true}
   imageSrc="/Quality.png"
   imageAlt="Forgentis Material Handling"
   imagePosition="right"
 />
-<TrustedPartner
+{/* <TrustedPartner
   eyebrow="Production Capacity"
   title="Production Capacity."
   body="We can produce up to 50 tons per month, with room to scale for larger orders. Lead times are planned around your delivery date."
@@ -133,10 +133,10 @@ export default function Facilities() {
     { id: 'scale', target: 100, suffix: '%', label: 'Scalability', description: 'Room to grow for larger orders' },
   ]}
   showTrustStrip={false}
-/>
+/> */}
 <TrustedPartner
   eyebrow="Safety and Compliance"
-  title="Safety and Compliance."
+  title="Safety and Compliance"
   body="The floor runs to clear safety rules: trained operators, guarded machines, protective gear, and regular checks. A safe floor is also a floor that delivers on time."
   showMetrics={true}
   metrics={[
@@ -147,7 +147,7 @@ export default function Facilities() {
   showTrustStrip={false}
   backgroundImage="/footer-bg.png"
 />
-<WhoWeAre
+{/* <WhoWeAre
   eyebrow="Forgentis"
   title="Inside Forgentis."
   body="See how the work gets made, from the first cut to the finished piece."
@@ -158,7 +158,7 @@ export default function Facilities() {
   imageSrc="/Inside.png"
   imageAlt="Forgentis Material Handling"
   imagePosition="right"
-/>
+/> */}
 </div>
     </>
   )

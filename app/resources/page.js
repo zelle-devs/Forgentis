@@ -1,10 +1,10 @@
 'use client'
 import DynamicHero from "@/components/About/DynamicHero";
-import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
+// import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
 import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
 import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
 import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
-import LuminousProjects from "@/components/HomePage/FeaturedProjects/LuminousProjects";
+// import LuminousProjects from "@/components/HomePage/FeaturedProjects/LuminousProjects";
 import CTASection from "@/components/HomePage/CTASection/CTASection";
 import { FileText, Download, Layers, BookOpen, Newspaper, FolderOpen, HelpCircle } from 'lucide-react';
 
@@ -14,7 +14,7 @@ export default function Resources() {
       {/* Section 1: Hero */}
       <DynamicHero
         eyebrow="Resources"
-        headline="Guides, Specs, and Answers."
+        headline="Guides, Specs, and Answers"
         subhead="Useful reading for teams that specify and buy metalwork."
         body="A place to find fabrication guides, material notes, and answers to common questions, so you can plan and spec with confidence."
         primaryButtonText="Contact Us"
@@ -32,7 +32,7 @@ export default function Resources() {
         {/* Section 2: Fabrication Guides */}
         <IndustriesServe
           eyebrow="Fabrication Guides"
-          title="Fabrication Guides."
+          title="Fabrication Guides"
           body="Plain-language guides on how parts are cut, formed, welded, and finished, and what that means for your drawings."
           showCards={true}
           showButton={false}
@@ -50,7 +50,7 @@ export default function Resources() {
         {/* Section 3: Technical Resources */}
         <TrustedPartner
           eyebrow="Technical Resources"
-          title="Technical Resources."
+          title="Technical Resources"
           body="Tolerances, material thicknesses, finish options, and the file formats we accept for quoting."
           showMetrics={true}
           metrics={[
@@ -65,7 +65,7 @@ export default function Resources() {
         {/* Section 4: Material Guides */}
         <WhyForgentis
           eyebrow="Material Guides"
-          headline="Material Guides."
+          headline="Material Guides"
           body="How mild steel, stainless, aluminum, and brass compare on strength, finish, cost, and use. Pick the right metal before you commit to a drawing."
           showPoints={true}
           showImage={false}
@@ -80,7 +80,7 @@ export default function Resources() {
         {/* Section 5: Industry Insights */}
         <IndustriesServe
           eyebrow="Industry Insights"
-          title="Industry Insights."
+          title="Industry Insights"
           body="Notes and articles on fabrication, finishes, and trends in architectural and industrial metalwork."
           showCards={true}
           showButton={false}
@@ -97,7 +97,7 @@ export default function Resources() {
         />
 
         {/* Section 6: Case Studies */}
-        <LuminousProjects
+        {/* <LuminousProjects
           eyebrow="Case Studies"
           title="Case Studies."
           body="Real projects, start to finish, with the challenge, the fabrication, and the result."
@@ -111,12 +111,12 @@ export default function Resources() {
             { id: 2, icon: FolderOpen, name: 'Structural Steel', sector: 'Construction', location: 'Karachi', scope: 'Warehouse frame' },
             { id: 3, icon: FolderOpen, name: 'Retail Fit-Out', sector: 'Retail', location: 'London', scope: 'Shopfront metalwork' },
           ]}
-        />
+        /> */}
 
         {/* Section 7: FAQ */}
         <WhyForgentis
           eyebrow="FAQ"
-          headline="Frequently Asked Questions."
+          headline="Frequently Asked Questions"
           body="Quick answers to the questions we hear most."
           showPoints={true}
           showImage={false}
@@ -134,7 +134,7 @@ export default function Resources() {
         {/* Section 8: Downloads */}
         <TrustedPartner
           eyebrow="Downloads"
-          title="Downloads."
+          title="Downloads"
           body="Company profile, capability sheet, and material and finish guides, ready to share with your team."
           showMetrics={true}
           metrics={[
@@ -148,7 +148,7 @@ export default function Resources() {
         {/* CTA */}
         <CTASection
           eyebrow="Get the Profile"
-          headline="Download Profile."
+          headline="Download Profile"
           body="Get our complete company profile, capability sheet, and finish guide in one PDF."
           buttonText="Download Profile"
           buttonLink="/downloads/profile.pdf"

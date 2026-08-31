@@ -2,18 +2,18 @@
 import DynamicHero from "@/components/About/DynamicHero";
 import CTASection from "@/components/HomePage/CTASection/CTASection";
 import LuminousProjects from "@/components/HomePage/FeaturedProjects/LuminousProjects";
-import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
+// import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
 import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
 import WhatWeFabricate from "@/components/HomePage/WhatWeFabricate/WhatWeFabricate";
 import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
 import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
-import { Scissors, Cog, Hammer, Flame, SprayCan, Layers, Building2, Factory, Frame, Armchair, PenTool, Sparkles } from 'lucide-react';
+import { Layers, Building2, Factory, Frame, Armchair, PenTool, Sparkles } from 'lucide-react';
 export default function Projects() {
   return (
     <>
      <DynamicHero
        eyebrow="Projects"
-       headline="Work We Have Delivered."
+       headline="Work We Have Delivered"
        subhead="Fabrication, finishing, and delivery across sectors."
        body="A look at the metalwork we have cut, built, and installed. Every project below started as a drawing and ended as work that fit on site."
        primaryButtonText="Start Your Project"
@@ -29,7 +29,7 @@ export default function Projects() {
       <div className="scroll-content-wrapper">
 <LuminousProjects
   eyebrow="Featured Projects"
-  title="A selection of recent work."
+  title="A selection of recent work"
   body=""
   showButton={false}
   buttonText=""
@@ -43,7 +43,7 @@ export default function Projects() {
 />
 <TrustedPartner
   eyebrow="Commercial Projects"
-  title="Commercial Projects."
+  title="Commercial Projects"
   body="Shopfronts, office features, signage, and fit-out metalwork."
   showMetrics={true}
   metrics={[
@@ -67,7 +67,7 @@ export default function Projects() {
 
 <TrustedPartner
   eyebrow="Industrial Projects"
-  title="Industrial Projects."
+  title="Industrial Projects"
   body="Structural frames, platforms, and heavy-duty parts for factories and sites."
   showMetrics={true}
   metrics={[
@@ -81,7 +81,7 @@ export default function Projects() {
 />
 <TrustedPartner
   eyebrow="Architectural Fabrication"
-  title="Architectural Fabrication."
+  title="Architectural Fabrication"
   body="Laser-cut screens, facades, cladding, and feature staircases."
   showMetrics={true}
   metrics={[
@@ -96,7 +96,7 @@ export default function Projects() {
    showGridPattern={false}
 /><TrustedPartner
   eyebrow="Custom Fabrication"
-  title="Custom Fabrication."
+  title="Custom Fabrication"
   body="One-off and bespoke pieces made to a drawing or a sample."
   showMetrics={true}
   metrics={[
@@ -119,7 +119,7 @@ export default function Projects() {
 />
 <WhatWeFabricate
   eyebrow="Our Expertise"
-  title="Project Showcase."
+  title="Project Showcase"
   body="A visual gallery of finished work."
   buttonText="See Our Work"
   showButton={false}
@@ -178,7 +178,7 @@ export default function Projects() {
 
 <WhyForgentis
   eyebrow="Project Spotlight"
-  headline="Project Spotlight."
+  headline="Project Spotlight"
   body="A closer look at one project, start to finish."
   showPoints={true}
   points={[
@@ -192,7 +192,7 @@ export default function Projects() {
 />
 <WhoWeAre
   eyebrow="Our Role"
-  title="Our Role."
+  title="Our Role"
   body="On each project, state exactly what Forgentis handled: shop drawings, material, fabrication, finishing, and delivery. Being clear about our part keeps the client's role clear too."
   buttonText=""
   buttonLink=""
@@ -204,7 +204,7 @@ export default function Projects() {
 />
 <WhoWeAre
   eyebrow="The Result"
-  title="The Result."
+  title="The Result"
   body="Close each case study with the outcome: delivered on schedule, fit the first time, finish held up, or a repeat order. Keep it factual, not boastful."
   buttonText=""
   buttonLink=""
@@ -218,7 +218,7 @@ export default function Projects() {
   
       <CTASection
   eyebrow="Request a Quote"
-  headline="Start Your Project."
+  headline="Start Your Project"
   body="Have a drawing or an idea? Send it over and we will come back with a quote."
   buttonText="Get a Quote"
   buttonLink="/consultation"
