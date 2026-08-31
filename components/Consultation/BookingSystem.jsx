@@ -164,16 +164,12 @@ useEffect(() => {
     return isValid;
 };
 
- const validateStep2 = () => {
+const validateStep2 = () => {
     const isValid = formData.Fname && formData.Fname.trim() !== '' &&
         formData.Lname && formData.Lname.trim() !== '' &&
         formData.workEmail && formData.workEmail.trim() !== '' &&
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail) &&
-        formData.phone && formData.phone.trim() !== '' &&
-        formData.companyName && formData.companyName.trim() !== '' &&
-        formData.jobTitle && formData.jobTitle !== '' &&
-        formData.companySize && formData.companySize !== '' &&
-        formData.industry && formData.industry !== '';
+        formData.phone && formData.phone.trim() !== '';
 
     setStep2Valid(isValid);
     return isValid;
@@ -331,7 +327,7 @@ useEffect(() => {
                                 <path className="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                             </svg>
                         </div>
-                        <h2 className="success-title">Demo Scheduled!</h2>
+                        <h2 className="success-title">Consultation Scheduled!</h2>
                         <p className="success-subtitle">We&apos;ve sent a confirmation email to {formData.workEmail}</p>
                     </div>
 

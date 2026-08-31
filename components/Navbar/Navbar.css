@@ -7,6 +7,8 @@
   z-index: 1000;
   background: transparent;
   transition: all var(--transition-normal);
+    border-bottom: 1px solid transparent;
+
 }
 
 .navbar-scrolled {

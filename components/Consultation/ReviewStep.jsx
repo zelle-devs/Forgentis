@@ -4,15 +4,13 @@ import { IoIosInformationCircle } from 'react-icons/io';
 import './ReviewStep.css';
 
 const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditForm, selectedPlatform }) => {
-    const interestedModules = formData.interestedModules || [];
-
     return (
         <div className="main">
         <div className="review-single-card">
             <div className="review-left-content">
                 <div className="section-header-with-edit">
                     <h2 className="step-title">
-                        Review Your Demo Request
+                        Review Your Consultation Request
                         <button 
                             className="edit-icon-inline" 
                             onClick={onEditForm}
@@ -45,65 +43,61 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                     </div>
                 </div>
 
-                <div className="section-label">Company Information</div>
-                <div className="review-grid">
-                    <div className="review-item-wrapper">
-                        <span>Company Name</span>
-                        <div className="review-item">
-                            <p>{formData.companyName || '—'}</p>
+                {/* Company Information - Only show if filled (Optional) */}
+                {(formData.companyName || formData.jobTitle || formData.companySize || formData.industry) && (
+                    <>
+                        <div className="section-label">Company Information <span style={{ color: '#999', fontSize: '10px', textTransform: 'none', letterSpacing: '0' }}>(Optional)</span></div>
+                        <div className="review-grid">
+                            {formData.companyName && (
+                                <div className="review-item-wrapper">
+                                    <span>Company Name</span>
+                                    <div className="review-item">
+                                        <p>{formData.companyName}</p>
+                                    </div>
+                                </div>
+                            )}
+                            {formData.jobTitle && (
+                                <div className="review-item-wrapper">
+                                    <span>Designation</span>
+                                    <div className="review-item">
+                                        <p>{formData.jobTitle}</p>
+                                    </div>
+                                </div>
+                            )}
+                            {formData.companySize && (
+                                <div className="review-item-wrapper">
+                                    <span>Company Size</span>
+                                    <div className="review-item">
+                                        <p>{formData.companySize}</p>
+                                    </div>
+                                </div>
+                            )}
+                            {formData.industry && (
+                                <div className="review-item-wrapper">
+                                    <span>Industry</span>
+                                    <div className="review-item">
+                                        <p>{formData.industry}</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </div>
-                    <div className="review-item-wrapper">
-                        <span>Designation</span>
-                        <div className="review-item">
-                            <p>{formData.jobTitle || '—'}</p>
-                        </div>
-                    </div>
-                    <div className="review-item-wrapper">
-                        <span>Company Size</span>
-                        <div className="review-item">
-                            <p>{formData.companySize || '—'}</p>
-                        </div>
-                    </div>
-                    <div className="review-item-wrapper">
-                        <span>Industry</span>
-                        <div className="review-item">
-                            <p>{formData.industry || '—'}</p>
-                        </div>
-                    </div>
-                </div>
+                    </>
+                )}
 
-                <div className="section-label">Product Information</div>
-                <div className="review-grid">
-                    <div className="review-item-wrapper">
-                        <span>Current HR Software</span>
-                        <div className="review-item">
-                            <p>{formData.currentHRSoftware || '—'}</p>
+                {/* Business Needs - Only Primary Goal */}
+                {formData.primaryGoal && (
+                    <>
+                        <div className="section-label">Business Needs</div>
+                        <div className="review-grid">
+                            <div className="review-item-wrapper">
+                                <span>Primary Goal</span>
+                                <div className="review-item">
+                                    <p>{formData.primaryGoal}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="review-item-wrapper full-width">
-                        <span>Interested Modules</span>
-                        <div className="review-item">
-                            <p>{interestedModules.length > 0 ? interestedModules.join(', ') : '—'}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="section-label">Business Needs</div>
-                <div className="review-grid">
-                    <div className="review-item-wrapper">
-                        <span>Demo Goal</span>
-                        <div className="review-item">
-                            <p>{formData.demoGoal || '—'}</p>
-                        </div>
-                    </div>
-                    <div className="review-item-wrapper">
-                        <span>Primary Goal</span>
-                        <div className="review-item">
-                            <p>{formData.primaryGoal || '—'}</p>
-                        </div>
-                    </div>
-                </div>
+                    </>
+                )}
 
                 {formData.notes && (
                     <>
@@ -191,7 +185,7 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                 <div className="selection-note">
                     <div className="note-content">
                         <IoIosInformationCircle className="note-icon" />
-                        <span>A product specialist will contact you shortly before your scheduled demo.</span>
+                        <span>A fabrication specialist will contact you shortly before your scheduled consultation.</span>
                     </div>
                 </div>
             </div>

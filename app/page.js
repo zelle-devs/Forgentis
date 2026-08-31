@@ -26,10 +26,10 @@ export default function Home() {
   body="Architects, contractors, and manufacturers send us their drawings because the work comes back right the first time."
   showMetrics={true}
   metrics={[
-    { id: 'years', target: 4, suffix: '+', label: 'Years in Fabrication', description: 'In operation' },
-    { id: 'projects', target: 700, suffix: '+', label: 'Projects Delivered', description: 'Across sectors' },
-    { id: 'tolerance', target: 99, decimal: 0, suffix: '%', label: 'Cutting Accuracy', description: 'Tolerance level' },
-    { id: 'facility', target: 100, suffix: '%', label: 'Facility Size', description: 'Workshop capacity' },
+    { id: 'years', target: 5, suffix: '+', label: 'Years in Fabrication', description: 'In operation' },
+    { id: 'projects', target: 500, suffix: '+', label: 'Projects Delivered', description: 'Across sectors' },
+{ id: 'retention', target: 90, suffix: '%', label: 'Client Retention', description: 'Repeat business rate' },
+    { id: 'facility', target: 5, suffix: '', label: <><span style={{fontSize:"20px", lineHeight: "0"}}>★★★★★</span></>, description: 'Rating' },
   ]}
   showTrustStrip={true}
   trustLabel="Trusted by teams across"
