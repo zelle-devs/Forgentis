@@ -27,7 +27,7 @@ export default function Home() {
   showMetrics={true}
   metrics={[
     { id: 'years', target: 4, suffix: '+', label: 'Years in Fabrication', description: 'In operation' },
-    { id: 'projects', target: 15, suffix: '+', label: 'Projects Delivered', description: 'Across sectors' },
+    { id: 'projects', target: 700, suffix: '+', label: 'Projects Delivered', description: 'Across sectors' },
     { id: 'tolerance', target: 99, decimal: 0, suffix: '%', label: 'Cutting Accuracy', description: 'Tolerance level' },
     { id: 'facility', target: 100, suffix: '%', label: 'Facility Size', description: 'Workshop capacity' },
   ]}
