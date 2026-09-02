@@ -1,35 +1,99 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 export function useScrollNavigation() {
   const isScrolling = useRef(false);
   const animationFrame = useRef(null);
+  const lastScrollTime = useRef(0);
+  const touchStartY = useRef(0);
+  const touchStartTime = useRef(0);
+  const touchDeltaY = useRef(0);
+  const isTouching = useRef(false);
+  const velocity = useRef(0);
+  const lastTouchY = useRef(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const main = document.getElementById('main-scroll-container');
     if (!main) return;
 
-    const getSections = () => {
-      return Array.from(main.querySelectorAll('.scroll-section, .footer-section'));
+    // Reset scroll position on route change
+    main.scrollTop = 0;
+    isScrolling.current = false;
+
+    const getVisibleSections = () => {
+      return Array.from(main.querySelectorAll('.scroll-section'));
     };
 
-    const smoothScrollTo = (targetPosition) => {
+    const getCurrentSectionIndex = () => {
+      const sections = getVisibleSections();
+      const scrollTop = main.scrollTop;
+      const viewportHeight = main.clientHeight;
+      
+      for (let i = 0; i < sections.length; i++) {
+        const sectionTop = sections[i].offsetTop;
+        const sectionBottom = sectionTop + sections[i].offsetHeight;
+        
+        if (scrollTop >= sectionTop - viewportHeight / 2 && 
+            scrollTop < sectionBottom - viewportHeight / 2) {
+          return i;
+        }
+      }
+      return 0;
+    };
+
+    const getCurrentSection = () => {
+      const sections = getVisibleSections();
+      const currentIndex = getCurrentSectionIndex();
+      return sections[currentIndex] || sections[0];
+    };
+
+    const isSectionLarge = (section) => {
+      if (!section) return false;
+      const viewportHeight = main.clientHeight;
+      const sectionHeight = section.scrollHeight;
+      return section.getAttribute('data-section-type') === 'large' || 
+             sectionHeight > viewportHeight * 1;
+    };
+
+    // Premium easing functions
+    const easings = {
+      smooth: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+      premium: (t) => {
+        const c1 = 1.70158;
+        const c3 = c1 + 1;
+        return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+      },
+      buttery: (t) => {
+        return t < 0.5 
+          ? 8 * t * t * t * t 
+          : 1 - Math.pow(-2 * t + 2, 4) / 2;
+      }
+    };
+
+    const smoothScrollTo = (targetPosition, duration = null, easingType = 'buttery') => {
       const startPosition = main.scrollTop;
       const distance = targetPosition - startPosition;
-      const duration = 800; // ms
+      
+      if (Math.abs(distance) < 1) {
+        isScrolling.current = false;
+        return;
+      }
+      
+      const scrollDuration = duration || Math.min(
+        1200,
+        Math.max(400, Math.abs(distance) * 0.8)
+      );
+      
       const startTime = performance.now();
-
-      const easeInOutCubic = (t) => {
-        return t < 0.5 
-          ? 4 * t * t * t 
-          : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
+      const easing = easings[easingType] || easings.buttery;
 
       const animateScroll = (currentTime) => {
         const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = easeInOutCubic(progress);
+        const progress = Math.min(elapsed / scrollDuration, 1);
+        const easeProgress = easing(progress);
         
         main.scrollTop = startPosition + distance * easeProgress;
 
@@ -47,119 +111,610 @@ export function useScrollNavigation() {
       animationFrame.current = requestAnimationFrame(animateScroll);
     };
 
-    const scrollToSection = (direction) => {
+    const scrollToSection = (direction, customVelocity = null) => {
+      const now = Date.now();
+      if (now - lastScrollTime.current < 50) return;
       if (isScrolling.current) return;
       
-      const sections = getSections();
+      lastScrollTime.current = now;
+      
+      const sections = getVisibleSections();
       if (sections.length === 0) return;
 
-      const currentScroll = main.scrollTop;
+      const currentIndex = getCurrentSectionIndex();
+      const currentSection = sections[currentIndex];
       const viewportHeight = main.clientHeight;
+      const currentScroll = main.scrollTop;
       
-      let targetSection = null;
+      let targetPosition = null;
+      let easingType = 'buttery';
       
       if (direction === 'down') {
-        for (let i = 0; i < sections.length; i++) {
-          const sectionTop = sections[i].offsetTop;
-          if (sectionTop > currentScroll + 50) {
-            targetSection = sections[i];
-            break;
+        if (currentSection && isSectionLarge(currentSection)) {
+          const sectionTop = currentSection.offsetTop;
+          const sectionBottom = sectionTop + currentSection.scrollHeight;
+          
+          if (currentScroll + viewportHeight < sectionBottom - 20) {
+            targetPosition = currentScroll + viewportHeight * 0.85;
+            easingType = 'smooth';
+          } else {
+            const nextIndex = currentIndex + 1;
+            if (nextIndex < sections.length) {
+              targetPosition = sections[nextIndex].offsetTop;
+              easingType = 'premium';
+            }
+          }
+        } else {
+          const nextIndex = currentIndex + 1;
+          if (nextIndex < sections.length) {
+            targetPosition = sections[nextIndex].offsetTop;
+            easingType = 'premium';
           }
         }
       } else if (direction === 'up') {
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const sectionBottom = sections[i].offsetTop + sections[i].offsetHeight;
-          if (sectionBottom < currentScroll + viewportHeight - 50) {
-            targetSection = sections[i];
-            break;
+        const sectionTop = currentSection ? currentSection.offsetTop : 0;
+        
+        if (currentSection && isSectionLarge(currentSection) && currentScroll > sectionTop + 20) {
+          targetPosition = currentScroll - viewportHeight * 0.85;
+          easingType = 'smooth';
+          
+          if (targetPosition < sectionTop) {
+            targetPosition = sectionTop;
+          }
+        } else {
+          const prevIndex = currentIndex - 1;
+          if (prevIndex >= 0) {
+            targetPosition = sections[prevIndex].offsetTop;
+            easingType = 'premium';
           }
         }
       }
 
-      if (targetSection) {
-        smoothScrollTo(targetSection.offsetTop);
+      if (targetPosition !== null) {
+        targetPosition = Math.max(0, Math.min(targetPosition, main.scrollHeight - viewportHeight));
+        
+        const scrollDistance = targetPosition - currentScroll;
+        
+        let duration = null;
+        if (customVelocity && Math.abs(customVelocity) > 1) {
+          duration = Math.min(800, Math.max(300, Math.abs(scrollDistance) / Math.abs(customVelocity)));
+        } else if (isSectionLarge(currentSection)) {
+          duration = 500;
+        }
+        
+        smoothScrollTo(targetPosition, duration, easingType);
       }
     };
 
+    // FIXED: Enhanced keyboard navigation for ALL sections including large
     const handleKeyDown = (e) => {
+      const currentSection = getCurrentSection();
+      
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
-        scrollToSection('down');
+        
+        if (currentSection && isSectionLarge(currentSection)) {
+          const sectionTop = currentSection.offsetTop;
+          const sectionBottom = sectionTop + currentSection.scrollHeight;
+          const currentScroll = main.scrollTop;
+          const viewportHeight = main.clientHeight;
+          
+          // If not at bottom of large section, scroll within it
+          if (currentScroll + viewportHeight < sectionBottom - 20) {
+            scrollToSection('down');
+          } else {
+            // At bottom of large section - go to next section
+            const sections = getVisibleSections();
+            const currentIndex = getCurrentSectionIndex();
+            const nextIndex = currentIndex + 1;
+            if (nextIndex < sections.length) {
+              smoothScrollTo(sections[nextIndex].offsetTop, 600, 'premium');
+            }
+          }
+        } else {
+          // Normal section - go to next
+          scrollToSection('down');
+        }
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
-        scrollToSection('up');
+        
+        if (currentSection && isSectionLarge(currentSection)) {
+          const sectionTop = currentSection.offsetTop;
+          const currentScroll = main.scrollTop;
+          
+          // If not at top of large section, scroll within it
+          if (currentScroll > sectionTop + 20) {
+            scrollToSection('up');
+          } else {
+            // At top of large section - go to previous section
+            const sections = getVisibleSections();
+            const currentIndex = getCurrentSectionIndex();
+            const prevIndex = currentIndex - 1;
+            if (prevIndex >= 0) {
+              smoothScrollTo(sections[prevIndex].offsetTop, 600, 'premium');
+            }
+          }
+        } else {
+          // Normal section - go to previous
+          scrollToSection('up');
+        }
       } else if (e.key === 'Home') {
         e.preventDefault();
-        smoothScrollTo(0);
+        smoothScrollTo(0, 600, 'premium');
       } else if (e.key === 'End') {
         e.preventDefault();
-        const sections = getSections();
+        const sections = getVisibleSections();
         if (sections.length > 0) {
           const lastSection = sections[sections.length - 1];
-          smoothScrollTo(lastSection.offsetTop);
+          smoothScrollTo(lastSection.offsetTop, 600, 'premium');
         }
       }
     };
 
-    const handleWheel = (e) => {
+    // Enhanced wheel with momentum
+    let momentumVelocity = 0;
+    let lastWheelTime = 0;
+    
+    const enhancedWheel = (e) => {
+      const currentSection = getCurrentSection();
+      
+      if (currentSection && isSectionLarge(currentSection)) {
+        const sectionTop = currentSection.offsetTop;
+        const sectionBottom = sectionTop + currentSection.scrollHeight;
+        const currentScroll = main.scrollTop;
+        const viewportHeight = main.clientHeight;
+        
+        const atTop = currentScroll <= sectionTop + 5;
+        const atBottom = currentScroll + viewportHeight >= sectionBottom - 5;
+        
+        if ((atBottom && e.deltaY > 0) || (atTop && e.deltaY < 0)) {
+          e.preventDefault();
+          scrollToSection(e.deltaY > 0 ? 'down' : 'up');
+        }
+        return;
+      }
+      
       e.preventDefault();
+      
+      const now = Date.now();
+      const timeDelta = now - lastWheelTime;
+      lastWheelTime = now;
+      
+      if (timeDelta < 100) {
+        momentumVelocity += e.deltaY * 0.1;
+      } else {
+        momentumVelocity = e.deltaY;
+      }
+      
+      momentumVelocity = Math.max(-100, Math.min(100, momentumVelocity));
       
       if (isScrolling.current) return;
       
       const delta = e.deltaY;
+      if (Math.abs(delta) < 10) return;
       
-      if (Math.abs(delta) < 30) return;
+      scrollToSection(delta > 0 ? 'down' : 'up', momentumVelocity);
       
-      // Debounce wheel events
       setTimeout(() => {
-        if (delta > 0) {
-          scrollToSection('down');
-        } else {
-          scrollToSection('up');
+        momentumVelocity = 0;
+      }, 150);
+    };
+
+    // Premium touch handlers
+    const handleTouchStart = (e) => {
+      isTouching.current = true;
+      touchStartY.current = e.touches[0].clientY;
+      lastTouchY.current = e.touches[0].clientY;
+      touchStartTime.current = Date.now();
+      touchDeltaY.current = 0;
+      velocity.current = 0;
+    };
+    
+    const handleTouchMove = (e) => {
+      if (!isTouching.current) return;
+      
+      const currentY = e.touches[0].clientY;
+      const deltaY = currentY - lastTouchY.current;
+      const currentTime = Date.now();
+      const deltaTime = currentTime - touchStartTime.current;
+      
+      touchDeltaY.current = currentY - touchStartY.current;
+      
+      if (deltaTime > 0) {
+        velocity.current = deltaY / deltaTime;
+      }
+      
+      lastTouchY.current = currentY;
+    };
+    
+    const handleTouchEnd = (e) => {
+      isTouching.current = false;
+      
+      const currentSection = getCurrentSection();
+      
+      if (currentSection && isSectionLarge(currentSection)) {
+        const sectionTop = currentSection.offsetTop;
+        const sectionBottom = sectionTop + currentSection.scrollHeight;
+        const currentScroll = main.scrollTop;
+        const viewportHeight = main.clientHeight;
+        
+        const atTop = currentScroll <= sectionTop + 20;
+        const atBottom = currentScroll + viewportHeight >= sectionBottom - 20;
+        
+        // Allow swipe at boundaries to change sections
+        if (!atTop && !atBottom) {
+          return; // Middle of large section - native scroll
         }
-      }, 50);
+      }
+      
+      const touchEndY = e.changedTouches[0].clientY;
+      const totalDeltaY = touchEndY - touchStartY.current;
+      const elapsedTime = Date.now() - touchStartTime.current;
+      
+      if (Math.abs(totalDeltaY) > 20 && elapsedTime < 500) {
+        const swipeVelocity = velocity.current;
+        
+        if (totalDeltaY < 0) {
+          scrollToSection('down', swipeVelocity);
+        } else {
+          scrollToSection('up', swipeVelocity);
+        }
+      }
     };
 
     // Event listeners
     window.addEventListener('keydown', handleKeyDown);
-    main.addEventListener('wheel', handleWheel, { passive: false });
-    
-    // Touch support
-    let touchStartY = 0;
-    let touchStartTime = 0;
-    
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-      touchStartTime = Date.now();
-    };
-    
-    const handleTouchEnd = (e) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const touchEndTime = Date.now();
-      const deltaY = touchEndY - touchStartY;
-      const deltaTime = touchEndTime - touchStartTime;
-      
-      // Fast swipe detection
-      if (Math.abs(deltaY) > 50 && deltaTime < 300) {
-        if (deltaY < 0) {
-          scrollToSection('down');
-        } else {
-          scrollToSection('up');
-        }
-      }
-    };
-    
+    main.addEventListener('wheel', enhancedWheel, { passive: false });
     main.addEventListener('touchstart', handleTouchStart, { passive: true });
+    main.addEventListener('touchmove', handleTouchMove, { passive: true });
     main.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      main.removeEventListener('wheel', handleWheel);
+      main.removeEventListener('wheel', enhancedWheel);
       main.removeEventListener('touchstart', handleTouchStart);
+      main.removeEventListener('touchmove', handleTouchMove);
       main.removeEventListener('touchend', handleTouchEnd);
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, []);
+  }, [pathname]); // Re-run on route change
 }
+
+// 'use client';
+
+// import { useEffect, useRef } from 'react';
+// import { usePathname } from 'next/navigation';
+
+// export function useScrollNavigation() {
+//   const isScrolling = useRef(false);
+//   const animationFrame = useRef(null);
+//   const lastScrollTime = useRef(0);
+//   const touchStartY = useRef(0);
+//   const touchStartTime = useRef(0);
+//   const touchDeltaY = useRef(0);
+//   const isTouching = useRef(false);
+//   const velocity = useRef(0);
+//   const lastTouchY = useRef(0);
+//   const pathname = usePathname();
+
+//   useEffect(() => {
+//     const main = document.getElementById('main-scroll-container');
+//     if (!main) return;
+
+//     // Reset scroll position on route change
+//     main.scrollTop = 0;
+//     isScrolling.current = false;
+
+//     const getVisibleSections = () => {
+//       return Array.from(main.querySelectorAll('.scroll-section'));
+//     };
+
+//     const getCurrentSectionIndex = () => {
+//       const sections = getVisibleSections();
+//       const scrollTop = main.scrollTop;
+//       const viewportHeight = main.clientHeight;
+      
+//       for (let i = 0; i < sections.length; i++) {
+//         const sectionTop = sections[i].offsetTop;
+//         const sectionBottom = sectionTop + sections[i].offsetHeight;
+        
+//         if (scrollTop >= sectionTop - viewportHeight / 2 && 
+//             scrollTop < sectionBottom - viewportHeight / 2) {
+//           return i;
+//         }
+//       }
+//       return 0;
+//     };
+
+//     const getCurrentSection = () => {
+//       const sections = getVisibleSections();
+//       const currentIndex = getCurrentSectionIndex();
+//       return sections[currentIndex] || sections[0];
+//     };
+
+//     const isSectionLarge = (section) => {
+//       if (!section) return false;
+//       const viewportHeight = main.clientHeight;
+//       const sectionHeight = section.scrollHeight;
+//       return section.getAttribute('data-section-type') === 'large' || 
+//              sectionHeight > viewportHeight * 1;
+//     };
+
+//     // Premium easing functions
+//     const easings = {
+//       smooth: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+//       premium: (t) => {
+//         const c1 = 1.70158;
+//         const c3 = c1 + 1;
+//         return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+//       },
+//       buttery: (t) => {
+//         return t < 0.5 
+//           ? 8 * t * t * t * t 
+//           : 1 - Math.pow(-2 * t + 2, 4) / 2;
+//       }
+//     };
+
+//     const smoothScrollTo = (targetPosition, duration = null, easingType = 'buttery') => {
+//       const startPosition = main.scrollTop;
+//       const distance = targetPosition - startPosition;
+      
+//       if (Math.abs(distance) < 1) {
+//         isScrolling.current = false;
+//         return;
+//       }
+      
+//       const scrollDuration = duration || Math.min(
+//         1200,
+//         Math.max(400, Math.abs(distance) * 0.8)
+//       );
+      
+//       const startTime = performance.now();
+//       const easing = easings[easingType] || easings.buttery;
+
+//       const animateScroll = (currentTime) => {
+//         const elapsed = currentTime - startTime;
+//         const progress = Math.min(elapsed / scrollDuration, 1);
+//         const easeProgress = easing(progress);
+        
+//         main.scrollTop = startPosition + distance * easeProgress;
+
+//         if (progress < 1) {
+//           animationFrame.current = requestAnimationFrame(animateScroll);
+//         } else {
+//           isScrolling.current = false;
+//         }
+//       };
+
+//       isScrolling.current = true;
+//       if (animationFrame.current) {
+//         cancelAnimationFrame(animationFrame.current);
+//       }
+//       animationFrame.current = requestAnimationFrame(animateScroll);
+//     };
+
+//     const scrollToSection = (direction, customVelocity = null) => {
+//       const now = Date.now();
+//       if (now - lastScrollTime.current < 50) return;
+//       if (isScrolling.current) return;
+      
+//       lastScrollTime.current = now;
+      
+//       const sections = getVisibleSections();
+//       if (sections.length === 0) return;
+
+//       const currentIndex = getCurrentSectionIndex();
+//       const currentSection = sections[currentIndex];
+//       const viewportHeight = main.clientHeight;
+//       const currentScroll = main.scrollTop;
+      
+//       let targetPosition = null;
+//       let easingType = 'buttery';
+      
+//       if (direction === 'down') {
+//         if (currentSection && isSectionLarge(currentSection)) {
+//           const sectionTop = currentSection.offsetTop;
+//           const sectionBottom = sectionTop + currentSection.scrollHeight;
+          
+//           if (currentScroll + viewportHeight < sectionBottom - 20) {
+//             targetPosition = currentScroll + viewportHeight * 0.85;
+//             easingType = 'smooth';
+//           } else {
+//             const nextIndex = currentIndex + 1;
+//             if (nextIndex < sections.length) {
+//               targetPosition = sections[nextIndex].offsetTop;
+//               easingType = 'premium';
+//             }
+//           }
+//         } else {
+//           const nextIndex = currentIndex + 1;
+//           if (nextIndex < sections.length) {
+//             targetPosition = sections[nextIndex].offsetTop;
+//             easingType = 'premium';
+//           }
+//         }
+//       } else if (direction === 'up') {
+//         const sectionTop = currentSection ? currentSection.offsetTop : 0;
+        
+//         if (currentSection && isSectionLarge(currentSection) && currentScroll > sectionTop + 20) {
+//           targetPosition = currentScroll - viewportHeight * 0.85;
+//           easingType = 'smooth';
+          
+//           if (targetPosition < sectionTop) {
+//             targetPosition = sectionTop;
+//           }
+//         } else {
+//           const prevIndex = currentIndex - 1;
+//           if (prevIndex >= 0) {
+//             targetPosition = sections[prevIndex].offsetTop;
+//             easingType = 'premium';
+//           }
+//         }
+//       }
+
+//       if (targetPosition !== null) {
+//         targetPosition = Math.max(0, Math.min(targetPosition, main.scrollHeight - viewportHeight));
+        
+//         const scrollDistance = targetPosition - currentScroll;
+        
+//         let duration = null;
+//         if (customVelocity && Math.abs(customVelocity) > 1) {
+//           duration = Math.min(800, Math.max(300, Math.abs(scrollDistance) / Math.abs(customVelocity)));
+//         } else if (isSectionLarge(currentSection)) {
+//           duration = 500;
+//         }
+        
+//         smoothScrollTo(targetPosition, duration, easingType);
+//       }
+//     };
+
+//     // Enhanced keyboard navigation
+//     const handleKeyDown = (e) => {
+//       const currentSection = getCurrentSection();
+      
+//       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+//         if (currentSection && isSectionLarge(currentSection)) {
+//           return;
+//         }
+//         e.preventDefault();
+//         scrollToSection('down');
+//       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+//         if (currentSection && isSectionLarge(currentSection)) {
+//           return;
+//         }
+//         e.preventDefault();
+//         scrollToSection('up');
+//       } else if (e.key === 'Home') {
+//         e.preventDefault();
+//         smoothScrollTo(0, 600, 'premium');
+//       } else if (e.key === 'End') {
+//         e.preventDefault();
+//         const sections = getVisibleSections();
+//         if (sections.length > 0) {
+//           const lastSection = sections[sections.length - 1];
+//           smoothScrollTo(lastSection.offsetTop, 600, 'premium');
+//         }
+//       }
+//     };
+
+//     // Enhanced wheel with momentum
+//     let momentumVelocity = 0;
+//     let lastWheelTime = 0;
+    
+//     const enhancedWheel = (e) => {
+//       const currentSection = getCurrentSection();
+      
+//       if (currentSection && isSectionLarge(currentSection)) {
+//         const sectionTop = currentSection.offsetTop;
+//         const sectionBottom = sectionTop + currentSection.scrollHeight;
+//         const currentScroll = main.scrollTop;
+//         const viewportHeight = main.clientHeight;
+        
+//         const atTop = currentScroll <= sectionTop + 5;
+//         const atBottom = currentScroll + viewportHeight >= sectionBottom - 5;
+        
+//         if ((atBottom && e.deltaY > 0) || (atTop && e.deltaY < 0)) {
+//           e.preventDefault();
+//           scrollToSection(e.deltaY > 0 ? 'down' : 'up');
+//         }
+//         return;
+//       }
+      
+//       e.preventDefault();
+      
+//       const now = Date.now();
+//       const timeDelta = now - lastWheelTime;
+//       lastWheelTime = now;
+      
+//       if (timeDelta < 100) {
+//         momentumVelocity += e.deltaY * 0.1;
+//       } else {
+//         momentumVelocity = e.deltaY;
+//       }
+      
+//       momentumVelocity = Math.max(-100, Math.min(100, momentumVelocity));
+      
+//       if (isScrolling.current) return;
+      
+//       const delta = e.deltaY;
+//       if (Math.abs(delta) < 10) return;
+      
+//       scrollToSection(delta > 0 ? 'down' : 'up', momentumVelocity);
+      
+//       setTimeout(() => {
+//         momentumVelocity = 0;
+//       }, 150);
+//     };
+
+//     // Premium touch handlers
+//     const handleTouchStart = (e) => {
+//       isTouching.current = true;
+//       touchStartY.current = e.touches[0].clientY;
+//       lastTouchY.current = e.touches[0].clientY;
+//       touchStartTime.current = Date.now();
+//       touchDeltaY.current = 0;
+//       velocity.current = 0;
+//     };
+    
+//     const handleTouchMove = (e) => {
+//       if (!isTouching.current) return;
+      
+//       const currentY = e.touches[0].clientY;
+//       const deltaY = currentY - lastTouchY.current;
+//       const currentTime = Date.now();
+//       const deltaTime = currentTime - touchStartTime.current;
+      
+//       touchDeltaY.current = currentY - touchStartY.current;
+      
+//       if (deltaTime > 0) {
+//         velocity.current = deltaY / deltaTime;
+//       }
+      
+//       lastTouchY.current = currentY;
+//     };
+    
+//     const handleTouchEnd = (e) => {
+//       isTouching.current = false;
+      
+//       const currentSection = getCurrentSection();
+      
+//       if (currentSection && isSectionLarge(currentSection)) {
+//         return;
+//       }
+      
+//       const touchEndY = e.changedTouches[0].clientY;
+//       const totalDeltaY = touchEndY - touchStartY.current;
+//       const elapsedTime = Date.now() - touchStartTime.current;
+      
+//       if (Math.abs(totalDeltaY) > 20 && elapsedTime < 500) {
+//         const swipeVelocity = velocity.current;
+        
+//         if (totalDeltaY < 0) {
+//           scrollToSection('down', swipeVelocity);
+//         } else {
+//           scrollToSection('up', swipeVelocity);
+//         }
+//       }
+//     };
+
+//     // Event listeners
+//     window.addEventListener('keydown', handleKeyDown);
+//     main.addEventListener('wheel', enhancedWheel, { passive: false });
+//     main.addEventListener('touchstart', handleTouchStart, { passive: true });
+//     main.addEventListener('touchmove', handleTouchMove, { passive: true });
+//     main.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+//     return () => {
+//       window.removeEventListener('keydown', handleKeyDown);
+//       main.removeEventListener('wheel', enhancedWheel);
+//       main.removeEventListener('touchstart', handleTouchStart);
+//       main.removeEventListener('touchmove', handleTouchMove);
+//       main.removeEventListener('touchend', handleTouchEnd);
+//       if (animationFrame.current) {
+//         cancelAnimationFrame(animationFrame.current);
+//       }
+//     };
+//   }, [pathname]); // Re-run on route change
+// }

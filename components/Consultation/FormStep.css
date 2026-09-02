@@ -178,6 +178,7 @@ textarea.neu-input {
     border: 1px solid var(--color-dark-border);
     border-radius: var(--radius-xl);
     transition: all var(--transition-normal);
+    color: var(--color-white)!important;
 }
 
 .custom-trigger:hover {
@@ -185,8 +186,8 @@ textarea.neu-input {
 }
 
 .custom-trigger span {
-    color: var(--color-steel-main);
-    font-weight: var(--font-weight-medium);
+    color: var(--color-white)!important;
+    /* font-weight: var(--font-weight-medium); */
     font-size: var(--font-size-sm);
     flex: 1;
     overflow: hidden;

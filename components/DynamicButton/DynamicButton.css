@@ -54,7 +54,7 @@
   background: linear-gradient(145deg, var(--color-blue-main), var(--color-blue-medium));
   opacity: 1;
   transition: all var(--transition-normal);
-  border-radius: inherit;
+  /* border-radius: inherit; */
 }
 
 .db-solid .db-btn-text {

@@ -74,7 +74,7 @@ const SectionWrapper = ({ children, className = '', id = '', index = 0 }) => {
         rotateZ,
         boxShadow,
         transformStyle: 'preserve-3d',
-        perspective: '1000px',
+        perspective: '2000px',
         position: 'relative',
         zIndex: index,
         willChange: 'transform, opacity',

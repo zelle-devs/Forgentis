@@ -138,7 +138,7 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
         setFocusedField(null);
     };
 
-    const primaryGoalOptions = ["Goal 1", "Goal 2"];
+    const primaryGoalOptions = ["Goal 1", "Goal 2","Goal 3", "Goal 4"];
 
     return (
         <div className="split-layout-form">

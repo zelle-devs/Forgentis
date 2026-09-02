@@ -9,10 +9,10 @@
   background-repeat: no-repeat;
   overflow: hidden;
   isolation: isolate;
-    height: 100vh;
+    /* height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .fq2-bg {
