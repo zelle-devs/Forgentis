@@ -29,7 +29,7 @@ export default function Capabilities() {
       </section>
 
       {/* Metal Fabrication Section */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Forgentis"
           title="Metal Fabrication"
@@ -38,10 +38,10 @@ export default function Capabilities() {
           showTrustStrip={false}
           backgroundImage="/footer-bg.png"
         />
-      {/* </section> */}
+      </section>
 
       {/* CNC and Precision Manufacturing Section */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="normal">
         <WhoWeAre
           eyebrow="Forgentis"
           title="CNC and Precision Manufacturing"
@@ -205,7 +205,7 @@ export default function Capabilities() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Request a Fabrication Quote"
           headline="Have a Drawing? Get a Price"

@@ -77,47 +77,51 @@ const initialPageVariants = {
 
 const slideVariants = {
   initial: (direction) => ({
-    clipPath:
-      direction === 1
-        ? "inset(0 0 0 100% round 30px)"
-        : "inset(0 100% 0 0 round 30px)"
+    x: direction === 1 ? '100%' : '-100%',
+    opacity: 0,
+    clipPath: 'inset(0 0 0 0 round 30px)',
   }),
 
   animate: {
-    clipPath: "inset(0 0 0 0 round 30px)",
+    x: 0,
+    opacity: 1,
+    clipPath: 'inset(0 0 0 0 round 30px)',
     transition: {
-      duration: 0.75,
-      ease: [0.65, 0, 0.35, 1]
-    }
+      x: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      opacity: { duration: 0.4, ease: 'easeOut' },
+    },
   },
 
   exit: (direction) => ({
-    clipPath:
-      direction === 1
-        ? "inset(0 100% 0 0 round 30px)"
-        : "inset(0 0 0 100% round 30px)",
+    x: direction === 1 ? '-100%' : '100%',
+    opacity: 0,
+    clipPath: 'inset(0 0 0 0 round 30px)',
     transition: {
-      duration: 0.75,
-      ease: [0.65, 0, 0.35, 1]
-    }
-  })
+      x: { duration: 0.4, ease: [0.65, 0, 0.35, 1] },
+      opacity: { duration: 0.3, ease: 'easeIn' },
+    },
+  }),
 };
-
 const successVariants = {
   initial: {
-    clipPath: "inset(0 0 100% 0 round 30px)",
-    opacity: 0.5
+    clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
+    opacity: 0,
+    scale: 0.95,
+    y: -30,
   },
 
   animate: {
-    clipPath: "inset(0 0 0 0 round 30px)",
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
     opacity: 1,
+    scale: 1,
+    y: 0,
     transition: {
-        delay: 0.8,
-      duration: 1.5,
-      ease: [0.25, 0.1, 0.25, 1]
-    }
-  }
+      clipPath: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      opacity: { duration: 0.6, ease: 'easeOut' },
+      scale: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      y: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  },
 };
 
 const BookingSystem = () => {
@@ -176,21 +180,21 @@ const validateStep2 = () => {
 };
 
     const transitionToStep = (newStep) => {
-        if (newStep === step) return;
-        
-        setIsTransitioning(true);
-        
-        setTimeout(() => {
-            setStep(newStep);
-            updateStepInURL(newStep, router, true);
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            setTimeout(() => {
-                setIsTransitioning(false);
-            }, 100);
-        }, 150);
-    };
+  if (newStep === step) return;
+
+  setIsTransitioning(true);
+  
+  setTimeout(() => {
+    setStep(newStep);
+    updateStepInURL(newStep, router, true);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 100);
+  }, 150);
+};
 
     const handleStepChange = (newStep) => {
     if (newStep === step) return;
@@ -239,18 +243,18 @@ const validateStep2 = () => {
         alert(message);
     };
 
-   const handleConfirm = () => {
-    if (validateStep2()) {
-        setIsConfirming(true);
-        
-        setTimeout(() => {
-            setIsConfirming(false);
-            setIsConfirmed(true);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 2000);
-    } else {
-        showErrorToast('Please complete all required fields before confirming');
-    }
+  const handleConfirm = () => {
+  if (validateStep2()) {
+    setIsConfirming(true);
+    
+    setTimeout(() => {
+      setIsConfirming(false);
+      setIsConfirmed(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 2000);
+  } else {
+    showErrorToast('Please complete all required fields before confirming');
+  }
 };
 
     useEffect(() => {
@@ -308,17 +312,14 @@ const validateStep2 = () => {
     }, [formData]);
 
     if (isConfirmed) {
-        const interestedModules = formData.interestedModules || [];
-        
-        return (
-            
-            <motion.div className={`section-padding main-wrapper`}
-                            variants={successVariants}
-    initial="initial"
-    animate="animate"
+  return (
+    <motion.div 
+      className="section-padding main-wrapper"
+      variants={successVariants}
+      initial="initial"
+      animate="animate"
     >
-        
-                <div className="final-success-card">
+      <div className="final-success-card">
 
                     <div className="success-header">
                         <div className="check-circle">
@@ -366,29 +367,39 @@ const validateStep2 = () => {
                         </div>
                     </div>
 
-                    <div className="success-info-section">
-                        <h3 className="success-info-title">Company Information</h3>
-                        <div className="success-info-grid">
-                            <div className="success-info-item">
-                                <span>Company Name</span>
-                                <p>{formData.companyName}</p>
-                            </div>
-                            <div className="success-info-item">
-                                <span>Designation</span>
-                                <p>{formData.jobTitle}</p>
-                            </div>
-                            <div className="success-info-item">
-                                <span>Company Size</span>
-                                <p>{formData.companySize}</p>
-                            </div>
-                            <div className="success-info-item">
-                                <span>Industry</span>
-                                <p>{formData.industry}</p>
-                            </div>
-                        </div>
-                    </div>
+                   {(formData.companyName || formData.jobTitle || formData.companySize || formData.industry) && (
+          <div className="success-info-section">
+            <h3 className="success-info-title">Company Information</h3>
+            <div className="success-info-grid">
+              {formData.companyName && (
+                <div className="success-info-item">
+                  <span>Company Name</span>
+                  <p>{formData.companyName}</p>
+                </div>
+              )}
+              {formData.jobTitle && (
+                <div className="success-info-item">
+                  <span>Designation</span>
+                  <p>{formData.jobTitle}</p>
+                </div>
+              )}
+              {formData.companySize && (
+                <div className="success-info-item">
+                  <span>Company Size</span>
+                  <p>{formData.companySize}</p>
+                </div>
+              )}
+              {formData.industry && (
+                <div className="success-info-item">
+                  <span>Industry</span>
+                  <p>{formData.industry}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
-                    {formData.currentHRSoftware && (
+                    {/* {formData.currentHRSoftware && (
                         <div className="success-info-section">
                             <h3 className="success-info-title">Product Information</h3>
                             <div className="success-info-grid">
@@ -404,7 +415,7 @@ const validateStep2 = () => {
                                 )}
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                     {(formData.demoGoal || formData.primaryGoal) && (
                         <div className="success-info-section">
@@ -502,17 +513,16 @@ const validateStep2 = () => {
                 })}
             </motion.div>
 
-            <AnimatePresence mode="wait">
-            <motion.div 
-             key={step}
+           <AnimatePresence mode="wait" initial={false}>
+  <motion.div 
+    key={step}
     custom={direction}
-    variants={hasLoaded ? slideVariants : initialPageVariants}
+    variants={slideVariants}
     initial="initial"
     animate="animate"
     exit="exit"
-
-                className={`${step === 1 ? 'step-one-wrapper' : 'step-container'} ${isTransitioning ? 'step-transitioning' : ''}`}
-            >
+    className={`${step === 1 ? 'step-one-wrapper' : 'step-container'} ${isTransitioning ? 'step-transitioning' : ''}`}
+  >
                 {step === 1 && (
                     <DateStep
                         currentMonth={currentMonth}

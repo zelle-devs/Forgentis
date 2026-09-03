@@ -8,6 +8,10 @@
     align-items: center;
     box-sizing: border-box;
     min-height: auto;
+    will-change: transform, opacity, clip-path;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-origin: center top;
 }
 
 /* ==================== STEPPER ==================== */
@@ -163,11 +167,15 @@
     margin: 0 auto;
     box-sizing: border-box;
     min-height: auto !important;
+     will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .step-transitioning {
     opacity: 0.5;
     transition: opacity 0.15s ease;
+    pointer-events: none;
 }
 
 /* ==================== NAVIGATION BUTTONS ==================== */
@@ -245,7 +253,8 @@
         0 0 30px rgba(2, 112, 234, 0.1);
     border: 1px solid var(--color-dark-border);
     text-align: center;
-    animation: slideInUp 0.6s ease-out;
+    /* animation: slideInUp 0.6s ease-out; */
+  animation: successCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
     width: 95% !important;
     margin: 0 auto;
     box-sizing: border-box;
@@ -301,7 +310,7 @@
     }
 }
 
-@keyframes slideInUp {
+/* @keyframes slideInUp {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -310,6 +319,17 @@
         opacity: 1;
         transform: translateY(0);
     }
+} */
+
+@keyframes successCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .success-title {

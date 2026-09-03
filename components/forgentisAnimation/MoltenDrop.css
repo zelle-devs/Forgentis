@@ -1,0 +1,220 @@
+/* ============ MOLTEN DROP OVERLAY ============ */
+.molten-drop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Drop Container */
+.molten-drop-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 100vh;
+  z-index: 10;
+}
+
+/* Main Molten Drop - Blue Neon Fluid */
+.molten-drop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 20px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-blue-light),
+    var(--color-blue-main),
+    var(--color-blue-dark)
+  );
+  box-shadow:
+    0 0 15px var(--color-blue-main),
+    0 0 30px var(--color-blue-main),
+    0 0 50px var(--color-blue-glow),
+    0 0 80px var(--color-blue-glow),
+    0 0 120px var(--color-blue-glow);
+  filter: blur(0.3px);
+  will-change: top, transform, opacity;
+}
+
+/* Trail - Drop ke peeche */
+.molten-trail {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-blue-light) 20%,
+    var(--color-blue-main) 50%,
+    var(--color-blue-dark) 80%,
+    transparent
+  );
+  box-shadow:
+    0 0 10px var(--color-blue-main),
+    0 0 20px var(--color-blue-glow),
+    0 0 40px var(--color-blue-glow);
+  filter: blur(0.5px);
+  will-change: height, opacity;
+}
+
+/* Blue Neon Glow */
+.molten-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--color-blue-main) 0%,
+    var(--color-blue-glow) 40%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 30px var(--color-blue-main),
+    0 0 60px var(--color-blue-glow),
+    0 0 100px var(--color-blue-glow),
+    0 0 150px var(--color-blue-glow);
+  filter: blur(10px);
+  z-index: -1;
+  will-change: transform, opacity;
+}
+
+/* Fluid Ripples */
+.molten-ripple {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-blue-main);
+  box-shadow:
+    0 0 10px var(--color-blue-glow),
+    0 0 20px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Splash Droplets - Scattered */
+.molten-droplet {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-blue-light),
+    var(--color-blue-main)
+  );
+  box-shadow:
+    0 0 10px var(--color-blue-main),
+    0 0 20px var(--color-blue-glow),
+    0 0 40px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Splash Ring */
+.molten-splash-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-blue-main);
+  box-shadow:
+    0 0 20px var(--color-blue-main),
+    0 0 40px var(--color-blue-glow),
+    0 0 80px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Splash Glow */
+.molten-splash-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--color-blue-main) 0%,
+    var(--color-blue-glow) 40%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 50px var(--color-blue-main),
+    0 0 100px var(--color-blue-glow),
+    0 0 150px var(--color-blue-glow);
+  filter: blur(12px);
+  will-change: transform, opacity;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .molten-drop {
+    width: 8px;
+    height: 12px;
+  }
+  
+  .molten-glow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .molten-splash-ring {
+    width: 70px;
+    height: 30px;
+  }
+  
+  .molten-splash-glow {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .molten-drop {
+    width: 6px;
+    height: 10px;
+  }
+  
+  .molten-glow {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .molten-ripple {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .molten-splash-ring {
+    width: 50px;
+    height: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .molten-drop,
+  .molten-trail,
+  .molten-glow,
+  .molten-ripple,
+  .molten-droplet,
+  .molten-splash-ring,
+  .molten-splash-glow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

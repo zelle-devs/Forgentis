@@ -23,14 +23,31 @@ export function useScrollNavigation() {
     main.scrollTop = 0;
     isScrolling.current = false;
 
+    const getNavOffset = () => {
+  const val = getComputedStyle(document.documentElement)
+    .getPropertyValue('--navbar-height');
+  return parseInt(val, 10) || 0;
+};
+
     const getVisibleSections = () => {
-      return Array.from(main.querySelectorAll('.scroll-section'));
+      // Footer ko exclude karo
+      return Array.from(main.querySelectorAll('.scroll-section:not(.footer-section)'));
+    };
+
+    const getFooterSection = () => {
+      return main.querySelector('.footer-section');
     };
 
     const getCurrentSectionIndex = () => {
       const sections = getVisibleSections();
+      const footer = getFooterSection();
       const scrollTop = main.scrollTop;
       const viewportHeight = main.clientHeight;
+      
+      // Check if in footer
+      if (footer && scrollTop >= footer.offsetTop - viewportHeight / 2) {
+        return sections.length - 1; // Return last page section
+      }
       
       for (let i = 0; i < sections.length; i++) {
         const sectionTop = sections[i].offsetTop;
@@ -41,13 +58,13 @@ export function useScrollNavigation() {
           return i;
         }
       }
-      return 0;
+      return sections.length - 1;
     };
 
     const getCurrentSection = () => {
       const sections = getVisibleSections();
       const currentIndex = getCurrentSectionIndex();
-      return sections[currentIndex] || sections[0];
+      return sections[currentIndex] || sections[sections.length - 1];
     };
 
     const isSectionLarge = (section) => {
@@ -119,6 +136,7 @@ export function useScrollNavigation() {
       lastScrollTime.current = now;
       
       const sections = getVisibleSections();
+      const footer = getFooterSection();
       if (sections.length === 0) return;
 
       const currentIndex = getCurrentSectionIndex();
@@ -139,34 +157,41 @@ export function useScrollNavigation() {
             easingType = 'smooth';
           } else {
             const nextIndex = currentIndex + 1;
-            if (nextIndex < sections.length) {
-              targetPosition = sections[nextIndex].offsetTop;
-              easingType = 'premium';
-            }
+  if (nextIndex < sections.length) {
+    targetPosition = Math.max(0, sections[nextIndex].offsetTop - getNavOffset()); // FIX
+    easingType = 'premium';
+  } else if (footer) {
+    targetPosition = footer.offsetTop;
+    easingType = 'premium';
+  }
           }
         } else {
           const nextIndex = currentIndex + 1;
-          if (nextIndex < sections.length) {
-            targetPosition = sections[nextIndex].offsetTop;
-            easingType = 'premium';
-          }
+if (nextIndex < sections.length) {
+  targetPosition = Math.max(0, sections[nextIndex].offsetTop - getNavOffset()); // FIX
+  easingType = 'premium';
+} else if (footer) {
+  targetPosition = footer.offsetTop;
+  easingType = 'premium';
+}
         }
       } else if (direction === 'up') {
         const sectionTop = currentSection ? currentSection.offsetTop : 0;
         
-        if (currentSection && isSectionLarge(currentSection) && currentScroll > sectionTop + 20) {
-          targetPosition = currentScroll - viewportHeight * 0.85;
-          easingType = 'smooth';
-          
-          if (targetPosition < sectionTop) {
-            targetPosition = sectionTop;
-          }
+       if (currentSection && isSectionLarge(currentSection) && currentScroll > sectionTop + 20) {
+  targetPosition = currentScroll - viewportHeight * 0.85;
+  easingType = 'smooth';
+
+  if (targetPosition < sectionTop - getNavOffset()) {   // FIX
+    targetPosition = Math.max(0, sectionTop - getNavOffset()); // FIX
+  }
+
         } else {
-          const prevIndex = currentIndex - 1;
-          if (prevIndex >= 0) {
-            targetPosition = sections[prevIndex].offsetTop;
-            easingType = 'premium';
-          }
+         const prevIndex = currentIndex - 1;
+if (prevIndex >= 0) {
+  targetPosition = Math.max(0, sections[prevIndex].offsetTop - getNavOffset()); // FIX
+  easingType = 'premium';
+}
         }
       }
 
@@ -186,9 +211,25 @@ export function useScrollNavigation() {
       }
     };
 
-    // FIXED: Enhanced keyboard navigation for ALL sections including large
+    // Enhanced keyboard navigation
     const handleKeyDown = (e) => {
       const currentSection = getCurrentSection();
+      const footer = getFooterSection();
+      const currentScroll = main.scrollTop;
+      const viewportHeight = main.clientHeight;
+      
+      // Check if in footer
+      if (footer && currentScroll >= footer.offsetTop - 20) {
+       if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+  e.preventDefault();
+  const sections = getVisibleSections();
+  if (sections.length > 0) {
+    const lastSection = sections[sections.length - 1];
+    smoothScrollTo(Math.max(0, lastSection.offsetTop - getNavOffset()), 600, 'premium'); // FIX
+  }
+}
+        return;
+      }
       
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
@@ -196,23 +237,20 @@ export function useScrollNavigation() {
         if (currentSection && isSectionLarge(currentSection)) {
           const sectionTop = currentSection.offsetTop;
           const sectionBottom = sectionTop + currentSection.scrollHeight;
-          const currentScroll = main.scrollTop;
-          const viewportHeight = main.clientHeight;
           
-          // If not at bottom of large section, scroll within it
           if (currentScroll + viewportHeight < sectionBottom - 20) {
             scrollToSection('down');
           } else {
-            // At bottom of large section - go to next section
             const sections = getVisibleSections();
             const currentIndex = getCurrentSectionIndex();
             const nextIndex = currentIndex + 1;
-            if (nextIndex < sections.length) {
-              smoothScrollTo(sections[nextIndex].offsetTop, 600, 'premium');
-            }
+if (nextIndex < sections.length) {
+  smoothScrollTo(Math.max(0, sections[nextIndex].offsetTop - getNavOffset()), 600, 'premium'); // FIX
+} else if (footer) {
+  smoothScrollTo(footer.offsetTop, 600, 'premium');
+}
           }
         } else {
-          // Normal section - go to next
           scrollToSection('down');
         }
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
@@ -220,22 +258,18 @@ export function useScrollNavigation() {
         
         if (currentSection && isSectionLarge(currentSection)) {
           const sectionTop = currentSection.offsetTop;
-          const currentScroll = main.scrollTop;
           
-          // If not at top of large section, scroll within it
           if (currentScroll > sectionTop + 20) {
             scrollToSection('up');
           } else {
-            // At top of large section - go to previous section
             const sections = getVisibleSections();
             const currentIndex = getCurrentSectionIndex();
-            const prevIndex = currentIndex - 1;
-            if (prevIndex >= 0) {
-              smoothScrollTo(sections[prevIndex].offsetTop, 600, 'premium');
-            }
+           const prevIndex = currentIndex - 1;
+if (prevIndex >= 0) {
+  smoothScrollTo(Math.max(0, sections[prevIndex].offsetTop - getNavOffset()), 600, 'premium'); // FIX
+}
           }
         } else {
-          // Normal section - go to previous
           scrollToSection('up');
         }
       } else if (e.key === 'Home') {
@@ -243,10 +277,8 @@ export function useScrollNavigation() {
         smoothScrollTo(0, 600, 'premium');
       } else if (e.key === 'End') {
         e.preventDefault();
-        const sections = getVisibleSections();
-        if (sections.length > 0) {
-          const lastSection = sections[sections.length - 1];
-          smoothScrollTo(lastSection.offsetTop, 600, 'premium');
+        if (footer) {
+          smoothScrollTo(footer.offsetTop, 600, 'premium');
         }
       }
     };
@@ -254,15 +286,32 @@ export function useScrollNavigation() {
     // Enhanced wheel with momentum
     let momentumVelocity = 0;
     let lastWheelTime = 0;
+    let wheelLock = false;          
+let wheelLockTimeout = null;        
     
     const enhancedWheel = (e) => {
       const currentSection = getCurrentSection();
+      const footer = getFooterSection();
+      const currentScroll = main.scrollTop;
+      const viewportHeight = main.clientHeight;
+      
+      // Check if in footer
+      if (footer && currentScroll >= footer.offsetTop - 20) {
+        const footerTop = footer.offsetTop;
+       if (e.deltaY < 0 && currentScroll <= footerTop + 5) {
+  e.preventDefault();
+  const sections = getVisibleSections();
+  if (sections.length > 0) {
+    const lastSection = sections[sections.length - 1];
+    smoothScrollTo(Math.max(0, lastSection.offsetTop - getNavOffset()), 600, 'premium'); // FIX
+  }
+}
+        return; // Footer mein native scroll allow karo
+      }
       
       if (currentSection && isSectionLarge(currentSection)) {
         const sectionTop = currentSection.offsetTop;
         const sectionBottom = sectionTop + currentSection.scrollHeight;
-        const currentScroll = main.scrollTop;
-        const viewportHeight = main.clientHeight;
         
         const atTop = currentScroll <= sectionTop + 5;
         const atBottom = currentScroll + viewportHeight >= sectionBottom - 5;
@@ -293,12 +342,16 @@ export function useScrollNavigation() {
       const delta = e.deltaY;
       if (Math.abs(delta) < 10) return;
       
-      scrollToSection(delta > 0 ? 'down' : 'up', momentumVelocity);
-      
-      setTimeout(() => {
-        momentumVelocity = 0;
-      }, 150);
-    };
+      if (wheelLock) return;
+
+      wheelLock = true;               // NEW
+  scrollToSection(delta > 0 ? 'down' : 'up');
+
+  clearTimeout(wheelLockTimeout); // NEW
+  wheelLockTimeout = setTimeout(() => { // NEW
+    wheelLock = false;
+  }, 1000); // tune karo: 700-1000ms range try karo apne touchpad pe
+};
 
     // Premium touch handlers
     const handleTouchStart = (e) => {
@@ -331,19 +384,23 @@ export function useScrollNavigation() {
       isTouching.current = false;
       
       const currentSection = getCurrentSection();
+      const footer = getFooterSection();
+      const currentScroll = main.scrollTop;
+      
+      if (footer && currentScroll >= footer.offsetTop - 20) {
+        return;
+      }
       
       if (currentSection && isSectionLarge(currentSection)) {
         const sectionTop = currentSection.offsetTop;
         const sectionBottom = sectionTop + currentSection.scrollHeight;
-        const currentScroll = main.scrollTop;
         const viewportHeight = main.clientHeight;
         
         const atTop = currentScroll <= sectionTop + 20;
         const atBottom = currentScroll + viewportHeight >= sectionBottom - 20;
         
-        // Allow swipe at boundaries to change sections
         if (!atTop && !atBottom) {
-          return; // Middle of large section - native scroll
+          return;
         }
       }
       
@@ -379,7 +436,7 @@ export function useScrollNavigation() {
         cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, [pathname]); // Re-run on route change
+  }, [pathname]);
 }
 
 // 'use client';

@@ -49,7 +49,7 @@ export default function Projects() {
       </section>
 
       {/* Commercial Projects */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <TrustedPartner
           eyebrow="Commercial Projects"
           title="Commercial Projects"
@@ -76,7 +76,7 @@ export default function Projects() {
       </section>
 
       {/* Industrial Projects */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <TrustedPartner
           eyebrow="Industrial Projects"
           title="Industrial Projects"
@@ -94,7 +94,7 @@ export default function Projects() {
       </section>
 
       {/* Architectural Fabrication */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <TrustedPartner
           eyebrow="Architectural Fabrication"
           title="Architectural Fabrication"
@@ -114,7 +114,7 @@ export default function Projects() {
       </section>
 
       {/* Custom Fabrication */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <TrustedPartner
           eyebrow="Custom Fabrication"
           title="Custom Fabrication"
@@ -141,7 +141,7 @@ export default function Projects() {
       </section>
 
       {/* Project Showcase - Large Section */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="normal">
         <WhatWeFabricate
           eyebrow="Our Expertise"
           title="Project Showcase"
@@ -254,7 +254,7 @@ export default function Projects() {
       </section>
 
       {/* Final CTA */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Request a Quote"
           headline="Start Your Project"

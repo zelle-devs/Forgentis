@@ -54,7 +54,7 @@
     font-size: var(--font-size-2xl);
     line-height: 1.2;
     font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
 }
 
 .nav-btns {

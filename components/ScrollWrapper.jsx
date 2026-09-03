@@ -4,35 +4,35 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { useScrollNavigation } from '@/app/hooks/useScrollNavigation';
 import { usePathname } from 'next/navigation';
 import Footer2 from '@/components/Footer/Footer2';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const ScrollWrapper = ({ children }) => {
   const mainRef = useRef(null);
   const [sections, setSections] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const pathname = usePathname();
   
   useScrollNavigation();
 
-  // Detect section sizes and categorize them
+  // Detect section sizes - Footer ko EXCLUDE karo
   const analyzeSections = useCallback(() => {
     const main = document.getElementById('main-scroll-container');
     if (!main) return;
 
-    const sectionElements = main.querySelectorAll('.scroll-section');
+    // Footer ko exclude karo
+    const sectionElements = main.querySelectorAll('.scroll-section:not(.footer-section)');
     const viewportHeight = window.innerHeight;
     const sectionData = [];
 
     sectionElements.forEach((section, index) => {
       const sectionHeight = section.scrollHeight;
       const isHero = index === 0;
-      const isFooter = index === sectionElements.length - 1;
       
       let type = 'normal';
       
       if (isHero) {
         type = 'hero';
-      } else if (isFooter) {
-        type = 'footer';
       } else if (sectionHeight > viewportHeight * 1.2) {
         type = 'large';
         section.setAttribute('data-section-type', 'large');
@@ -52,30 +52,25 @@ const ScrollWrapper = ({ children }) => {
     });
 
     setSections(sectionData);
-    setActiveIndex(0); // Reset active index
-    console.log(`[${pathname}] Sections detected:`, sectionData.length);
+    setActiveIndex(0);
+    console.log(`[${pathname}] Page sections (excluding footer):`, sectionData.length);
   }, [pathname]);
 
   useEffect(() => {
-    // Reset on route change
     setSections([]);
     setActiveIndex(0);
     
-    // Scroll to top on route change
     const main = document.getElementById('main-scroll-container');
     if (main) {
       main.scrollTop = 0;
     }
     
-    // Initial analyze after content loads
     const initTimer = setTimeout(() => {
       analyzeSections();
     }, 300);
     
-    // Also run after window load
     window.addEventListener('load', analyzeSections);
     
-    // Re-analyze on resize
     const handleResize = () => {
       clearTimeout(window.resizeTimeout);
       window.resizeTimeout = setTimeout(analyzeSections, 250);
@@ -83,7 +78,6 @@ const ScrollWrapper = ({ children }) => {
     
     window.addEventListener('resize', handleResize);
     
-    // Observe section size changes with MutationObserver
     const mainElement = document.getElementById('main-scroll-container');
     let mutationObserver = null;
     
@@ -99,14 +93,13 @@ const ScrollWrapper = ({ children }) => {
       });
     }
     
-    // ResizeObserver for section size changes
     const resizeObserver = new ResizeObserver(() => {
       clearTimeout(window.resizeTimeout);
       window.resizeTimeout = setTimeout(analyzeSections, 250);
     });
     
     if (mainElement) {
-      mainElement.querySelectorAll('.scroll-section').forEach(section => {
+      mainElement.querySelectorAll('.scroll-section:not(.footer-section)').forEach(section => {
         resizeObserver.observe(section);
       });
     }
@@ -120,7 +113,7 @@ const ScrollWrapper = ({ children }) => {
     };
   }, [analyzeSections, pathname]);
 
-  // Track active section - Fixed calculation
+  // Track active section
   useEffect(() => {
     const main = document.getElementById('main-scroll-container');
     if (!main || sections.length === 0) return;
@@ -130,13 +123,12 @@ const ScrollWrapper = ({ children }) => {
       const viewportHeight = main.clientHeight;
       const scrollCenter = scrollTop + viewportHeight / 2;
       
-      let currentActive = 0;
+      let currentActive = sections.length - 1; // Default to last section
       
       sections.forEach((section, index) => {
         const sectionTop = section.element.offsetTop;
         const sectionBottom = sectionTop + section.element.offsetHeight;
         
-        // Check if scroll center is within this section
         if (scrollCenter >= sectionTop && scrollCenter < sectionBottom) {
           currentActive = index;
         }
@@ -145,7 +137,6 @@ const ScrollWrapper = ({ children }) => {
       setActiveIndex(currentActive);
     };
 
-    // Initial call
     handleScroll();
     
     main.addEventListener('scroll', handleScroll, { passive: true });
@@ -156,41 +147,59 @@ const ScrollWrapper = ({ children }) => {
   }, [sections]);
 
   const handleDotClick = (index) => {
-    const main = document.getElementById('main-scroll-container');
-    if (!main || !sections[index]) return;
-    
-    const targetSection = sections[index].element;
-    const targetPosition = targetSection.offsetTop;
-    
-    main.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-  };
+  const targetSection = sections[index]?.element;
+  if (!targetSection) return;
+
+  targetSection.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
 
   return (
     <main id="main-scroll-container" ref={mainRef}>
       {children}
       
-      {/* Footer Section - Always at the end */}
+      {/* Footer Section - Separate */}
       <section className="scroll-section footer-section" data-section-type="footer">
         <Footer2/>
       </section>
       
-      {/* Scroll Progress Indicator - Only show if more than 1 section */}
       {sections.length > 1 && (
-        <div className="scroll-progress-indicator">
-          {sections.map((section, index) => (
-            <button
-              key={`${pathname}-${index}`}
-              className={`scroll-dot ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => handleDotClick(index)}
-              aria-label={`Go to section ${index + 1}`}
-              title={`Section ${index + 1}`}
-            />
-          ))}
+  <div className="scroll-progress-indicator">
+    {sections.map((section, index) => {
+      const label = section.element.dataset.sectionLabel || `Section ${index + 1}`;
+      return (
+        <div
+          key={`${pathname}-${index}`}
+          className="scroll-dot-wrapper"
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          <AnimatePresence>
+            {hoveredIndex === index && (
+              <motion.span
+                className="scroll-dot-tooltip"
+                initial={{ opacity: 0, x: 10, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 10, scale: 0.9 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {label}
+              </motion.span>
+            )}
+          </AnimatePresence>
+
+          <button
+            className={`scroll-dot ${activeIndex === index ? 'active' : ''}`}
+            onClick={() => handleDotClick(index)}
+            aria-label={`Go to ${label}`}
+          />
         </div>
-      )}
+      );
+    })}
+  </div>
+)}
     </main>
   );
 };

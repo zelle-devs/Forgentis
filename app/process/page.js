@@ -138,7 +138,7 @@ export default function Process() {
       </section>
 
       {/* Project Support CTA */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Project Support"
           headline="Project Support"

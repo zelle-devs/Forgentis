@@ -28,7 +28,7 @@ export default function Quality() {
       </section>
 
       {/* How We Manage Quality */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Quality Management"
           title="How We Manage Quality"
@@ -37,10 +37,10 @@ export default function Quality() {
           showMetrics={false}
           showTrustStrip={false}
         />
-      {/* </section> */}
+      </section>
 
       {/* Material Inspection */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Inspection"
           title="Material Inspection"
@@ -55,7 +55,7 @@ export default function Quality() {
       </section>
 
       {/* Precision and Tolerance */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Precision and Tolerance"
           title="Precision and Tolerance"
@@ -63,10 +63,10 @@ export default function Quality() {
           showMetrics={false}
           showTrustStrip={false}
         />
-      {/* </section> */}
+      </section>
 
       {/* In-Process Inspection */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Process"
           title="In-Process Inspection"
@@ -78,7 +78,7 @@ export default function Quality() {
       </section>
 
       {/* Final Inspection */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Final Inspection"
           title="Final Inspection"
@@ -86,10 +86,10 @@ export default function Quality() {
           showMetrics={false}
           showTrustStrip={false}
         />
-      {/* </section> */}
+      </section>
 
       {/* Testing and Verification - Large Section */}
-      {/* <section className="scroll-section" data-section-type="large"> */}
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <HowWeWork2
           eyebrow="Testing and Verification"
           title="Testing and Verification"
@@ -107,7 +107,7 @@ export default function Quality() {
       </section>
 
       {/* Safety Standards */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Safety"
           title="Safety Standards"
@@ -119,10 +119,10 @@ export default function Quality() {
           showMetrics={false}
           showTrustStrip={false}
         />
-      {/* </section> */}
+      </section>
 
       {/* Documentation and Traceability */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Documentation"
           title="Documentation and Traceability"
@@ -133,7 +133,7 @@ export default function Quality() {
       </section>
 
       {/* Quality Commitment CTA */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Commitment"
           headline="Our Quality Commitment"

@@ -1,0 +1,265 @@
+/* ============ ELECTRIC SHOCK OVERLAY ============ */
+.electric-shock-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999998;
+    pointer-events: none;
+    overflow: hidden;
+    perspective: 900px;
+    transform-style: preserve-3d;
+}
+
+/* Full-screen cinematic flash on impact */
+.shock-screen-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 88%,
+            #ffffff 0%,
+            var(--color-blue-light) 25%,
+            var(--color-blue-glow) 55%,
+            transparent 78%);
+    mix-blend-mode: screen;
+    z-index: 5;
+    will-change: opacity;
+}
+
+/* Screen shake triggered via class toggle on impact */
+@keyframes shockShake {
+    0% { transform: translate3d(0, 0, 0); }
+    12% { transform: translate3d(-3px, 1px, 0) rotate(-0.15deg); }
+    24% { transform: translate3d(3px, -1px, 0) rotate(0.15deg); }
+    36% { transform: translate3d(-2px, 1px, 0); }
+    48% { transform: translate3d(2px, -1px, 0); }
+    60% { transform: translate3d(-1px, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
+.shock-shake {
+    animation: shockShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Shock Container */
+.shock-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 100%;
+    z-index: 10;
+    transform-style: preserve-3d;
+}
+
+/* Ambient bloom sitting behind the bolt for a sense of depth */
+.shock-depth-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, -40px);
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            var(--color-blue-main) 0%,
+            var(--color-blue-glow) 35%,
+            transparent 70%);
+    filter: blur(40px);
+    z-index: -2;
+    will-change: transform, opacity;
+}
+
+/* Shock SVG Line */
+.shock-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Flash Sparks */
+.shock-flash {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        0 0 8px var(--color-blue-main),
+        0 0 16px var(--color-blue-main),
+        0 0 30px var(--color-blue-glow),
+        0 0 50px var(--color-blue-glow);
+    will-change: transform, opacity;
+}
+
+/* Impact Point */
+.shock-impact-point {
+    position: absolute;
+    left: 42%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff 0%, var(--color-blue-light) 45%, var(--color-blue-main) 100%);
+    box-shadow:
+        0 0 20px var(--color-blue-main),
+        0 0 40px var(--color-blue-main),
+        0 0 60px var(--color-blue-glow),
+        0 0 100px var(--color-blue-glow),
+        0 0 150px var(--color-blue-glow);
+    will-change: transform, opacity;
+}
+
+/* Expanding shockwave rings on impact — adds 3D radial punch */
+.shock-ring {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    border: 1.5px solid var(--color-blue-light);
+    box-shadow:
+        0 0 20px var(--color-blue-main),
+        0 0 40px var(--color-blue-glow),
+        inset 0 0 20px var(--color-blue-glow);
+    will-change: transform, opacity;
+}
+
+.shock-ring--delayed {
+    border-color: var(--color-blue-main);
+    opacity: 0.6;
+}
+
+/* Bouncing Sparks */
+.shock-ball {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%,
+            #ffffff 0%,
+            var(--color-blue-light) 30%,
+            var(--color-blue-main) 62%,
+            var(--color-blue-dark) 100%);
+    box-shadow:
+        0 0 15px var(--color-blue-main),
+        0 0 30px var(--color-blue-glow),
+        0 0 50px var(--color-blue-glow),
+        0 0 80px var(--color-blue-glow);
+    will-change: transform, opacity, filter;
+}
+
+.shock-ball--white {
+    background: radial-gradient(circle at 30% 28%,
+            #ffffff 0%,
+            #eaf6ff 35%,
+            var(--color-blue-light) 70%,
+            var(--color-blue-main) 100%);
+    box-shadow:
+        0 0 18px #ffffff,
+        0 0 34px var(--color-blue-light),
+        0 0 60px var(--color-blue-glow);
+}
+
+/* Bottom Flash */
+.shock-bottom-flash {
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse,
+            #ffffff 0%,
+            var(--color-blue-main) 30%,
+            var(--color-blue-glow) 55%,
+            transparent 78%);
+    box-shadow:
+        0 0 60px var(--color-blue-main),
+        0 0 120px var(--color-blue-glow),
+        0 0 180px var(--color-blue-glow),
+        0 0 250px var(--color-blue-glow);
+    filter: blur(15px);
+    will-change: transform, opacity;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .shock-container,
+    .shock-svg {
+        width: 80px;
+    }
+
+    .shock-depth-glow {
+        width: 170px;
+        height: 170px;
+    }
+
+    .shock-impact-point {
+        width: 10px;
+        height: 10px;
+    }
+
+    .shock-bottom-flash {
+        width: 150px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shock-container,
+    .shock-svg {
+        width: 55px;
+    }
+
+    .shock-depth-glow {
+        width: 120px;
+        height: 120px;
+        filter: blur(28px);
+    }
+
+    .shock-flash {
+        width: 3px;
+        height: 3px;
+    }
+
+    .shock-impact-point {
+        width: 8px;
+        height: 8px;
+    }
+
+    .shock-bottom-flash {
+        width: 100px;
+        height: 70px;
+    }
+
+    .shock-ball {
+        box-shadow:
+            0 0 8px var(--color-blue-main),
+            0 0 15px var(--color-blue-glow),
+            0 0 25px var(--color-blue-glow);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .shock-svg,
+    .shock-depth-glow,
+    .shock-flash,
+    .shock-impact-point,
+    .shock-ring,
+    .shock-ball,
+    .shock-bottom-flash,
+    .shock-screen-flash {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .shock-shake {
+        animation: none !important;
+    }
+}

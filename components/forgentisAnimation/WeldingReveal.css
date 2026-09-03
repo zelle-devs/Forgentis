@@ -1,0 +1,247 @@
+/* ============ WELDING REVEAL OVERLAY ============ */
+.welding-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Welding Line Container */
+.welding-line-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Main Welding Arc - Orange + Blue mix */
+.welding-arc {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #FF6B35 5%,
+    #FF8C42 15%,
+    #FFA94D 25%,
+    #fff 40%,
+    var(--color-blue-light) 50%,
+    var(--color-blue-main) 60%,
+    #FF8C42 75%,
+    #FF6B35 85%,
+    transparent
+  );
+  box-shadow:
+    0 0 10px #FF6B35,
+    0 0 20px #FF8C42,
+    0 0 30px var(--color-blue-main),
+    0 0 50px var(--color-blue-glow),
+    0 0 80px var(--color-blue-glow);
+  filter: blur(0.3px);
+  will-change: height, top, opacity;
+}
+
+/* Welding Core Glow - Orange */
+.welding-glow-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #FF6B35 0%,
+    #FF8C42 30%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 30px #FF6B35,
+    0 0 60px #FF8C42,
+    0 0 100px rgba(255, 107, 53, 0.5);
+  filter: blur(8px);
+  z-index: -1;
+  will-change: transform, opacity;
+}
+
+/* Blue Electric Outer Glow */
+.welding-glow-blue {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--color-blue-main) 0%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 40px var(--color-blue-main),
+    0 0 80px var(--color-blue-glow),
+    0 0 120px var(--color-blue-glow);
+  filter: blur(12px);
+  z-index: -2;
+  will-change: transform, opacity;
+}
+
+/* Welding Flicker Sparks */
+.welding-flicker {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.flicker-orange {
+  background: #FF6B35;
+  box-shadow:
+    0 0 6px #FF6B35,
+    0 0 12px #FF8C42,
+    0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+.flicker-blue {
+  background: var(--color-blue-main);
+  box-shadow:
+    0 0 6px var(--color-blue-main),
+    0 0 12px var(--color-blue-glow),
+    0 0 20px var(--color-blue-glow);
+}
+
+/* Welding Tip */
+.welding-tip {
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 20px #FF6B35,
+    0 0 40px #FF8C42,
+    0 0 60px var(--color-blue-main),
+    0 0 100px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Welding Spark Particles */
+.welding-spark-particle {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.spark-orange {
+  background: #FF6B35;
+  box-shadow:
+    0 0 10px #FF6B35,
+    0 0 20px #FF8C42,
+    0 0 40px rgba(255, 107, 53, 0.5);
+}
+
+.spark-blue {
+  background: var(--color-blue-main);
+  box-shadow:
+    0 0 10px var(--color-blue-main),
+    0 0 20px var(--color-blue-glow),
+    0 0 40px var(--color-blue-glow);
+}
+
+/* Welding Impact Flash */
+.welding-impact-flash {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff 0%,
+    #FF8C42 20%,
+    var(--color-blue-main) 40%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 50px #FF6B35,
+    0 0 100px #FF8C42,
+    0 0 150px var(--color-blue-main),
+    0 0 200px var(--color-blue-glow);
+  filter: blur(10px);
+  will-change: transform, opacity;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .welding-arc {
+    width: 1.5px;
+  }
+  
+  .welding-glow-core {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .welding-glow-blue {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .welding-impact-flash {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welding-arc {
+    width: 1px;
+  }
+  
+  .welding-glow-core {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .welding-glow-blue {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .welding-flicker {
+    width: 2px;
+    height: 2px;
+  }
+  
+  .welding-tip {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welding-arc,
+  .welding-glow-core,
+  .welding-glow-blue,
+  .welding-flicker,
+  .welding-spark-particle,
+  .welding-impact-flash,
+  .welding-tip {
+    animation: none !important;
+    transition: none !important;
+  }
+}

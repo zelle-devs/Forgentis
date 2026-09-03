@@ -63,7 +63,7 @@ export default function About() {
       </section>
 
       {/* Our Expertise + Manufacturing Philosophy - Combined Large Section */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short">
         <HowWeWork
           eyebrow="Our Expertise"
           title="What We Are Good At"
@@ -73,6 +73,8 @@ export default function About() {
           showButton={false}
           showTimeline={true}
         />
+        </section>
+        <section className="scroll-section" data-section-type="short">
         <TrustedPartner
           eyebrow="Our Manufacturing Philosophy"
           title="Get It Right Before We Cut"
@@ -147,7 +149,7 @@ export default function About() {
       </section>
 
       {/* Built for B2B Section - Change to normal */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short">
         <TrustedPartner
           eyebrow="Built for B2B"
           title="Set Up for Business Clients"
@@ -156,10 +158,10 @@ export default function About() {
           showTrustStrip={false}
           backgroundImage="/footer-bg.png"
         />
-      {/* </section> */}
+      </section>
 
       {/* Why Choose Forgentis Section */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="normal">
         <WhyForgentis
           eyebrow="Why Businesses Choose Forgentis"
           headline="Why Businesses Choose Forgentis"
@@ -176,7 +178,7 @@ export default function About() {
       </section>
 
       {/* CTA Section - Change to normal */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Partner With Us"
           headline="Let's Work Together"

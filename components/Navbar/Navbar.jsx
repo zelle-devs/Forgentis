@@ -4,9 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation'
 import './Navbar.css'
 
 const Navbar = () => {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const scrollContainerRef = useRef(null)
@@ -93,9 +95,12 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="navbar-menu">
-            {navLinks.map((link, index) => (
-              <motion.div
-                key={link.href}
+           {navLinks.map((link, index) => {
+  const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+  
+  return (
+    <motion.div 
+     key={link.href}
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ 
@@ -103,15 +108,16 @@ const Navbar = () => {
                   delay: 0.9 + index * 0.07,
                   ease: [0.22, 1, 0.36, 1] 
                 }}
-              >
-                <Link 
-                  href={link.href}
-                  className="navbar-link"
                 >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+      <Link 
+        href={link.href}
+        className={`navbar-link ${isActive ? 'navbar-link-active' : ''}`}
+      >
+        {link.label}
+      </Link>
+    </motion.div>
+  )
+})}
           </div>
 
           {/* Right Actions */}
@@ -161,16 +167,20 @@ const Navbar = () => {
         </div>
 
         <div className="sidebar-links">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href}
-              className="sidebar-link"
-              onClick={closeSidebar}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+  const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+  
+  return (
+    <Link 
+      key={link.href} 
+      href={link.href}
+      className={`sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
+      onClick={closeSidebar}
+    >
+      {link.label}
+    </Link>
+  )
+})}
           <Link 
             href="/consultation" 
             className="btn btn-blue sidebar-cta"

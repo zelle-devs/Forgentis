@@ -66,7 +66,7 @@ export default function Resources() {
       </section>
 
       {/* Material Guides */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <WhyForgentis
           eyebrow="Material Guides"
           headline="Material Guides"
@@ -140,7 +140,7 @@ export default function Resources() {
       </section>
 
       {/* Download CTA */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Get the Profile"
           headline="Download Profile"

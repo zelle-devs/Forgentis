@@ -201,7 +201,7 @@ export default function Industries() {
       </section>
 
       {/* Final CTA */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large" style={{scrollSnapAlign: "start" }}>
         <CTASection
           eyebrow="Discuss Your Project"
           headline="Tell Us About Your Project"

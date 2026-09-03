@@ -29,7 +29,7 @@ export default function Facilities() {
       </section>
 
       {/* Manufacturing Infrastructure */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short" style={{scrollSnapAlign: "start" }}>
         <TrustedPartner
           eyebrow="Our Facility"
           title="Manufacturing Infrastructure"
@@ -38,10 +38,10 @@ export default function Facilities() {
           showMetrics={false}
           showTrustStrip={false}
         />
-      {/* </section> */}
+      </section>
 
       {/* Machinery and Equipment - Large Section */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="large">
         <WhyForgentis
           eyebrow="Forgentis"
           headline="Machinery and Equipment"
@@ -79,7 +79,7 @@ export default function Facilities() {
       </section>
 
       {/* The Fabrication Floor - Large Section */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short">
         <HowWeWork2
           eyebrow="Inside the Floor"
           title="The Fabrication Floor"
@@ -95,10 +95,10 @@ export default function Facilities() {
             { id: 6, icon: Package, title: 'Dispatch', desc: 'Packed and delivered on schedule' },
           ]}
         />
-      {/* </section> */}
+      </section>
 
       {/* Precision and Production */}
-      {/* <section className="scroll-section" data-section-type="short"> */}
+      <section className="scroll-section" data-section-type="normal">
         <TrustedPartner
           eyebrow="Precision and Production"
           title="Precision and Production"
@@ -114,7 +114,7 @@ export default function Facilities() {
       </section>
 
       {/* Material Handling */}
-      <section className="scroll-section" data-section-type="large">
+      <section className="scroll-section" data-section-type="short">
         <TrustedPartner
           eyebrow="Material Handling"
           title="Material Handling"
@@ -126,10 +126,10 @@ export default function Facilities() {
           titleColor="var(--color-black-light)"
           bodyColor="var(--color-black-light)"
         />
-      {/* </section> */}
+      </section>
 
       {/* Quality Control */}
-      {/* <section className="scroll-section" data-section-type="normal"> */}
+      <section className="scroll-section" data-section-type="normal">
         <WhoWeAre
           eyebrow="Quality Control"
           title="Quality Control"
@@ -145,7 +145,7 @@ export default function Facilities() {
       </section>
 
       {/* Safety and Compliance */}
-      <section className="scroll-section" data-section-type="normal">
+      <section className="scroll-section" data-section-type="large">
         <TrustedPartner
           eyebrow="Safety and Compliance"
           title="Safety and Compliance"

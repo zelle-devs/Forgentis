@@ -3,6 +3,11 @@ import Navbar from '@/components/Navbar/Navbar'
 import Footer2 from '@/components/Footer/Footer2'
 import ForgentisAnimation from '@/components/forgentisAnimation/mainAnimation'
 import ScrollWrapper from '@/components/ScrollWrapper'
+import ElectricReveal from '@/components/forgentisAnimation/ElectricReveal'
+import WeldingReveal from '@/components/forgentisAnimation/WeldingReveal'
+import MoltenDrop from '@/components/forgentisAnimation/MoltenDrop'
+import ElectricShock from '@/components/forgentisAnimation/ElectricShock'
+import ElectricShock2 from '@/components/forgentisAnimation/Electricshock2'
 
 export const metadata = {
   title: 'Forgentis Fabrication - Sharp Cuts | Perfect Form',
@@ -23,6 +28,11 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         <ForgentisAnimation/>
+        {/* <ElectricReveal/> */}
+        {/* <WeldingReveal/> */}
+        {/* <MoltenDrop/> */}
+        {/* <ElectricShock/> */}
+        <ElectricShock2/>
         <ScrollWrapper>
           {children}
         </ScrollWrapper>

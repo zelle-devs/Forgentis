@@ -1,0 +1,186 @@
+/* ============ ELECTRIC REVEAL OVERLAY ============ */
+.electric-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Main Electric Line */
+.electric-line-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  z-index: 10;
+}
+
+.electric-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-blue-light) 10%,
+    var(--color-blue-main) 30%,
+    #fff 50%,
+    var(--color-blue-main) 70%,
+    var(--color-blue-light) 90%,
+    transparent
+  );
+  box-shadow:
+    0 0 10px var(--color-blue-main),
+    0 0 20px var(--color-blue-main),
+    0 0 40px var(--color-blue-glow),
+    0 0 80px var(--color-blue-glow),
+    0 0 120px var(--color-blue-glow);
+  filter: blur(0.5px);
+  will-change: height, top, opacity;
+}
+
+/* Electric Glow Pulse */
+.electric-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(2, 112, 234, 0.9) 0%,
+    rgba(2, 112, 234, 0.4) 40%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 30px var(--color-blue-main),
+    0 0 60px var(--color-blue-main),
+    0 0 100px var(--color-blue-glow),
+    0 0 150px var(--color-blue-glow);
+  filter: blur(10px);
+  z-index: -1;
+  will-change: transform, opacity;
+}
+
+/* Electric Sparks */
+.electric-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 6px var(--color-blue-main),
+    0 0 12px var(--color-blue-main),
+    0 0 20px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Shatter Particles */
+.electric-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-blue-main);
+  box-shadow:
+    0 0 10px var(--color-blue-main),
+    0 0 20px var(--color-blue-glow),
+    0 0 40px var(--color-blue-glow);
+  will-change: transform, opacity;
+}
+
+/* Bottom Impact Flash */
+.electric-impact {
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(2, 112, 234, 0.9) 0%,
+    rgba(2, 112, 234, 0.5) 30%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 50px var(--color-blue-main),
+    0 0 100px var(--color-blue-glow),
+    0 0 150px var(--color-blue-glow),
+    0 0 200px var(--color-blue-glow);
+  filter: blur(15px);
+  will-change: transform, opacity;
+}
+
+/* Electric flicker animation */
+@keyframes electricFlicker {
+  0% { opacity: 1; }
+  5% { opacity: 0.6; }
+  10% { opacity: 1; }
+  15% { opacity: 0.8; }
+  20% { opacity: 1; }
+  35% { opacity: 0.5; }
+  40% { opacity: 1; }
+  55% { opacity: 0.9; }
+  60% { opacity: 1; }
+  75% { opacity: 0.7; }
+  80% { opacity: 1; }
+  95% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .electric-line {
+    width: 1.5px;
+  }
+  
+  .electric-glow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .electric-impact {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .electric-line {
+    width: 1px;
+  }
+  
+  .electric-glow {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .electric-spark {
+    width: 2px;
+    height: 2px;
+  }
+  
+  .electric-particle {
+    box-shadow:
+      0 0 5px var(--color-blue-main),
+      0 0 10px var(--color-blue-glow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-line,
+  .electric-glow,
+  .electric-spark,
+  .electric-particle,
+  .electric-impact {
+    animation: none !important;
+    transition: none !important;
+  }
+}
