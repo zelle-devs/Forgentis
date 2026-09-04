@@ -118,30 +118,54 @@ const ElectricShock2 = () => {
     };
   }, [pathname]);
 
+  // const generateBalls = () => {
+  //   const newBalls = [];
+  //   const ballCount = 126;
+
+  //   for (let i = 0; i < ballCount; i++) {
+  //     const depth = Math.random();
+  //     newBalls.push({
+  //       id: i,
+  //       x: 28 + Math.random() * 44,
+  //       y: 82 + Math.random() * 12,
+  //       size: 5 + depth * 16,
+  //       depth,
+  //       duration: 0.9 + Math.random() * 1.8,
+  //       delay: Math.random() * 0.25,
+  //       bounceHeight: 60 + depth * 220,
+  //       direction: Math.random() > 0.5 ? 1 : -1,
+  //       distance: 40 + depth * 220,
+  //       hue: Math.random() > 0.6 ? 'white' : 'blue',
+  //       rotate: (Math.random() - 0.5) * 720,
+  //     });
+  //   }
+  //   setBalls(newBalls);
+  // };
+
   const generateBalls = () => {
     const newBalls = [];
-    const ballCount = 126;
+    // Mobile devices par load kam karne ke liye balls count 12 kar diya hai, desktop par 40 rahega
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+    const ballCount = isMobile ? 26 : 96;
 
     for (let i = 0; i < ballCount; i++) {
       const depth = Math.random();
+      newBalls.process?.push // (skip, standard object syntax below)
       newBalls.push({
         id: i,
-        x: 28 + Math.random() * 44,
-        y: 82 + Math.random() * 12,
-        size: 5 + depth * 16,
-        depth,
-        duration: 0.9 + Math.random() * 1.8,
-        delay: Math.random() * 0.25,
-        bounceHeight: 60 + depth * 220,
+        x: 32 + Math.random() * 36,
+        y: 86 + Math.random() * 8,
+        size: 6 + depth * 12,
+        duration: 0.8 + Math.random() * 1.2,
+        delay: Math.random() * 0.15,
+        bounceHeight: 50 + depth * 150,
         direction: Math.random() > 0.5 ? 1 : -1,
-        distance: 40 + depth * 220,
+        distance: 30 + depth * 160,
         hue: Math.random() > 0.6 ? 'white' : 'blue',
-        rotate: (Math.random() - 0.5) * 720,
       });
     }
     setBalls(newBalls);
   };
-
   if (isComplete) return null;
 
   return (
@@ -359,7 +383,8 @@ const ElectricShock2 = () => {
                 top: `${ball.y}%`,
                 width: `${ball.size}px`,
                 height: `${ball.size}px`,
-                zIndex: Math.round(ball.depth * 10),
+                // zIndex: Math.round(ball.depth * 10),
+                zIndex: 10,
                 filter: `blur(${(1 - ball.depth) * 0.6}px)`,
               }}
               initial={{ opacity: 1, x: 0, y: 0, scale: 0.4, rotate: 0 }}

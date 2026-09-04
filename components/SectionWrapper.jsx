@@ -324,6 +324,7 @@ const SectionWrapper = ({ children, className = '', id = '', index = 0 }) => {
         position: 'relative',
         zIndex: index,
         willChange: 'transform, opacity',
+        background: 'var(--color-black)',
       }}
       initial={{ 
         y: '100%',

@@ -152,6 +152,12 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
 }
 
 body {
@@ -163,8 +169,13 @@ body {
   background-color: var(--color-black);
   overflow-x: hidden;
   min-height: 100vh;
+    scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
 /* ============ TYPOGRAPHY ============ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-primary);
@@ -178,36 +189,33 @@ p {
   font-family: var(--font-family-secondary);
 }
 
-/* ============ CUSTOM SCROLLBAR ============ */
+/* ============ CUSTOM SCROLLBAR - COMPLETELY HIDDEN ============ */
+/* Chrome, Safari, Edge */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-black);
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-black-medium);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-black);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-blue-main);
+  display: none;
 }
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-black-medium) var(--color-black);
+  scrollbar-width: none; /* Change from thin to none */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 /* For specific elements with overflow */
 .sidebar-links::-webkit-scrollbar,
 .navbar-sidebar::-webkit-scrollbar {
-  width: 6px;
+  width: 0;
+  display: none;
 }
 
 .sidebar-links::-webkit-scrollbar-track,
@@ -766,6 +774,8 @@ main {
   -webkit-overflow-scrolling: touch;
   position: relative;
   width: 100%;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
 }
 
 .scroll-section {
@@ -802,10 +812,19 @@ main {
   scroll-snap-stop: always;
 } */
 
-/* Hide scrollbar for cleaner look */
 main::-webkit-scrollbar {
   width: 0;
+  height: 0;
+  display: none;
   background: transparent;
+}
+
+main::-webkit-scrollbar-track {
+  display: none;
+}
+
+main::-webkit-scrollbar-thumb {
+  display: none;
 }
 
 /* Smooth section transitions */
