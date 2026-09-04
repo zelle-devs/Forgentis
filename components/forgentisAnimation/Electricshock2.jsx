@@ -120,7 +120,7 @@ const ElectricShock2 = () => {
 
   const generateBalls = () => {
     const newBalls = [];
-    const ballCount = 26;
+    const ballCount = 126;
 
     for (let i = 0; i < ballCount; i++) {
       const depth = Math.random();
@@ -128,7 +128,7 @@ const ElectricShock2 = () => {
         id: i,
         x: 28 + Math.random() * 44,
         y: 82 + Math.random() * 12,
-        size: 3 + depth * 11,
+        size: 5 + depth * 16,
         depth,
         duration: 0.9 + Math.random() * 1.8,
         delay: Math.random() * 0.25,
