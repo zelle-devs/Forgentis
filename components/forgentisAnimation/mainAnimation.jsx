@@ -16,18 +16,6 @@ import {
 } from "./Introconfig"
 
 
-/* ==========================================
-   Each entry is one letter image, in the
-   order they should appear left -> right.
-
-   Expects files at /<char>.png
-   e.g. /F.png, /O.png ...
-
-   Replace this array with your actual
-   wordmark's letters/paths — this is just
-   the example set you gave.
-   ========================================== */
-
 const LETTERS = [
   "F",
   "O",
@@ -40,25 +28,6 @@ const LETTERS = [
   "S",
 ];
 
-
-/* ==========================================
-   Reads whether the intro has already played
-   this session.
-
-   - Missing / anything other than the string
-     "false"  -> intro HAS NOT played yet this
-                 session, so it should show.
-   - "false"  -> intro already played this
-                 session, skip it entirely.
-
-   Wrapped in try/catch in case sessionStorage
-   is unavailable (privacy mode, etc.) — in
-   that case we just default to showing it.
-
-   This is only ever called client-side (see
-   the effect below), so `window` is always
-   available when it runs.
-   ========================================== */
 
 const shouldShowIntro = () => {
 
@@ -78,37 +47,14 @@ const shouldShowIntro = () => {
 };
 
 
-/*
- * React warns if useLayoutEffect is used
- * during SSR ("does nothing on the server").
- * This isomorphic version runs as a normal
- * effect on the server (no-op there anyway)
- * and as a real layout effect in the browser,
- * so the show/hide decision below happens as
- * early as possible on the client, with no
- * SSR warning.
- */
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined"
     ? useLayoutEffect
     : useEffect;
 
 
-export default function ForgentisAnimation() {
+export default function ForgentisAnimation({ children }) {
 
-  /*
-   * IMPORTANT: both of these start out
-   * false/false on every environment — server
-   * render AND the very first client render
-   * before hydration. That means server and
-   * client always agree on the first paint
-   * (nothing renders), so there is no
-   * hydration mismatch.
-   *
-   * The *real* decision (does this session
-   * need the intro?) only happens after mount,
-   * client-side only, in the effect below.
-   */
   const [ready, setReady] =
     useState(false);
 
@@ -124,20 +70,13 @@ export default function ForgentisAnimation() {
   const [sloganVisible, setSloganVisible] =
     useState(false);
 
-  const [closing, setClosing] =
-    useState(false);
-
   const [finished, setFinished] =
     useState(false);
 
+  const [revealWebsite, setRevealWebsite] =
+    useState(false);
 
-  /*
-   * Client-only decision: should this session
-   * see the intro at all? Runs before paint
-   * (layout effect) so there's no visible
-   * flash of the real page before the overlay
-   * appears.
-   */
+
   useIsomorphicLayoutEffect(() => {
 
     const show = shouldShowIntro();
@@ -146,26 +85,18 @@ export default function ForgentisAnimation() {
     setFinished(!show);
     setReady(true);
 
+    if (!show) {
+      setRevealWebsite(true);
+    }
+
   }, []);
 
 
   useEffect(() => {
 
-    /*
-     * Wait until the client-only decision above
-     * has actually run, and only proceed if this
-     * session needs to see the intro.
-     */
     if (!ready || !shouldRender) {
       return;
     }
-
-
-    /*
-     * About to show the intro — flip the flag
-     * right away so even a refresh mid-animation
-     * won't trigger it again this session.
-     */
 
     try {
 
@@ -179,54 +110,15 @@ export default function ForgentisAnimation() {
     }
 
 
-    /*
-     * Prevent website scrolling while
-     * intro animation is active.
-     */
-
     const previousOverflow =
       document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
 
-    /* ==========================================
-       TIMELINE
-
-       iconTimer    -> icon slides straight down
-                        from the top, smoothly —
-                        no rotation, no bounce
-       lettersTimer -> AFTER the icon settles,
-                        letters start rocketing
-                        up from below, one after
-                        another (unchanged)
-       sloganTimer  -> AFTER the letters finish
-                        landing, the slogan image
-                        fades/rises in underneath
-       closeTimer   -> intro holds the fully-formed
-                        icon + word + slogan this
-                        long, then the WHOLE screen
-                        slides straight up and off
-                        the page (no more slicing)
-       finishTimer  -> closeTimer + slide-up
-                        duration, fully unmounts
-                        the intro AND tells the
-                        rest of the app (e.g. Hero)
-                        that it's done
-       ========================================== */
-
     const ICON_DELAY = 300;
     const LETTERS_DELAY = 1000;
-
-    /*
-     * Letters: 9 letters, 70ms apart, each
-     * taking 0.5s to land -> last letter
-     * finishes roughly
-     * (LETTERS.length - 1) * 70 + 500ms
-     * after LETTERS_DELAY. Slogan waits
-     * a bit past that.
-     */
-    const SLOGAN_DELAY = 2200;
+    const SLOGAN_DELAY = 2000;
 
     const iconTimer =
       setTimeout(() => {
@@ -252,10 +144,11 @@ export default function ForgentisAnimation() {
       }, SLOGAN_DELAY);
 
 
-    const closeTimer =
+    // Website ko logo ke upar slide karo
+    const revealTimer =
       setTimeout(() => {
 
-        setClosing(true);
+        setRevealWebsite(true);
 
       }, INTRO_CLOSE_DELAY);
 
@@ -268,12 +161,6 @@ export default function ForgentisAnimation() {
         document.body.style.overflow =
           previousOverflow;
 
-        /*
-         * Let the rest of the app (Hero, etc.)
-         * know the intro is fully done — instead
-         * of every listener having to guess the
-         * total duration.
-         */
         try {
 
           window.dispatchEvent(
@@ -288,10 +175,6 @@ export default function ForgentisAnimation() {
 
       }, INTRO_CLOSE_DELAY + INTRO_SLIDE_UP_DURATION);
 
-
-    /* ==========================================
-       CLEANUP
-       ========================================== */
 
     return () => {
 
@@ -308,7 +191,7 @@ export default function ForgentisAnimation() {
       );
 
       clearTimeout(
-        closeTimer
+        revealTimer
       );
 
       clearTimeout(
@@ -322,85 +205,96 @@ export default function ForgentisAnimation() {
   }, [ready, shouldRender]);
 
 
-  /*
-   * Don't render anything before the
-   * client-only decision has run (keeps
-   * server/client first paint identical —
-   * see the comment above the state
-   * declarations), and don't render anything
-   * once the intro has finished or if this
-   * session already saw it play.
-   */
-
-  if (!ready || finished) {
+  if (!ready) {
     return null;
   }
 
 
   return (
-    <div
-      role="presentation"
-      aria-hidden="true"
-      className={`logo-reveal ${
-        closing
-          ? "intro-closing"
-          : ""
-      }`}
-    >
+    <>
+      {/* Main Intro Animation - Logo stays visible always */}
+      {!finished && shouldRender && (
+        <div
+          role="presentation"
+          aria-hidden="true"
+          className="logo-reveal"
+        >
+          <div className="intro-stack">
 
-      <div className="intro-stack">
+            <div className="icon-wrap">
 
-        <div className="icon-wrap">
-
-          <img
-            src="/optimize/forgentis_icon.webp"
-            alt=""
-            fetchPriority="high"
-            className={`icon-mark ${
-              iconVisible
-                ? "icon-mark-show"
-                : ""
-            }`}
-          />
-
-        </div>
-
-        <div className="letters-row">
-
-          {LETTERS.map(
-            (char, index) => (
               <img
-                key={`${char}-${index}`}
-                src={`/optimize/${char}.webp`}
+                src="/optimize/forgentis_icon.webp"
                 alt=""
-                className={`letter-img ${
-                  lettersVisible
-                    ? "letter-img-show"
+                fetchPriority="high"
+                className={`icon-mark ${
+                  iconVisible
+                    ? "icon-mark-show"
                     : ""
                 }`}
-                style={{
-                  animationDelay: `${
-                    index * 70
-                  }ms`,
-                }}
               />
-            )
-          )}
 
+            </div>
+
+            <div className="letters-row">
+
+              {LETTERS.map(
+                (char, index) => (
+                  <img
+                    key={`${char}-${index}`}
+                    src={`/optimize/${char}.webp`}
+                    alt=""
+                    className={`letter-img ${
+                      lettersVisible
+                        ? "letter-img-show"
+                        : ""
+                    }`}
+                    style={{
+                      animationDelay: `${
+                        index * 70
+                      }ms`,
+                    }}
+                  />
+                )
+              )}
+
+            </div>
+
+            <img
+              src="/optimize/fabrication.webp"
+              alt=""
+              className={`slogan-mark ${
+                sloganVisible
+                  ? "slogan-mark-show"
+                  : ""
+              }`}
+            />
+
+          </div>
         </div>
+      )}
 
-        <img
-          src="/optimize/fabrication.webp"
-          alt=""
-          className={`slogan-mark ${
-            sloganVisible
-              ? "slogan-mark-show"
-              : ""
-          }`}
-        />
-
+      {/* Website Content Wrapper - Slides OVER the logo */}
+      <div 
+        className={`website-wrapper ${
+          revealWebsite
+            ? "website-reveal"
+            : ""
+        }`}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          width: '100vw',
+          height: '100vh',
+          overflow: 'hidden',
+          zIndex: 1000000, // Website ABOVE logo (logo z-index: 999999)
+          transform: revealWebsite ? 'translateY(0)' : 'translateY(100%)',
+          transition: 'transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)',
+          background: 'var(--color-black)', // Add background to cover logo completely
+        }}
+      >
+        {children}
       </div>
-
-    </div>
+    </>
   );
 }

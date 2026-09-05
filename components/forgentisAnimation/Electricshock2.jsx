@@ -59,98 +59,24 @@ const ElectricShock2 = () => {
   const [isComplete, setIsComplete] = useState(false);
   const [boltKey, setBoltKey] = useState(0);
   const shakeRef = useRef(null);
+  const animationStarted = useRef(false);
+  const timersRef = useRef([]);
 
   const { mainPath, branches } = useLightningPaths(boltKey);
 
-  useEffect(() => {
-    setShowShock(false);
-    setShowBalls(false);
-    setShowFlash(false);
-    setBalls([]);
-    setIsComplete(false);
-    setBoltKey((k) => k + 1);
-
-    const startAnimation = () => {
-      setBoltKey((k) => k + 1);
-
-      // Shock line start
-      setTimeout(() => {
-        setShowShock(true);
-      }, 300);
-
-      // Impact flash + screen shake
-      setTimeout(() => {
-        setShowFlash(true);
-        if (shakeRef.current) {
-          shakeRef.current.classList.remove('shock-shake');
-          void shakeRef.current.offsetWidth;
-          shakeRef.current.classList.add('shock-shake');
-        }
-      }, 1050);
-
-      // Line fade out
-      setTimeout(() => {
-        setShowShock(false);
-      }, 1400);
-
-      // Bottom pe sparks scatter
-      setTimeout(() => {
-        setShowBalls(true);
-        generateBalls();
-      }, 1150);
-
-      // Animation complete
-      setTimeout(() => {
-        setIsComplete(true);
-      }, 4500);
-    };
-
-    const stored = window.sessionStorage.getItem('forgentis_intro_shown');
-
-    if (stored === 'false') {
-      startAnimation();
-    } else {
-      window.addEventListener(INTRO_COMPLETE_EVENT, startAnimation);
-    }
-
-    return () => {
-      window.removeEventListener(INTRO_COMPLETE_EVENT, startAnimation);
-    };
-  }, [pathname]);
-
-  // const generateBalls = () => {
-  //   const newBalls = [];
-  //   const ballCount = 126;
-
-  //   for (let i = 0; i < ballCount; i++) {
-  //     const depth = Math.random();
-  //     newBalls.push({
-  //       id: i,
-  //       x: 28 + Math.random() * 44,
-  //       y: 82 + Math.random() * 12,
-  //       size: 5 + depth * 16,
-  //       depth,
-  //       duration: 0.9 + Math.random() * 1.8,
-  //       delay: Math.random() * 0.25,
-  //       bounceHeight: 60 + depth * 220,
-  //       direction: Math.random() > 0.5 ? 1 : -1,
-  //       distance: 40 + depth * 220,
-  //       hue: Math.random() > 0.6 ? 'white' : 'blue',
-  //       rotate: (Math.random() - 0.5) * 720,
-  //     });
-  //   }
-  //   setBalls(newBalls);
-  // };
+  // Cleanup function for all timers
+  const clearAllTimers = () => {
+    timersRef.current.forEach(timer => clearTimeout(timer));
+    timersRef.current = [];
+  };
 
   const generateBalls = () => {
     const newBalls = [];
-    // Mobile devices par load kam karne ke liye balls count 12 kar diya hai, desktop par 40 rahega
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
     const ballCount = isMobile ? 26 : 96;
 
     for (let i = 0; i < ballCount; i++) {
       const depth = Math.random();
-      newBalls.process?.push // (skip, standard object syntax below)
       newBalls.push({
         id: i,
         x: 32 + Math.random() * 36,
@@ -162,10 +88,94 @@ const ElectricShock2 = () => {
         direction: Math.random() > 0.5 ? 1 : -1,
         distance: 30 + depth * 160,
         hue: Math.random() > 0.6 ? 'white' : 'blue',
+        rotate: (Math.random() - 0.5) * 720,
       });
     }
     setBalls(newBalls);
   };
+
+  const startAnimation = () => {
+    // Prevent multiple starts
+    if (animationStarted.current) return;
+    animationStarted.current = true;
+
+    setBoltKey((k) => k + 1);
+
+    // Shock line start - delayed to sync with hero content
+    const timer1 = setTimeout(() => {
+      setShowShock(true);
+    }, 1200); // Wait for hero content to finish
+
+    // Impact flash + screen shake
+    const timer2 = setTimeout(() => {
+      setShowFlash(true);
+      if (shakeRef.current) {
+        shakeRef.current.classList.remove('shock-shake');
+        void shakeRef.current.offsetWidth;
+        shakeRef.current.classList.add('shock-shake');
+      }
+    }, 1950); // 1200 + 750
+
+    // Line fade out
+    const timer3 = setTimeout(() => {
+      setShowShock(false);
+    }, 2300); // 1200 + 1100
+
+    // Bottom pe sparks scatter
+    const timer4 = setTimeout(() => {
+      setShowBalls(true);
+      generateBalls();
+    }, 2050); // 1200 + 850
+
+    // Animation complete
+    const timer5 = setTimeout(() => {
+      setIsComplete(true);
+    }, 5400); // 1200 + 4200
+
+    timersRef.current = [timer1, timer2, timer3, timer4, timer5];
+  };
+
+  useEffect(() => {
+    // Reset states on route change
+    clearAllTimers();
+    setShowShock(false);
+    setShowBalls(false);
+    setShowFlash(false);
+    setBalls([]);
+    setIsComplete(false);
+    animationStarted.current = false;
+
+    const stored = window.sessionStorage.getItem('forgentis_intro_shown');
+
+    if (stored === 'false') {
+      // Intro already played - wait for hero content to settle
+      const timer = setTimeout(() => {
+        startAnimation();
+      }, 1500); // Give time for hero content animation
+
+      return () => {
+        clearTimeout(timer);
+        clearAllTimers();
+      };
+    } else {
+      // Wait for intro to complete, then wait for hero content
+      const handleIntroComplete = () => {
+        const timer = setTimeout(() => {
+          startAnimation();
+        }, 1200); // Wait for hero content after intro
+
+        timersRef.current.push(timer);
+      };
+
+      window.addEventListener(INTRO_COMPLETE_EVENT, handleIntroComplete);
+      
+      return () => {
+        window.removeEventListener(INTRO_COMPLETE_EVENT, handleIntroComplete);
+        clearAllTimers();
+      };
+    }
+  }, [pathname]);
+
   if (isComplete) return null;
 
   return (

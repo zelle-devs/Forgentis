@@ -26,17 +26,14 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Navbar />
-        <ForgentisAnimation/>
-        {/* <ElectricReveal/> */}
-        {/* <WeldingReveal/> */}
-        {/* <MoltenDrop/> */}
-        {/* <ElectricShock/> */}
-        <ElectricShock2/>
-        {/* <ElectricShockAdvance/> */}
-        <ScrollWrapper>
-          {children}
-        </ScrollWrapper>
+        <ForgentisAnimation>
+          {/* Intro animation ab children ko wrap karega */}
+          <Navbar />
+          <ElectricShock2/>
+          <ScrollWrapper>
+            {children}
+          </ScrollWrapper>
+        </ForgentisAnimation>
       </body>
     </html>
   )

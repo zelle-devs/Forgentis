@@ -20,12 +20,12 @@ export const INTRO_COMPLETE_EVENT = "welcomeAnimationComplete";
 
 // How long the intro holds the fully-formed logo before it
 // starts sliding away.
-export const INTRO_CLOSE_DELAY = 3600;
+export const INTRO_CLOSE_DELAY = 3000;
 
 // How long the slide-up-and-off close transition itself
 // takes. Must stay in sync with the CSS transition duration
 // on .intro-closing in style.css.
-export const INTRO_SLIDE_UP_DURATION = 700;
+export const INTRO_SLIDE_UP_DURATION = 500;
 
 // Total time from mount to fully gone. Anything that needs
 // a safety-net timeout (e.g. Hero.jsx, in case its event

@@ -1,3 +1,22 @@
+/* Add at the end of Hero.css */
+
+/* Hero visibility states */
+.hero {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-visible {
+  opacity: 1;
+}
+
+.hero-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
 /* =========================================
    REALISTIC FOG / WATERY DISSOLVE
    ========================================= */
@@ -358,35 +377,52 @@
 /* Slider Dots */
 .hero-dots {
   position: absolute;
-  bottom: 24px;
-  left: 50%;
+  /* bottom: 24px; */
+  right: 1%;
   transform: translateX(-50%);
   z-index: 3;
   display: flex;
+  flex-direction: column;
   gap: 6px;
   align-items: center;
 }
 
 .hero-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 5px;
+  height: 15px;
+  border-radius: 20%;
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: all var(--transition-fast);
   border: none;
   padding: 0;
+  transition: var(--transition-slow);
 }
 
 .hero-dot.active {
-  background: var(--color-blue-main);
-  width: 22px;
-  border-radius: 3px;
+  /* background: var(--color-blue-main); */
+  background: linear-gradient(
+  180deg,
+  var(--color-blue-light) 0%,
+  var(--color-blue-main) 45%,
+  var(--color-blue-light) 100%
+);
+  width: 8px;
+  height: 30px;
+  border-radius: 20%;
   box-shadow: 0 0 10px var(--color-blue-glow);
+  transition: var(--transition-slow);
 }
 
 .hero-dot:hover {
-  background: var(--color-blue-medium);
+  transition: var(--transition-slow);
+   background: linear-gradient(
+  90deg,
+  var(--color-blue-light) 0%,
+  var(--color-blue-main) 45%,
+  var(--color-blue-light) 100%
+);
+  /* background: var(--color-blue-medium); */
 }
 
 /* ============ RESPONSIVE ============ */
@@ -417,9 +453,14 @@
   .hero-title {
     font-size: var(--font-size-7xl);
   }
+ .hero-dot {
+    width: 9px;
+    height: 16px;
+  }
   
-  .hero-dots {
-    bottom: 20px;
+  .hero-dot.active {
+    width: 12px;
+    height: 22px;
   }
 }
 
@@ -450,6 +491,15 @@
   
   .hero-buttons {
     justify-content: center;
+  }
+ .hero-dot {
+    width: 7px;
+    height: 14px;
+  }
+  
+  .hero-dot.active {
+    width: 10px;
+    height: 20px;
   }
 }
 
@@ -492,17 +542,18 @@
   }
   
   .hero-dots {
-    bottom: 60px;
+    /* bottom: 60px; */
     gap: 5px;
   }
   
   .hero-dot {
     width: 5px;
-    height: 5px;
+    height: 12px;
   }
   
   .hero-dot.active {
-    width: 18px;
+    width: 8px;
+    height: 18px;
   }
 }
 
@@ -519,7 +570,78 @@
     font-size: var(--font-size-8xl);
   }
   
-  .hero-dots {
+  /* .hero-dots {
     bottom: 50px;
+  } */
+}
+
+/* ============ SCROLL DOWN INDICATOR ============ */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.hero-scroll-text {
+  font-family: var(--font-family-primary);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 2.5px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  opacity: 0.8;
+  text-shadow: var(--text-shadow-btn);
+}
+
+.hero-scroll-icon {
+  line-height: 0;
+  width: 25px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blue-main);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(2, 112, 234, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .hero-scroll-indicator {
+    bottom: 20px;
+    left: 45%;
+  }
+  
+  .hero-scroll-text {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  
+  .hero-scroll-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-scroll-indicator {
+    bottom: 15px;
+    left: 40%!important;
+  }
+  
+  .hero-scroll-text {
+    font-size: 7px;
+    letter-spacing: 1.5px;
   }
 }

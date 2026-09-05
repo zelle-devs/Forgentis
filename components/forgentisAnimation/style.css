@@ -12,7 +12,7 @@
 
   overflow: hidden;
 
-  background: #000;
+  background: var(--color-black);
 
   display: flex;
 
@@ -27,11 +27,32 @@
 
   visibility: visible;
 
-  transform:
-    translateY(0);
+  /* Logo kabhi fade out nahi hoga */
+  transition: none;
 
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   WEBSITE WRAPPER - Initially hidden below viewport
+   ========================================================= */
+
+.website-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  
+  /* Website logo ke UPAR hoga */
+  z-index: 1000000;
+  
+  /* Website starts below viewport */
+  transform: translateY(100%);
+  
   transition:
-    transform 0.7s
+    transform 0.8s
       cubic-bezier(
         0.65,
         0,
@@ -40,21 +61,14 @@
       );
 }
 
+/* Jab intro active ho, website neeche hidden rahe */
+.website-wrapper.intro-active {
+  transform: translateY(100%);
+}
 
-/* =========================================================
-   WHEN INTRO FINISHES CLOSING
-
-   The whole intro (icon + letters + slogan + black
-   background) slides straight up and off the top of the
-   page in one piece — no slicing, no strips. As soon as
-   it moves, the real website underneath is revealed.
-   ========================================================= */
-
-.logo-reveal.intro-closing {
-  transform:
-    translateY(-100%);
-
-  pointer-events: none;
+/* Website niche se upar slide hoti hai - Logo ke upar */
+.website-wrapper.website-reveal {
+  transform: translateY(0);
 }
 
 
@@ -114,13 +128,6 @@
 
   opacity: 0;
 
-  /*
-   * Starts far above the viewport.
-   * .logo-reveal has overflow: hidden,
-   * so the icon is fully clipped/
-   * invisible until it descends.
-   */
-
   transform:
     translateY(-160vh);
 
@@ -170,13 +177,6 @@
 
   opacity: 0;
 
-  /*
-   * Starts far below the viewport.
-   * .logo-reveal has overflow: hidden,
-   * so the letter is fully clipped/
-   * invisible until it launches.
-   */
-
   transform:
     translateY(140vh)
     scale(0.85);
@@ -209,20 +209,12 @@
     opacity: 1;
   }
 
-  /*
-   * Overshoots slightly past its
-   * landing spot...
-   */
   78% {
     transform:
       translateY(-10px)
       scale(1.05);
   }
 
-  /*
-   * ...then settles back down —
-   * a quick "thud" on arrival.
-   */
   90% {
     transform:
       translateY(4px)
@@ -348,5 +340,9 @@
   .slogan-mark-show {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .website-wrapper {
+    transition: none !important;
   }
 }
