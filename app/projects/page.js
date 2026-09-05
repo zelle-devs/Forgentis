@@ -23,9 +23,9 @@ export default function Projects() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/projectHero.jpeg"
+          rightImage="/optimize/projectHero.webp"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -71,7 +71,7 @@ export default function Projects() {
           metricLabelColor="var(--color-black-medium)"
           metricDescriptionColor="var(--color-black-medium)"
           trustLabelColor="var(--color-black-medium)"
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
         />
       </section>
 
@@ -108,7 +108,7 @@ export default function Projects() {
           showTrustStrip={true}
           trustLabel="Architectural sectors served"
           logos={['Architects', 'Interiors', 'Facades', 'Residential', 'Commercial']}
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showGridPattern={false}
         />
       </section>
@@ -136,7 +136,7 @@ export default function Projects() {
           metricLabelColor="var(--color-black-medium)"
           metricDescriptionColor="var(--color-black-medium)"
           trustLabelColor="var(--color-black-medium)"
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
         />
       </section>
 
@@ -156,7 +156,7 @@ export default function Projects() {
               title: 'Entrance Screens',
               sector: 'Architecture',
               description: 'Facades and cladding for modern architectural projects.',
-              image: '/step1.png'
+              image: '/optimize/step1.webp'
             },
             {
               id: 2,
@@ -164,7 +164,7 @@ export default function Projects() {
               title: 'Railings & Staircases',
               sector: 'Construction',
               description: 'Balustrades and structural support systems.',
-              image: '/step2.png'
+              image: '/optimize/step2.webp'
             },
             {
               id: 3,
@@ -172,7 +172,7 @@ export default function Projects() {
               title: 'Structural Steel',
               sector: 'Infrastructure',
               description: 'Frames and supports for buildings and infrastructure.',
-              image: '/step3.png'
+              image: '/optimize/step3.webp'
             },
             {
               id: 4,
@@ -180,7 +180,7 @@ export default function Projects() {
               title: 'Furniture Bases',
               sector: 'Commercial',
               description: 'Fixtures and fittings for commercial spaces.',
-              image: '/step4.png'
+              image: '/optimize/step4.webp'
             },
             {
               id: 5,
@@ -188,7 +188,7 @@ export default function Projects() {
               title: 'Signage & Panels',
               sector: 'Retail',
               description: 'Decorative metal panels and custom signage.',
-              image: '/step5.png'
+              image: '/optimize/step5.webp'
             },
             {
               id: 6,
@@ -196,7 +196,7 @@ export default function Projects() {
               title: 'Custom Pieces',
               sector: 'Bespoke',
               description: 'One-off pieces made to your exact drawing.',
-              image: '/forgentis.jpeg'
+              image: '/optimize/forgentis.webp'
             }
           ]}
         />
@@ -216,7 +216,7 @@ export default function Projects() {
             { number: '04', title: 'The Result', desc: 'The outcome in plain terms.' },
           ]}
           showImage={true}
-          image="/step3.png"
+          image="/optimize/1cut.webp"
         />
       </section>
 
@@ -230,7 +230,7 @@ export default function Projects() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/step1.png"
+          imageSrc="/optimize/step1.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -247,7 +247,7 @@ export default function Projects() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/step2.png"
+          imageSrc="/optimize/step2.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="right"
         />
@@ -262,7 +262,7 @@ export default function Projects() {
           buttonText="Get a Quote"
           buttonLink="/consultation"
           buttonIcon={true}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -295,9 +295,9 @@ export default function Projects() {
 //        secondaryButtonText=""
 //        secondaryButtonLink=""
 //        heroImages={[]}
-//        titleImage="/title-bg.png"
+//        titleImage="/optimize/title-bg.webp"
 //        showRightImage={true}
-//        rightImage="/projectHero.jpeg"
+//        rightImage="/optimize/projectHero.webp"
 //        rightImageAlt="Forgentis Fabrication"
 //      />
 //       <div className="scroll-content-wrapper">
@@ -336,7 +336,7 @@ export default function Projects() {
 //   metricLabelColor="var(--color-black-medium)"
 //   metricDescriptionColor="var(--color-black-medium)"
 //   trustLabelColor="var(--color-black-medium)"
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 // />
 
 // <TrustedPartner
@@ -366,7 +366,7 @@ export default function Projects() {
 //   showTrustStrip={true}
 //   trustLabel="Architectural sectors served"
 //   logos={['Architects', 'Interiors', 'Facades', 'Residential', 'Commercial']}
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //    showGridPattern={false}
 // /><TrustedPartner
 //   eyebrow="Custom Fabrication"
@@ -389,7 +389,7 @@ export default function Projects() {
 //   metricLabelColor="var(--color-black-medium)"
 //   metricDescriptionColor="var(--color-black-medium)"
 //   trustLabelColor="var(--color-black-medium)"
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 // />
 // <WhatWeFabricate
 //   eyebrow="Our Expertise"
@@ -445,7 +445,7 @@ export default function Projects() {
 //     title: 'Custom Pieces',
 //     sector: 'Bespoke',
 //     description: 'One-off pieces made to your exact drawing.',
-//     image: '/forgentis.jpeg'
+//     image: '/optimize/forgentis.webp'
 //   }
 //   ]}
 // />
@@ -497,7 +497,7 @@ export default function Projects() {
 //   buttonText="Get a Quote"
 //   buttonLink="/consultation"
 //   buttonIcon={true}
-//    backgroundImage="/title-bg2.jpeg"
+//    backgroundImage="/optimize/title-bg2.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />

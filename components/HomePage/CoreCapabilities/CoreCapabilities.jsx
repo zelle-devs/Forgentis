@@ -3,6 +3,7 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import './CoreCapabilities.css'
+import Image from 'next/image'
 
 const CoreCapabilities = () => {
   const sectionRef = useRef(null)
@@ -23,25 +24,25 @@ const CoreCapabilities = () => {
       id: 1,
       title: 'Laser & CNC Precision',
       description: 'Laser cutting, 3D pipe cutting, bending and machining held to fine tolerances.',
-      image: '/1.png'
+      image: '/optimize/1.webp'
     },
     {
       id: 2,
       title: 'Structural & Architectural Scope',
       description: 'Entrance screens, cladding, structural framing, furniture bases and decorative metal installations.',
-      image: '/2.jpeg'
+      image: '/optimize/2.webp'
     },
     {
       id: 3,
       title: 'Industrial Finishes',
       description: 'PVD coatings, electrostatic powder coating and brushed or matte stainless, treated for durability.',
-      image: '/3.png'
+      image: '/optimize/3.webp'
     },
     {
       id: 4,
       title: 'Contract-Ready Delivery',
       description: 'CAD shop-drawing approvals, certified materials and scalable production to schedule.',
-      image: '/4.jpeg'
+      image: '/optimize/4.webp'
     }
   ]
 
@@ -181,10 +182,19 @@ const CoreCapabilities = () => {
                   ease: [0.22, 1, 0.36, 1] 
                 }}
               >
-                <div 
+                {/* <div 
                   className="core-capabilities-card-bg"
                   style={{ backgroundImage: `url(${capability.image})` }}
-                />
+                /> */}
+                <div className="core-capabilities-card-bg">
+  <Image
+    src={capability.image}
+    alt={capability.title}
+    fill
+    sizes="(min-width: 1440px) 25vw, (min-width: 1024px) 25vw, 100vw"
+    className="core-capabilities-card-image"
+  />
+</div>
                 <div className="core-capabilities-card-overlay" />
                 <div className="core-capabilities-card-content">
                   <h3 className="core-capabilities-card-title">
@@ -225,10 +235,19 @@ const CoreCapabilities = () => {
               {capabilities.map((capability) => (
                 <div key={capability.id} className="core-capabilities-slider-item">
                   <div className="core-capabilities-card">
-                    <div 
+                    {/* <div 
                       className="core-capabilities-card-bg"
                       style={{ backgroundImage: `url(${capability.image})` }}
-                    />
+                    /> */}
+                    <div className="core-capabilities-card-bg">
+  <Image
+    src={capability.image}
+    alt={capability.title}
+    fill
+    sizes="(max-width: 1023px) 100vw"
+    className="core-capabilities-card-image"
+  />
+</div>
                     <div className="core-capabilities-card-overlay" />
                     <div className="core-capabilities-card-content">
                       <h3 className="core-capabilities-card-title">

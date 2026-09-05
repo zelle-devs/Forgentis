@@ -18,9 +18,9 @@ export default function Industries() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/industriesHero.png"
+          rightImage="/optimize/industriesHero.webp"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -35,7 +35,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Construction.jpeg"
+          imageSrc="/optimize/Construction.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -51,7 +51,7 @@ export default function Industries() {
           backgroundColor="var(--color-black-medium)"
           showButton={false}
           showImage={true}
-          imageSrc="/Architecture.webp"
+          imageSrc="/optimize/Architecture.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -67,7 +67,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Retail.png"
+          imageSrc="/optimize/Retail.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -83,7 +83,7 @@ export default function Industries() {
           backgroundColor="var(--color-black-medium)"
           showButton={false}
           showImage={true}
-          imageSrc="/Industrial.jpeg"
+          imageSrc="/optimize/Industrial.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -99,7 +99,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Hospitality.png"
+          imageSrc="/optimize/Hospitality.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -115,7 +115,7 @@ export default function Industries() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/Automotive.jpeg"
+          imageSrc="/optimize/Automotive.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -131,7 +131,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Solar.jpeg"
+          imageSrc="/optimize/Solar.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -147,7 +147,7 @@ export default function Industries() {
           backgroundColor="var(--color-black-medium)"
           showButton={false}
           showImage={true}
-          imageSrc="/Medical.jpeg"
+          imageSrc="/optimize/Medical.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -163,7 +163,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Engineering.jpeg"
+          imageSrc="/optimize/Engineering.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -179,7 +179,7 @@ export default function Industries() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/Corporate.jpeg"
+          imageSrc="/optimize/Corporate.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -195,7 +195,7 @@ export default function Industries() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Solutions.jpeg"
+          imageSrc="/optimize/Solutions.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -209,7 +209,7 @@ export default function Industries() {
           buttonText="Get a Quote"
           buttonLink="/consultation"
           buttonIcon={true}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -239,9 +239,9 @@ export default function Industries() {
 //        secondaryButtonText=""
 //        secondaryButtonLink=""
 //        heroImages={[]}
-//        titleImage="/title-bg.png"
+//        titleImage="/optimize/title-bg.webp"
 //        showRightImage={true}
-//        rightImage="/industriesHero.png"
+//        rightImage="/optimize/industriesHero.webp"
 //        rightImageAlt="Forgentis Fabrication"
 //      />
 //       <div className="scroll-content-wrapper">
@@ -254,7 +254,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Construction.jpeg"
+//   imageSrc="/optimize/Construction.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 //  <WhoWeAre
@@ -278,7 +278,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Retail.png"
+//   imageSrc="/optimize/Retail.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -290,7 +290,7 @@ export default function Industries() {
 //   backgroundColor="var(--color-black-medium)"
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Industrial.jpeg"
+//   imageSrc="/optimize/Industrial.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -302,7 +302,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Hospitality.png"
+//   imageSrc="/optimize/Hospitality.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -314,7 +314,7 @@ export default function Industries() {
 //   showButton={false}
 //   showImage={true}
 //   backgroundColor="var(--color-black-medium)"
-//   imageSrc="/Automotive.jpeg"
+//   imageSrc="/optimize/Automotive.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -326,7 +326,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Solar.jpeg"
+//   imageSrc="/optimize/Solar.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -338,7 +338,7 @@ export default function Industries() {
 //   backgroundColor="var(--color-black-medium)"
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Medical.jpeg"
+//   imageSrc="/optimize/Medical.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -350,7 +350,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Engineering.jpeg"
+//   imageSrc="/optimize/Engineering.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -362,7 +362,7 @@ export default function Industries() {
 //   showButton={false}
 //   showImage={true}
 //   backgroundColor="var(--color-black-medium)"
-//   imageSrc="/Corporate.jpeg"
+//   imageSrc="/optimize/Corporate.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -374,7 +374,7 @@ export default function Industries() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Solutions.jpeg"
+//   imageSrc="/optimize/Solutions.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 //  <CTASection
@@ -384,7 +384,7 @@ export default function Industries() {
 //   buttonText="Get a Quote"
 //   buttonLink="/consultation"
 //   buttonIcon={true}
-//    backgroundImage="/title-bg2.jpeg"
+//    backgroundImage="/optimize/title-bg2.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />

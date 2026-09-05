@@ -41,7 +41,7 @@ export default function Footer({
     <footer className="aj-footer">
       <div className="aj-footer-diagonal-image" aria-hidden="true">
         <Image
-          src="/footer-bg.png"
+          src="/optimize/footer-bg.webp"
           alt=""
           fill
           priority

@@ -1,131 +1,3 @@
-// import CoreCapabilities from "@/components/HomePage/CoreCapabilities/CoreCapabilities";
-// import CTASection from "@/components/HomePage/CTASection/CTASection";
-// import FacilitiesQuality2 from "@/components/HomePage/FacilitiesQuality/FacilitiesQuality2";
-// import Hero from "@/components/HomePage/Hero";
-// import HowWeWork from "@/components/HomePage/Howwework/HowWeWork";
-// import IndustriesServe from "@/components/HomePage/IndustriesServe/IndustriesServe";
-// import TrustedPartner from "@/components/HomePage/TrustedPartner/TrustedPartner";
-// import WhatWeFabricate from "@/components/HomePage/WhatWeFabricate/WhatWeFabricate";
-// import WhoWeAre from "@/components/HomePage/WhoWeAre/WhoWeAre";
-// import WhyForgentis from "@/components/HomePage/Whyforgentis/Whyforgentis";
-// import SectionWrapper from "@/components/SectionWrapper"; // apna actual path lagao
-
-// export default function Home() {
-//   return (
-//     <>
-//       {/* Hero Section — plain, koi shatter nahi (above-the-fold) */}
-//       <section className="scroll-section hero-section" data-section-type="hero">
-//         <Hero/>
-//       </section>
-
-//       <SectionWrapper index={1} sectionType="large">
-//         <TrustedPartner
-//           eyebrow="Trusted Fabrication Partner"
-//           title="A Fabrication Partner Businesses Rely On"
-//           body="Architects, contractors, and manufacturers send us their drawings because the work comes back right the first time."
-//           showMetrics={true}
-//           metrics={[
-//             { id: 'years', target: 5, suffix: '+', label: 'Years in Fabrication', description: 'In operation' },
-//             { id: 'projects', target: 500, suffix: '+', label: 'Projects Delivered', description: 'Across sectors' },
-//             { id: 'retention', target: 90, suffix: '%', label: 'Client Retention', description: 'Repeat business rate' },
-//             { id: 'facility', target: 5, suffix: '', label: <><span style={{fontSize:"20px", lineHeight: "0"}}>★★★★★</span></>, description: 'Rating' },
-//           ]}
-//           showTrustStrip={true}
-//           trustLabel="Trusted by teams across"
-//           logos={['ARCHITECTS', 'CONTRACTORS', 'MANUFACTURERS', 'DESIGN STUDIOS', 'REAL ESTATE', 'ENGINEERING']}
-//           showGridPattern={false}
-//           titleColor="var(--color-black-medium)"
-//           bodyColor="var(--color-black-medium)"
-//           metricHoverColor="var(--color-blue-main)"
-//           metricNumberColor="var(--color-black-medium)"
-//           metricLabelColor="var(--color-black-medium)"
-//           metricDescriptionColor="var(--color-black-medium)"
-//           trustLabelColor="var(--color-black-medium)"
-//           backgroundImage="/title-bg2.jpeg"
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={2} sectionType="normal">
-//         <WhoWeAre
-//           eyebrow="Who We Are"
-//           title="Built Around Metal and Precision"
-//           body="Forgentis Fabrications is a metal fabrication company. We cut, bend, weld, and finish steel, stainless, aluminum, and brass into parts and structures for buildings and businesses. Some jobs are a single part. Some are a full building's worth of steel. The standard stays the same."
-//           buttonText="About Forgentis"
-//           buttonLink="/about"
-//           showButton={true}
-//           showImage={true}
-//           imageSrc="/whoweare.jpeg"
-//           imageAlt="Forgentis Fabrication"
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={3} sectionType="large">
-//         <CoreCapabilities/>
-//       </SectionWrapper>
-
-//       <SectionWrapper index={4} sectionType="normal">
-//         <WhatWeFabricate
-//           eyebrow="Our Expertise"
-//           title="What We Make"
-//           body="Send us a drawing and we will make it in metal."
-//           buttonText="See Our Work"
-//           showButton={false}
-//           showSector={false}
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={5} sectionType="large">
-//         <IndustriesServe
-//           eyebrow="Sectors We Cover"
-//           title="Industries We Serve"
-//           body="We fabricate for teams that build and fit out spaces."
-//           showButton={true}
-//           buttonText="See Industries"
-//           buttonLink="/industries"
-//           showCards={true}
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={6} sectionType="large">
-//         <WhyForgentis
-//           eyebrow="The Forgentis Standard"
-//           headline="Why Forgentis"
-//           body="Four reasons manufacturers keep coming back to us, project after project."
-//           showPoints={true}
-//           showImage={true}
-//           image="/whyforgentis.jpeg"
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={7} sectionType="short">
-//         <HowWeWork
-//           eyebrow="How we work"
-//           title="From Concept to Completion"
-//           body="Every job runs the same clear path: brief, design review, material planning, production, quality checks, finishing, assembly, and delivery. You always know which stage your work is in."
-//           buttonText="See Our Process"
-//           buttonLink="/process"
-//           showButton={true}
-//           showTimeline={true}
-//         />
-//       </SectionWrapper>
-
-//       <SectionWrapper index={8} sectionType="normal">
-//         <FacilitiesQuality2/>
-//       </SectionWrapper>
-
-//       <SectionWrapper index={9} sectionType="large" style={{scrollSnapAlign: "start" }}>
-//         <CTASection
-//           eyebrow="Request a Quote"
-//           headline="Have a Drawing? Get a Price"
-//           body="Send us your drawing or specification and we will come back with a clear quote."
-//           buttonText="Get a Quote"
-//           buttonLink="/consultation"
-//         />
-//       </SectionWrapper>
-//     </>
-//   )
-// }
-
 import CoreCapabilities from "@/components/HomePage/CoreCapabilities/CoreCapabilities";
 import CTASection from "@/components/HomePage/CTASection/CTASection";
 import FacilitiesQuality2 from "@/components/HomePage/FacilitiesQuality/FacilitiesQuality2";
@@ -169,7 +41,7 @@ export default function Home() {
           metricLabelColor="var(--color-black-medium)"
           metricDescriptionColor="var(--color-black-medium)"
           trustLabelColor="var(--color-black-medium)"
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
         />
       </section>
 
@@ -183,7 +55,7 @@ export default function Home() {
           buttonLink="/about"
           showButton={true}
           showImage={true}
-          imageSrc="/whoweare.jpeg"
+          imageSrc="/optimize/whoweare.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -226,7 +98,7 @@ export default function Home() {
           body="Four reasons manufacturers keep coming back to us, project after project."
           showPoints={true}
           showImage={true}
-          image="/whyforgentis.jpeg"
+          image="/optimize/whyforgentis.webp"
         />
       </section>
 

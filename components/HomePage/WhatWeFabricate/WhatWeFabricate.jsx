@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, ChevronLeft, ChevronRight, Building2, Layers, Frame, Armchair, PenTool, Sparkles } from 'lucide-react'
 import './WhatWeFabricate.css'
+import Image from 'next/image'
 
 const DEFAULT_ITEMS = [
   {
@@ -11,7 +12,7 @@ const DEFAULT_ITEMS = [
     title: 'Entrance Screens',
     sector: '',
     description: 'Facades and cladding for modern architectural projects.',
-    image: '/1o.jpeg'
+    image: '/optimize/1o.webp'
   },
   {
     id: 2,
@@ -19,7 +20,7 @@ const DEFAULT_ITEMS = [
     title: 'Railings & Staircases',
     sector: '',
     description: 'Balustrades and structural support systems.',
-    image: '/2o.jpeg'
+    image: '/optimize/2o.webp'
   },
   {
     id: 3,
@@ -27,7 +28,7 @@ const DEFAULT_ITEMS = [
     title: 'Structural Steel',
     sector: '',
     description: 'Frames and supports for buildings and infrastructure.',
-    image: '/3o.jpeg'
+    image: '/optimize/3o.webp'
   },
   {
     id: 4,
@@ -35,7 +36,7 @@ const DEFAULT_ITEMS = [
     title: 'Furniture Bases',
     sector: '',
     description: 'Fixtures and fittings for commercial spaces.',
-    image: '/4o.jpeg'
+    image: '/optimize/4o.webp'
   },
   {
     id: 5,
@@ -43,7 +44,7 @@ const DEFAULT_ITEMS = [
     title: 'Signage & Panels',
     sector: '',
     description: 'Decorative metal panels and custom signage.',
-    image: '/5o.jpeg'
+    image: '/optimize/5o.webp'
   },
   {
     id: 6,
@@ -51,7 +52,7 @@ const DEFAULT_ITEMS = [
     title: 'Custom Pieces',
     sector: '',
     description: 'One-off pieces made to your exact drawing.',
-    image: '/6o.jpeg'
+    image: '/optimize/6o.webp'
   }
 ];
 
@@ -272,12 +273,23 @@ const WhatWeFabricate = ({
                       ease: [0.22, 1, 0.36, 1] 
                     }}
                   >
-                    {item.image && (
+                    {/* {item.image && (
                       <div 
                         className="what-we-fabricate-card-image"
                         style={{ backgroundImage: `url(${item.image})` }}
                       />
-                    )}
+                    )} */}
+                    {item.image && (
+  <div className="what-we-fabricate-card-image">
+    <Image
+      src={item.image}
+      alt={item.title || 'Fabrication work'}
+      fill
+      sizes="(min-width: 1024px) 20vw, 100vw"
+      className="what-we-fabricate-card-img"
+    />
+  </div>
+)}
                     
                     <div 
                       className="what-we-fabricate-card-content"
@@ -343,12 +355,23 @@ const WhatWeFabricate = ({
                   return (
                     <div key={item.id} className="what-we-fabricate-slider-item">
                       <div className="what-we-fabricate-card">
-                        {item.image && (
+                        {/* {item.image && (
                           <div 
                             className="what-we-fabricate-card-image"
                             style={{ backgroundImage: `url(${item.image})` }}
                           />
-                        )}
+                        )} */}
+                        {item.image && (
+  <div className="what-we-fabricate-card-image">
+    <Image
+      src={item.image}
+      alt={item.title || 'Fabrication work'}
+      fill
+      sizes="100vw"
+      className="what-we-fabricate-card-img"
+    />
+  </div>
+)}
                         <div 
                           className="what-we-fabricate-card-content"
                           style={{ background: cardBackground }}

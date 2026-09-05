@@ -11,7 +11,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('/footer-bg.png');
+    background-image: url('/optimize/footer-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

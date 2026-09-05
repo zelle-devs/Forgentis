@@ -21,9 +21,9 @@ export default function Resources() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/step4.png"
+          rightImage="/optimize/step4.webp"
           rightImageAlt="Forgentis Resources"
         />
       </section>
@@ -147,7 +147,7 @@ export default function Resources() {
           body="Get our complete company profile, capability sheet, and finish guide in one PDF."
           buttonText="Download Profile"
           buttonLink="/downloads/profile.pdf"
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
           buttonIcon={false}
@@ -181,7 +181,7 @@ export default function Resources() {
 //         secondaryButtonText=""
 //         secondaryButtonLink=""
 //         heroImages={[]}
-//         titleImage="/title-bg.png"
+//         titleImage="/optimize/title-bg.webp"
 //         showRightImage={true}
 //         rightImage="/step4.png"
 //         rightImageAlt="Forgentis Resources"
@@ -311,7 +311,7 @@ export default function Resources() {
 //           body="Get our complete company profile, capability sheet, and finish guide in one PDF."
 //           buttonText="Download Profile"
 //           buttonLink="/downloads/profile.pdf"
-//           backgroundImage="/title-bg2.jpeg"
+//           backgroundImage="/optimize/title-bg2.webp"
 //           showGlow={true}
 //           showGridPattern={true}
 //  buttonIcon={false}

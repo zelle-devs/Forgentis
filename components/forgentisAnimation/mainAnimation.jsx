@@ -353,7 +353,7 @@ export default function ForgentisAnimation() {
         <div className="icon-wrap">
 
           <img
-            src="/forgentis_icon.png"
+            src="/optimize/forgentis_icon.webp"
             alt=""
             fetchPriority="high"
             className={`icon-mark ${
@@ -371,7 +371,7 @@ export default function ForgentisAnimation() {
             (char, index) => (
               <img
                 key={`${char}-${index}`}
-                src={`/${char}.png`}
+                src={`/optimize/${char}.webp`}
                 alt=""
                 className={`letter-img ${
                   lettersVisible
@@ -390,7 +390,7 @@ export default function ForgentisAnimation() {
         </div>
 
         <img
-          src="/fabrication.png"
+          src="/optimize/fabrication.webp"
           alt=""
           className={`slogan-mark ${
             sloganVisible

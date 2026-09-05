@@ -49,7 +49,7 @@
   position: relative;
   padding: 60px 0;
   background: var(--color-black);
-    /* background-image: url('/title-bg2.jpeg');
+    /* background-image: url('/optimize/title-bg2.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; */
@@ -187,7 +187,7 @@
 }
 
 /* Card Image - Top 50% */
-.what-we-fabricate-card-image {
+/* .what-we-fabricate-card-image {
   height: 50%;
   background-size: cover;
   background-position: center;
@@ -197,6 +197,23 @@
 }
 
 .what-we-fabricate-card:hover .what-we-fabricate-card-image {
+  transform: scale(1.05);
+} */
+
+.what-we-fabricate-card-image {
+  position: relative;
+  height: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.what-we-fabricate-card-img {
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-slow);
+}
+
+.what-we-fabricate-card:hover .what-we-fabricate-card-img {
   transform: scale(1.05);
 }
 

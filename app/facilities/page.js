@@ -21,9 +21,9 @@ export default function Facilities() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/facilitieshero.png"
+          rightImage="/optimize/facilitieshero.webp"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -34,7 +34,7 @@ export default function Facilities() {
           eyebrow="Our Facility"
           title="Manufacturing Infrastructure"
           body="A [FACILITY SIZE] fabrication plant laid out for smooth flow, from material store to cutting, forming, welding, finishing, and dispatch. Room to handle small jobs and large structures side by side."
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showMetrics={false}
           showTrustStrip={false}
         />
@@ -122,7 +122,7 @@ export default function Facilities() {
           showMetrics={false}
           showTrustStrip={false}
           showGridPattern={false}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           titleColor="var(--color-black-light)"
           bodyColor="var(--color-black-light)"
         />
@@ -138,7 +138,7 @@ export default function Facilities() {
           buttonLink="quality"
           showButton={true}
           showImage={true}
-          imageSrc="/Quality.png"
+          imageSrc="/optimize/Quality.webp"
           imageAlt="Forgentis Material Handling"
           imagePosition="right"
         />
@@ -157,7 +157,7 @@ export default function Facilities() {
             { id: 'compliance', target: 100, suffix: '%', label: 'Compliance', description: 'Meets all safety standards' },
           ]}
           showTrustStrip={false}
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
         />
       </section>
     </>
@@ -190,9 +190,9 @@ export default function Facilities() {
 //   secondaryButtonText=""
 //   secondaryButtonLink=""
 //   heroImages={[]}
-//   titleImage="/title-bg.png"
+//   titleImage="/optimize/title-bg.webp"
 //   showRightImage={true}
-//   rightImage="/facilitieshero.png"
+//   rightImage="/optimize/facilitieshero.webp"
 //   rightImageAlt="Forgentis Fabrication"
 // />
 //    <div className="scroll-content-wrapper">
@@ -200,7 +200,7 @@ export default function Facilities() {
 //   eyebrow="Our Facility"
 //   title="Manufacturing Infrastructure"
 //   body="A [FACILITY SIZE] fabrication plant laid out for smooth flow, from material store to cutting, forming, welding, finishing, and dispatch. Room to handle small jobs and large structures side by side."
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   showMetrics={false}
 //   showTrustStrip={false}
 //   />
@@ -272,7 +272,7 @@ export default function Facilities() {
 //   showMetrics={false}
 //   showTrustStrip={false}
 //   showGridPattern={false}
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 //   titleColor="var(--color-black-light)"
 //   bodyColor="var(--color-black-light)"
 // />
@@ -284,7 +284,7 @@ export default function Facilities() {
 //   buttonLink="quality"
 //   showButton={true}
 //   showImage={true}
-//   imageSrc="/Quality.png"
+//   imageSrc="/optimize/Quality.webp"
 //   imageAlt="Forgentis Material Handling"
 //   imagePosition="right"
 // />
@@ -311,7 +311,7 @@ export default function Facilities() {
 //     { id: 'compliance', target: 100, suffix: '%', label: 'Compliance', description: 'Meets all safety standards' },
 //   ]}
 //   showTrustStrip={false}
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 // />
 // {/* <WhoWeAre
 //   eyebrow="Forgentis"

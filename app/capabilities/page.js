@@ -21,9 +21,9 @@ export default function Capabilities() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/capabilities.avif"
+          rightImage="/optimize/capabilities.avif"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -36,7 +36,7 @@ export default function Capabilities() {
           body="The core of what we do. We turn steel, stainless, aluminum, and brass into parts and structures, from single components to large assemblies. Sheet, plate, tube, and section, cut and built to your drawing."
           showMetrics={false}
           showTrustStrip={false}
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
         />
       </section>
 
@@ -50,7 +50,7 @@ export default function Capabilities() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/cnc.avif"
+          imageSrc="/optimize/cnc.avif"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -66,7 +66,7 @@ export default function Capabilities() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/laser.jpeg"
+          imageSrc="/optimize/laser.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -82,7 +82,7 @@ export default function Capabilities() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Bending.jpeg"
+          imageSrc="/optimize/Bending.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -98,7 +98,7 @@ export default function Capabilities() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/Welding.jpeg"
+          imageSrc="/optimize/Welding.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -114,7 +114,7 @@ export default function Capabilities() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Finishing.jpeg"
+          imageSrc="/optimize/Finishing.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -130,7 +130,7 @@ export default function Capabilities() {
           backgroundColor="var(--color-black-medium)"
           showButton={false}
           showImage={true}
-          imageSrc="/Custom.jpeg"
+          imageSrc="/optimize/Custom.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -146,7 +146,7 @@ export default function Capabilities() {
           buttonLink=""
           showButton={false}
           showImage={true}
-          imageSrc="/Prototyping.jpeg"
+          imageSrc="/optimize/Prototyping.webp"
           imageAlt="Forgentis Fabrication"
         />
       </section>
@@ -162,7 +162,7 @@ export default function Capabilities() {
           showButton={false}
           showImage={true}
           backgroundColor="var(--color-black-medium)"
-          imageSrc="/Manufacturing.jpeg"
+          imageSrc="/optimize/Manufacturing.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="left"
         />
@@ -177,7 +177,7 @@ export default function Capabilities() {
           buttonText="Our Quality Standards"
           buttonLink="/quality"
           buttonIcon={false}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -213,7 +213,7 @@ export default function Capabilities() {
           buttonText="Get a Quote"
           buttonLink="/consultation"
           buttonIcon={true}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -242,7 +242,7 @@ export default function Capabilities() {
 //        secondaryButtonText=""
 //        secondaryButtonLink=""
 //        heroImages={[]}
-//        titleImage="/title-bg.png"
+//        titleImage="/optimize/title-bg.webp"
 //        showRightImage={true}
 //        rightImage="/capabilities.avif"
 //        rightImageAlt="Forgentis Fabrication"
@@ -254,7 +254,7 @@ export default function Capabilities() {
 //   body="The core of what we do. We turn steel, stainless, aluminum, and brass into parts and structures, from single components to large assemblies. Sheet, plate, tube, and section, cut and built to your drawing."
 //   showMetrics={false}
 //   showTrustStrip={false}
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 // />
 //       <WhoWeAre
 //   eyebrow="Forgentis"
@@ -276,7 +276,7 @@ export default function Capabilities() {
 //   showButton={false}
 //   showImage={true}
 //   backgroundColor="var(--color-black-medium)"
-//   imageSrc="/laser.jpeg"
+//   imageSrc="/optimize/laser.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -288,7 +288,7 @@ export default function Capabilities() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Bending.jpeg"
+//   imageSrc="/optimize/Bending.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -300,7 +300,7 @@ export default function Capabilities() {
 //   showButton={false}
 //   showImage={true}
 //   backgroundColor="var(--color-black-medium)"
-//   imageSrc="/Welding.jpeg"
+//   imageSrc="/optimize/Welding.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -312,7 +312,7 @@ export default function Capabilities() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Finishing.jpeg"
+//   imageSrc="/optimize/Finishing.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -324,7 +324,7 @@ export default function Capabilities() {
 //   backgroundColor="var(--color-black-medium)"
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Custom.jpeg"
+//   imageSrc="/optimize/Custom.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -336,7 +336,7 @@ export default function Capabilities() {
 //   buttonLink=""
 //   showButton={false}
 //   showImage={true}
-//   imageSrc="/Prototyping.jpeg"
+//   imageSrc="/optimize/Prototyping.webp"
 //   imageAlt="Forgentis Fabrication"
 // />
 // <WhoWeAre
@@ -348,7 +348,7 @@ export default function Capabilities() {
 //   showButton={false}
 //   showImage={true}
 //   backgroundColor="var(--color-black-medium)"
-//   imageSrc="/Manufacturing.jpeg"
+//   imageSrc="/optimize/Manufacturing.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="left"
 // />
@@ -359,7 +359,7 @@ export default function Capabilities() {
 //   buttonText="Our Quality Standards"
 //   buttonLink="/quality"
 //   buttonIcon={false}
-//    backgroundImage="/title-bg2.jpeg"
+//    backgroundImage="/optimize/title-bg2.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />
@@ -388,7 +388,7 @@ export default function Capabilities() {
 //   buttonText="Get a Quote"
 //   buttonLink="/consultation"
 //   buttonIcon={true}
-//    backgroundImage="/title-bg2.jpeg"
+//    backgroundImage="/optimize/title-bg2.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />

@@ -83,7 +83,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="navbar-logo" onClick={closeSidebar}>
             <Image 
-              src="/logo.png"
+              src="/optimize/logo.webp"
               alt="Forgentis Logo" 
               className="navbar-logo-img"
               width={240}
@@ -148,7 +148,7 @@ const Navbar = () => {
         <div className="sidebar-header">
           <Link href="/" className="navbar-logo" onClick={closeSidebar}>
             <Image 
-              src="/logo.png"
+              src="/optimize/logo.webp"
               alt="Forgentis Logo" 
               className="navbar-logo-img"
               width={140}

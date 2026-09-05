@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import './TrustedPartner.css'
+import Image from 'next/image'
 
 const TrustedPartner = ({
   eyebrow = '',
@@ -87,7 +88,7 @@ const TrustedPartner = ({
       ref={sectionRef}
       style={{ backgroundColor }}
     >
-      {backgroundImage && (
+      {/* {backgroundImage && (
         <div 
           className="trusted-partner-bg-image"
           style={{ 
@@ -95,7 +96,26 @@ const TrustedPartner = ({
             opacity: overlayOpacity,
           }}
         />
-      )}
+      )} */}
+
+{backgroundImage && (
+  <div
+    className="trusted-partner-bg-image"
+    style={{ opacity: overlayOpacity }}
+  >
+    <Image
+      src={backgroundImage}
+      alt=""
+      fill
+      priority={false}
+      sizes="100vw"
+      unoptimized={true}
+      style={{
+        objectFit: 'cover',
+      }}
+    />
+  </div>
+)}
 
       {showGridPattern && (
         <div className="trusted-partner-bg">

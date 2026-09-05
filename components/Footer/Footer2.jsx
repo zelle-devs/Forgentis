@@ -15,11 +15,11 @@ const DEFAULT_SOCIALS = [
 ];
 
 const PROCESS_IMAGES = [
-  { id: 1, number: '01', name: 'Cut', image: '/1cut.jpeg' },
-  { id: 2, number: '02', name: 'Form', image: '/step2.png' },
-  { id: 3, number: '03', name: 'Weld', image: '/step3.png' },
-  { id: 4, number: '04', name: 'Finish', image: '/step4.png' },
-  { id: 5, number: '05', name: 'Deliver', image: '/step5.png' },
+  { id: 1, number: '01', name: 'Cut', image: '/optimize/1cut.webp' },
+  { id: 2, number: '02', name: 'Form', image: '/optimize/step2.webp' },
+  { id: 3, number: '03', name: 'Weld', image: '/optimize/step3.webp' },
+  { id: 4, number: '04', name: 'Finish', image: '/optimize/step4.webp' },
+  { id: 5, number: '05', name: 'Deliver', image: '/optimize/step5.webp' },
 ];
 
 const COMPANY_LINKS = [
@@ -99,7 +99,7 @@ export default function Footer2({
             <div className="ftr2-col ftr2-brand">
               <div className="ftr2-logo">
                 <Image
-                  src="footerlogo.png"
+                  src="optimize/footerlogo.webp"
                   alt="Forgentis Fabrication"
                   width={160}
                   height={60}

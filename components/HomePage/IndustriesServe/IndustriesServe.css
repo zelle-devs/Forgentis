@@ -7,27 +7,34 @@
 /* Background Image */
 .industries-serve-bg-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  inset: 0;
+  overflow: hidden;
   z-index: 0;
   pointer-events: none;
+}
+
+.industries-serve-bg-img {
+  object-fit: cover;
+  object-position: center;
+}
+.industries-serve-footer-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.industries-serve-footer-bg-img {
+  object-fit: cover;
+  object-position: center;
 }
 /* ============ INDUSTRIES SERVE SECTION - FORGENTIS ============ */
 .industries-serve {
   position: relative;
   padding: 60px 0;
-  /* background: var(--color-black); */
-  background-image: url('/footer-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--color-black);
   overflow: hidden;
-  
 }
 
 /* Background */

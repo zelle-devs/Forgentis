@@ -2,24 +2,27 @@
 .fq2-section {
   position: relative;
   padding: 60px 0;
-  /* background: var(--color-black); */
-  background-image: url('/footer-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--color-black);
   overflow: hidden;
   isolation: isolate;
-    /* height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
+}
+.fq2-bg-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
+.fq2-bg-img {
+  object-fit: cover;
+  object-position: center;
+}
 .fq2-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .fq2-grid-pattern {

@@ -83,7 +83,7 @@ const WhoWeAre = ({
               <div className="who-we-are-image-container">
                 <Image 
                   src={imageSrc} alt={imageAlt} className="who-we-are-image"
-                  width={600} height={600} quality={90} loading="lazy" unoptimized={true}
+                  width={600} height={600} quality={90} loading="lazy"
                 />
                 <div className="who-we-are-image-border" />
               </div>

@@ -7,32 +7,35 @@
 /* Background Image */
 .wf-bg-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  inset: 0;
+  overflow: hidden;
   z-index: 0;
   pointer-events: none;
+}
+
+.wf-bg-img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .wf-section {
   position: relative;
   padding: 60px 0;
-  /* background: var(--color-steel-medium); */
-      background-image: url('/title-bg2.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--color-steel-medium);
   overflow: hidden;
-  /* height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
+}
+.wf-section-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
 }
 
+.wf-section-bg-img {
+  object-fit: cover;
+  object-position: center;
+}
 
 /* soft ambient blue glow behind the header, on-brand with Forgentis */
 /* .wf-section::before {
@@ -50,7 +53,7 @@
 
 .wf-section .container2 {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .box{
   background-color: var(--color-black);
@@ -188,8 +191,8 @@
 }
 
 /* ============ IMAGE STRIP ============ */
-
 .wf-image-wrap {
+  position: relative;
   margin-top: 56px;
   width: 100%;
   height: 320px;
@@ -199,9 +202,8 @@
 }
 
 .wf-image {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* ============ RESPONSIVE ============ */

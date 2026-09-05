@@ -20,9 +20,9 @@ export default function Quality() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/qualityhero.jpeg"
+          rightImage="/optimize/qualityhero.webp"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -33,7 +33,7 @@ export default function Quality() {
           eyebrow="Quality Management"
           title="How We Manage Quality"
           body="Every job follows the same checks against the drawing and the spec. Clear steps, clear sign-offs, and one standard applied to every order, big or small."
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showMetrics={false}
           showTrustStrip={false}
         />
@@ -45,7 +45,7 @@ export default function Quality() {
           eyebrow="Inspection"
           title="Material Inspection"
           body="We check material when it arrives, including grade, thickness, and finish, against its certificates. Starting with the right metal is the first step to a part that lasts."
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           titleColor="var(--color-black-light)"
           bodyColor="var(--color-black-light)"
           showGridPattern={false}
@@ -71,7 +71,7 @@ export default function Quality() {
           eyebrow="Process"
           title="In-Process Inspection"
           body="We check parts during production, not just at the end. Catching an issue early costs a minute; catching it after delivery costs a lot more."
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showMetrics={false}
           showTrustStrip={false}
         />
@@ -112,7 +112,7 @@ export default function Quality() {
           eyebrow="Safety"
           title="Safety Standards"
           body="We work to clear safety standards on the floor and in what we deliver: guarded machines, trained operators, and parts built to carry the load they are made for."
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           titleColor="var(--color-black-light)"
           bodyColor="var(--color-black-light)"
           showGridPattern={false}
@@ -141,7 +141,7 @@ export default function Quality() {
           buttonText="Request a Quote"
           buttonLink="/consultation"
           buttonIcon={true}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -176,9 +176,9 @@ export default function Quality() {
 //   secondaryButtonText=""
 //   secondaryButtonLink=""
 //   heroImages={[]}
-//   titleImage="/title-bg.png"
+//   titleImage="/optimize/title-bg.webp"
 //   showRightImage={true}
-//   rightImage="/qualityhero.jpeg"
+//   rightImage="/optimize/qualityhero.webp"
 //   rightImageAlt="Forgentis Fabrication"
 // />
 //    <div className="scroll-content-wrapper">
@@ -186,7 +186,7 @@ export default function Quality() {
 //   eyebrow="Quality Management"
 //   title="How We Manage Quality"
 //   body="Every job follows the same checks against the drawing and the spec. Clear steps, clear sign-offs, and one standard applied to every order, big or small."
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   showMetrics={false}
 //   showTrustStrip={false}
 //   />
@@ -194,7 +194,7 @@ export default function Quality() {
 //   eyebrow="Inspection"
 //   title="Material Inspection"
 //   body="We check material when it arrives, including grade, thickness, and finish, against its certificates. Starting with the right metal is the first step to a part that lasts."
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 //   titleColor="var(--color-black-light)"
 //   bodyColor="var(--color-black-light)"
 //   showGridPattern={false}
@@ -213,7 +213,7 @@ export default function Quality() {
 //   eyebrow="Process"
 //   title="In-Process Inspection"
 //   body="We check parts during production, not just at the end. Catching an issue early costs a minute; catching it after delivery costs a lot more."
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   showMetrics={false}
 //   showTrustStrip={false}
 //   />
@@ -244,7 +244,7 @@ export default function Quality() {
 //   eyebrow="Safety"
 //   title="Safety Standards"
 //   body="We work to clear safety standards on the floor and in what we deliver: guarded machines, trained operators, and parts built to carry the load they are made for."
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 //   titleColor="var(--color-black-light)"
 //   bodyColor="var(--color-black-light)"
 //   showGridPattern={false}
@@ -265,7 +265,7 @@ export default function Quality() {
 //   buttonText="Request a Quote"
 //   buttonLink="/consultation"
 //   buttonIcon={true}
-//    backgroundImage="/title-bg2.jpeg"
+//    backgroundImage="/optimize/title-bg2.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />

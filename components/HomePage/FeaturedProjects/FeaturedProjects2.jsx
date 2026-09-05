@@ -23,21 +23,21 @@ const FeaturedProjects2 = () => {
       name: 'Project Alpha',
       sector: 'Architecture',
       scope: 'Laser-cut facade screens',
-      image: '/forgentis.jpeg'
+      image: '/optimize/forgentis.webp'
     },
     {
       id: 2,
       name: 'Project Beta',
       sector: 'Construction',
       scope: 'Structural steel staircase',
-      image: '/forgentis.jpeg'
+      image: '/optimize/forgentis.webp'
     },
     {
       id: 3,
       name: 'Project Gamma',
       sector: 'Retail',
       scope: 'Powder-coated shopfront',
-      image: '/forgentis.jpeg'
+      image: '/optimize/forgentis.webp'
     }
   ]
 

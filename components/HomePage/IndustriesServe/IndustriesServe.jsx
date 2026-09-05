@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, Building, Home, ShoppingBag, Factory, UtensilsCrossed, Cog, Hospital } from 'lucide-react'
 import './IndustriesServe.css'
+import Image from 'next/image'
 
 const DEFAULT_INDUSTRIES = [
   {
@@ -73,24 +74,40 @@ const IndustriesServe = ({
 
   return (
     <section 
-      className="industries-serve" 
-      ref={sectionRef}
-      style={backgroundColor ? { backgroundColor } : {}}
-    >
-      {/* Background Image */}
-      {backgroundImage && (
-        <div 
-          className="industries-serve-bg-image"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
-      )}
+  className="industries-serve" 
+  ref={sectionRef}
+  style={backgroundColor ? { backgroundColor } : {}}
+>
+  {/* Dynamic Background */}
+  {backgroundImage && (
+    <div className="industries-serve-bg-image">
+      <Image
+        src={backgroundImage}
+        alt=""
+        fill
+        sizes="100vw"
+        className="industries-serve-bg-img"
+      />
+    </div>
+  )}
 
-      {/* Background Glow */}
-      <div className="industries-serve-bg">
-        <div className="industries-serve-glow" />
-      </div>
+  {/* Default Section Background */}
+  <div className="industries-serve-footer-bg">
+    <Image
+      src="/optimize/footer-bg.webp"
+      alt=""
+      fill
+      sizes="100vw"
+      className="industries-serve-footer-bg-img"
+    />
+  </div>
 
-      <div className="container2">
+  {/* Background Glow */}
+  <div className="industries-serve-bg">
+    <div className="industries-serve-glow" />
+  </div>
+
+  <div className="container2">
         {/* Header */}
         {hasHeader && (
           <div className="industries-serve-header">

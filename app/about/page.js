@@ -20,9 +20,9 @@ export default function About() {
           secondaryButtonText=""
           secondaryButtonLink=""
           heroImages={[]}
-          titleImage="/title-bg.png"
+          titleImage="/optimize/title-bg.webp"
           showRightImage={true}
-          rightImage="/abouthero.jpeg"
+          rightImage="/optimize/abouthero.webp"
           rightImageAlt="Forgentis Fabrication"
         />
       </section>
@@ -33,7 +33,7 @@ export default function About() {
           eyebrow="Forgentis"
           title="Our Story"
           body="Forgentis started on a simple idea: metalwork should fit the first time. Since [FOUNDING YEAR], we have grown from [STARTING POINT, e.g. a small workshop] into a full fabrication floor serving [MARKETS OR REGIONS]. The focus has not changed. We cut to the drawing, we weld clean, and we deliver on the date we promise."
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showMetrics={true}
           metrics={[
             {
@@ -82,7 +82,7 @@ export default function About() {
           showMetrics={false}
           showTrustStrip={false}
           showGridPattern={false}
-          backgroundImage="/title-bg2.jpeg"
+          backgroundImage="/optimize/title-bg2.webp"
           eyebrowColor="var(--color-blue-main)"
           titleColor="var(--color-black-light)"
           bodyColor="var(--color-black-light)"
@@ -99,7 +99,7 @@ export default function About() {
           buttonLink="/quality"
           showButton={true}
           showImage={true}
-          imageSrc="/Quality.png"
+          imageSrc="/optimize/Quality.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="right"
         />
@@ -142,7 +142,7 @@ export default function About() {
           buttonLink="/facilities"
           showButton={true}
           showImage={true}
-          imageSrc="/Facilities.png"
+          imageSrc="/optimize/Facilities.webp"
           imageAlt="Forgentis Fabrication"
           imagePosition="right"
         />
@@ -156,7 +156,7 @@ export default function About() {
           body="We are built to work with procurement teams, project managers, and site engineers. That means clear quotes, approved shop drawings, certified material, and delivery that lands when you need it."
           showMetrics={false}
           showTrustStrip={false}
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
         />
       </section>
 
@@ -185,7 +185,7 @@ export default function About() {
           body="Send us your drawings, or tell us about your project. We will come back with a clear quote and a plan."
           buttonText="Get a Quote"
           buttonLink="/consultation"
-          backgroundImage="/footer-bg.png"
+          backgroundImage="/optimize/footer-bg.webp"
           showGlow={true}
           showGridPattern={true}
         />
@@ -217,9 +217,9 @@ export default function About() {
 //   secondaryButtonText=""
 //   secondaryButtonLink=""
 //   heroImages={[]}
-//   titleImage="/title-bg.png"
+//   titleImage="/optimize/title-bg.webp"
 //   showRightImage={true}
-//   rightImage="/abouthero.jpeg"
+//   rightImage="/optimize/abouthero.webp"
 //   rightImageAlt="Forgentis Fabrication"
 // />
 //    <div className="scroll-content-wrapper">
@@ -227,7 +227,7 @@ export default function About() {
 //   eyebrow="Forgentis"
 //   title="Our Story"
 //   body=" Forgentis started on a simple idea: metalwork should fit the first time. Since [FOUNDING YEAR], we have grown from [STARTING POINT, e.g. a small workshop] into a full fabrication floor serving [MARKETS OR REGIONS]. The focus has not changed. We cut to the drawing, we weld clean, and we deliver on the date we promise."
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   // overlayOpacity={0.5}
 //   showMetrics={true}
 //  metrics={[
@@ -274,7 +274,7 @@ export default function About() {
 //   showMetrics={false}
 //   showTrustStrip={false}
 //   showGridPattern={false}
-//   backgroundImage="/title-bg2.jpeg"
+//   backgroundImage="/optimize/title-bg2.webp"
 //   eyebrowColor="var(--color-blue-main)"
 //   titleColor="var(--color-black-light)"
 //   bodyColor="var(--color-black-light)"
@@ -288,7 +288,7 @@ export default function About() {
 //   buttonLink="/quality"
 //   showButton={true}
 //   showImage={true}
-//   imageSrc="/Quality.png"
+//   imageSrc="/optimize/Quality.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="right"
 // />
@@ -314,7 +314,7 @@ export default function About() {
 //   },
 // ]}
 //   showTrustStrip={false}
-//   // backgroundImage="/footer-bg.png"
+//   // backgroundImage="/optimize/footer-bg.webp"
 //   // overlayOpacity={0.5}
 // />
 // <WhoWeAre
@@ -325,7 +325,7 @@ export default function About() {
 //   buttonLink="/facilities"
 //   showButton={true}
 //   showImage={true}
-//   imageSrc="/Facilities.png"
+//   imageSrc="/optimize/Facilities.webp"
 //   imageAlt="Forgentis Fabrication"
 //   imagePosition="right"
 // />
@@ -335,7 +335,7 @@ export default function About() {
 //   body="We are built to work with procurement teams, project managers, and site engineers. That means clear quotes, approved shop drawings, certified material, and delivery that lands when you need it."
 //   showMetrics={false}
 //   showTrustStrip={false}
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   // overlayOpacity={0.5}
 // />
 // <WhyForgentis
@@ -358,7 +358,7 @@ export default function About() {
 //   body="Send us your drawings, or tell us about your project. We will come back with a clear quote and a plan."
 //   buttonText="Get a Quote"
 //   buttonLink="/consultation"
-//   backgroundImage="/footer-bg.png"
+//   backgroundImage="/optimize/footer-bg.webp"
 //   showGlow={true}
 //   showGridPattern={true}
 // />
